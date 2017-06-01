@@ -1,0 +1,20 @@
+<div class="ui secondary pointing menu active">
+  <a class="item"(click)="navigateToEmployee()" routerLinkActive="active">
+    Employees 
+  </a>
+  <a class="item" (click)="navigateToProperty()"   routerLinkActive="active">
+    Properties 
+  </a>
+  <a class="item" (click)="navigateToTask()" routerLinkActive="active" >
+     Tasks
+  </a>
+  <div class="right menu">
+    <a class="ui item" routerLinkActive="active">
+     {{firstname}} {{lastname}}
+    </a>
+    <a class="ui item" routerLink="/login" routerLinkActive="active">
+      Logout
+    </a>
+     
+  </div>
+</div>

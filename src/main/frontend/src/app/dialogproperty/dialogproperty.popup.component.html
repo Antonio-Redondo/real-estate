@@ -1,0 +1,47 @@
+ <h2 style="color:#204d74">{{item.name}}</h2>
+  <br>
+
+  <md-card-content>
+    <form #loginForm="ngForm" >
+     
+      <table style="width: 100%" cellspacing="0"><tr>
+        <td>
+          <md-input-container style="width: 100%">
+          <input mdInput name="Name" placeholder="Name"
+          [(ngModel)]="name" required  (keyup)="checkFields()">
+                   <md-error>This field is required</md-error>
+          </md-input-container>
+        </td>
+       <td>
+         <md-input-container style="width: 100%">
+             <input mdInput name="City" placeholder="City"
+                 [(ngModel)]="city" required (keyup)="checkFields()">
+                   <md-error>This field is required</md-error>
+            </md-input-container>
+        </td>
+      </tr></table>
+    <table style="width: 100%" cellspacing="0"><tr>
+        <tr>
+            <td>
+            <md-input-container style="width: 100%">
+             <input mdInput name="Adress" placeholder="Adress"
+                 [(ngModel)]="address" required (keyup)="checkFields()">
+                   <md-error>This field is required</md-error>
+            </md-input-container>
+        
+            </td>
+        </tr>
+        </table>
+
+     
+
+    </form>
+    <br>
+    <br>
+     <md-dialog-actions align="end" >
+           <td><button md-raised-button (click)="saveProperty()"color="accent" [disabled]="!enableButton" >Save</button></td>
+           <td><button md-raised-button (click)="dialogRef.close()">Cancel</button></td>
+         </md-dialog-actions>
+  </md-card-content>
+
+   

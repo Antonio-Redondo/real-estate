@@ -1,0 +1,111 @@
+<div class="container-fluid">
+    <div class="col-xs-12 col-md-10 col-md-offset-1 col-lg-8 col-lg-offset-2">
+
+       <app-addemployee></app-addemployee>
+
+        <div  *ngIf="show" class="alert alert-success">
+    					A new employee has been created
+    	</div>
+
+        <div  *ngIf="showSavedTask" class="alert alert-success">
+    					A new task has been associated to the employee
+    	</div>
+
+         <div  *ngIf="showRemovedEmployee" class="alert alert-success">
+    					An employee has been removed
+    	</div>
+
+
+        <div class="row">
+            <h2 class="col-xs-6"></h2>
+            
+            <div class="col-xs-2">
+                
+                <label class="label-control" style="color:#204d74">Rows on page</label>
+                <select class="form-control input-sm" [(ngModel)]="rowsOnPage">
+                    <option [ngValue]="5">5</option>
+                    <option [ngValue]="10">10</option>
+                    <option [ngValue]="15">15</option>
+                </select>
+            </div>
+            <div class="col-xs-4">
+                <div class="row">
+                    <label class="col-xs-12 label-control" style="color:#204d74">Sort by</label>
+                </div>
+                <div class="col-xs-6">
+                    <div class="row">
+                        <select class="form-control input-sm" [(ngModel)]="sortBy">
+                            <option ngValue="name">Name</option>
+                            <option ngValue="email">Email</option>
+                            <option ngValue="age">Age</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-xs-6">
+                    <div class="row">
+                        <select class="form-control input-sm" [(ngModel)]="sortOrder">
+                            <option ngValue="asc">Ascending</option>
+                            <option ngValue="desc">Descending</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-heading">Employee information</div>
+
+            <table class="table table-striped" [mfData]="data | dataFilter : filterQuery" #mf="mfDataTable"
+                   [mfRowsOnPage]="rowsOnPage" [(mfSortBy)]="sortBy" [(mfSortOrder)]="sortOrder">
+                <thead>
+                <tr>
+                    <th style="width: 10%"></th>
+                    <th style="width: 20%">
+                        <mfDefaultSorter by="name">Name</mfDefaultSorter>
+                    </th>
+                    <th style="width: 40%">
+                        <mfDefaultSorter by="email">Email</mfDefaultSorter>
+                    </th>
+                    <th style="width: 10%">
+                        <mfDefaultSorter by="age">Telephone</mfDefaultSorter>
+                    </th>
+                    <th style="width: 20%">
+                      
+                    </th>
+                     <th style="width: 10%">
+                      
+                    </th>
+                </tr>
+                <tr>
+                    <th colspan="5">
+                        Filter by name:
+                        <input class="form-control" [(ngModel)]="filterQuery"/>
+                    </th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr *ngFor="let item of mf.data">
+                    <td>
+                     <app-deleteemployee></app-deleteemployee> 
+                    </td>
+                    <td>{{item.name}}</td>
+                    <td>{{item.email}}</td>
+                    <td >{{item.age}}</td>
+                    <td><app-dialog [item]="item"></app-dialog></td>
+
+                    <td>
+                        <app-dialoginformation [disabled]="item.task[0] == null" [item]="item"></app-dialoginformation>
+                    <td>
+
+                </tr>
+                </tbody>
+                <tfoot>
+                <tr>
+                    <td colspan="5">
+                        <mfBootstrapPaginator [rowsOnPageSet]="[5,10,15]"></mfBootstrapPaginator>
+                    </td>
+                </tr>
+                </tfoot>
+            </table>
+        </div>
+    </div>
+</div>

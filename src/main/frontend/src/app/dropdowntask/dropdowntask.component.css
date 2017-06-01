@@ -1,0 +1,11 @@
+.select {
+  display: flex;
+  flex-flow: row wrap;
+  width: 220px;
+
+  
+}
+
+.dropdown{
+  width: 220px
+}

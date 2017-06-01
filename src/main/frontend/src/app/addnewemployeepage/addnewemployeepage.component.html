@@ -1,0 +1,96 @@
+<app-menu [firstname]="userFirstname" [lastname]="userLastname"></app-menu>
+<br>
+<br>
+<br>
+<br>
+<md-card class="col-xs-12 col-md-10 col-md-offset-1 col-lg-8 col-lg-offset-2">
+  <md-toolbar style="color:#204d74">Add new Employee</md-toolbar>
+  <br>
+  <br>
+  <br>
+  <md-card-content>
+    <form #loginForm="ngForm" >
+      <md-input-container class="demo-full-width">
+        <input mdInput placeholder="Company" disabled value="Golden Real Estate">
+      </md-input-container>
+
+      <table style="width: 100%" cellspacing="0"><tr>
+        <td>
+          <md-input-container style="width: 100%">
+          <input mdInput name="First Name" placeholder="First Name"
+          [(ngModel)]="firstName" required  (keyup)="checkFiledsRequired()">
+                   <md-error>This field is required</md-error>
+          </md-input-container>
+        </td>
+       <td>
+          <md-input-container style="width: 100%">
+             <input mdInput name="Last Name" placeholder="Last Name"
+                 [(ngModel)]="lastName" required (keyup)="checkFiledsRequired()">
+                   <md-error>This field is required</md-error>
+            </md-input-container>
+        </td>
+      </tr></table>
+      <table style="width: 100%" cellspacing="0"><tr>
+        <td>
+          <md-input-container class="demo-full-width">
+        <input mdInput placeholder="Email"  [(ngModel)]="email" [formControl]="emailFormControl" (keyup)="checkFiledsRequired()">
+        <md-error *ngIf="emailFormControl.hasError('required')">
+          This field is required
+        </md-error>
+        <md-error *ngIf="emailFormControl.hasError('pattern')">
+          Please enter a valid email address
+        </md-error>
+      </md-input-container>
+        </td>
+        <td>
+          <md-input-container class="demo-full-width" >
+            <input mdInput #postalCode maxLength="12" [(ngModel)]="telephone" placeholder="Telephone Number"
+                   pattern="[0-9]{12}" [formControl]="telephoneFormControl" (keyup)="checkFiledsRequired()">
+            <md-hint align="end">
+              <md-icon>mode_edit</md-icon>
+              <span aria-live="polite">{{postalCode.value.length}} / 12</span>
+            </md-hint>
+             <md-error *ngIf="telephoneFormControl.hasError('required')">
+               This field is required
+             </md-error>
+              <md-error *ngIf="telephoneFormControl.hasError('pattern')">
+                Please enter a valid telephone number. Example 971501555151
+        </md-error>
+          </md-input-container>
+        </td>
+         <td>
+          <md-input-container class="demo-full-width">
+            <input mdInput placeholder="Age" [formControl]="ageFormControl" [(ngModel)]="age" minlength="1" maxlength="3" (keyup)="checkFiledsRequired()">
+             <md-error *ngIf="ageFormControl.hasError('required')" >
+          This field is required
+             </md-error>
+              <md-error *ngIf="ageFormControl.hasError('pattern')">
+                Please enter a valid age
+            </md-error>
+          </md-input-container>
+        </td>
+      </tr></table>
+      <p>    
+          <md-input-container class="demo-full-width">
+           <textarea mdInput name="Address" placeholder="Address"
+                     [(ngModel)]="address" ></textarea>
+          </md-input-container>
+          </p>
+
+       <p>    
+          <md-input-container class="demo-full-width">
+           <textarea mdInput name="Remarks" placeholder="Remarks"
+                     [(ngModel)]="remarks" ></textarea>
+          </md-input-container>
+          </p>
+
+          <p>
+         <md-dialog-actions align="end" >
+           <td><button md-raised-button color="accent" [disabled]="disabled" (click)="saveEmployee()">Save</button></td>
+           <td><button md-raised-button  (click)="cancelNavigation()" >Cancel</button></td>
+         </md-dialog-actions>
+         </p>
+    </form>
+  </md-card-content>
+</md-card>
+

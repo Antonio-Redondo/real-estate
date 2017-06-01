@@ -1,0 +1,8 @@
+ 
+ <div *ngIf="disabled" mdTooltip="Assign a task to the employee">
+    <button class="btn btn-defaul" [disabled]="disabled" md-button (click)="openDialog(item)" class="example-tooltip-hos"><img src="/assets/information.jpg"/></button>
+</div>
+
+ <div *ngIf="!disabled" mdTooltip="Information about the employee">
+    <button class="btn btn-defaul" [disabled]="disabled" md-button (click)="openDialog(item)"  class="example-tooltip-hos"><img src="/assets/information.jpg"/></button>
+</div>

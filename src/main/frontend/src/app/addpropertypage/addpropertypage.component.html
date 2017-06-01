@@ -1,0 +1,48 @@
+<app-menu  [firstname]="userFirstname" [lastname]="userLastname" ></app-menu>
+<br>
+<br>
+<br>
+<br>
+<md-card class="col-xs-12 col-md-10 col-md-offset-1 col-lg-8 col-lg-offset-2">
+  <md-toolbar style="color:#204d74">Add new Property</md-toolbar>
+  <br>
+  <br>
+  <br>
+  <md-card-content>
+    <form #loginForm="ngForm" >
+      <table style="width: 100%" cellspacing="0"><tr>
+        <td>
+          <md-input-container style="width: 100%">
+          <input mdInput name="Name" placeholder="Name"
+          [(ngModel)]="property.name" required  (keyup)="checkFiledsRequired()">
+                   <md-error>This field is required</md-error>
+          </md-input-container>
+        </td>
+       <td>
+          <md-input-container style="width: 100%">
+             <input mdInput name="City" placeholder="City"
+                 [(ngModel)]="property.city" required (keyup)="checkFiledsRequired()">
+                   <md-error>This field is required</md-error>
+            </md-input-container>
+        </td>
+      </tr></table>
+       <table style="width: 100%" cellspacing="0"><tr>
+         </tr>
+         <td>
+            <md-input-container style="width: 100%">
+             <input mdInput name="Address" placeholder="Address"
+                 [(ngModel)]="property.address" required (keyup)="checkFiledsRequired()">
+                   <md-error>This field is required</md-error>
+            </md-input-container>
+         </td>
+       </table>
+        <p>
+         <md-dialog-actions align="end" >
+           <td><button md-raised-button color="accent" [disabled]="disabled" (click)="saveProperty()">Save</button></td>
+           <td><button md-raised-button   (click)="cancelNavigation()" >Cancel</button></td>
+         </md-dialog-actions>
+         </p>
+    </form>
+  </md-card-content>
+</md-card>
+

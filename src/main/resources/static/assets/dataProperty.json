@@ -1,0 +1,79 @@
+[
+  {
+    "id": 1,
+    "name": "Index Tower",
+    "address": "Financial Centre example address 1",
+    "city": "Dubai",
+    "image": "./assets/antonio.jpg"
+  },
+ {
+    "id": 2,
+    "name": "Abu Dhabi Internacional School",
+    "address": "Example address 2",
+    "city": "Abu Dhabi",
+    "image": "./assets/antonio.jpg"
+  },
+  {
+    "id": 3,
+    "name": "Abu Dhabi Internacional Schoo3",
+    "address": "Example address 3",
+    "city": "Abu Dhabi3",
+    "image": "./assets/antonio.jpg"
+  },
+  {
+    "id": 4,
+    "name": "Abu Dhabi Internacional School4",
+    "address": "Example address 4",
+    "city": "Abu Dhabi4",
+    "image": "./assets/antonio.jpg"
+  },
+  {
+    "id": 5,
+    "name": "Abu Dhabi Internacional School5",
+    "address": "Example address 5",
+    "city": "Abu Dhabi5",
+    "image": "./assets/antonio.jpg"
+  },
+  {
+    "id": 6,
+    "name": "Abu Dhabi Internacional School6",
+    "address": "Example address 6",
+    "city": "Abu Dhabi6",
+    "image": "./assets/antonio.jpg"
+  },
+  {
+    "id": 7,
+    "name": "Abu Dhabi Internacional School7",
+    "address": "Example address 7",
+    "city": "Abu Dhabi7",
+    "image": "./assets/antonio.jpg"
+  },
+  {
+    "id": 8,
+    "name": "Abu Dhabi Internacional School8",
+    "address": "Example address 8",
+    "city": "Abu Dhabi8",
+    "image": "./assets/antonio.jpg"
+  },
+  {
+    "id": 9,
+    "name": "Abu Dhabi Internacional School9",
+    "address": "Example address 9",
+    "city": "Abu Dhabi 9",
+    "image": "./assets/antonio.jpg"
+  },
+  {
+    "id": 10,
+    "name": "Abu Dhabi Internacional School10",
+    "address": "Example address 10",
+    "city": "Abu Dhabi 10",
+    "image": "./assets/antonio.jpg"
+  },
+  {
+    "id": 11,
+    "name": "Abu Dhabi Internacional School11",
+    "address": "Example address 11",
+    "city": "Abu Dhabi",
+    "image": "./assets/antonio.jpg"
+  }
+]

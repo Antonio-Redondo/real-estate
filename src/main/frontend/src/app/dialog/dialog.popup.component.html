@@ -1,0 +1,83 @@
+ 
+ 
+ <h2 style="color:#204d74">{{item.name}}</h2>
+  
+ <br>
+  <br>
+<table class="example-full-width" cellspacing="0" id="table">
+  <br>
+  <br>
+  <tr>
+    <td></td>
+    <td></td>
+  </tr>
+    <tr>
+         <td style="width:280px">
+             <select-dropdown></select-dropdown>
+       </td>
+      <td>
+             <select-dropdowntask></select-dropdowntask>
+             
+        </td>
+  </tr>
+<br>
+<br>
+<br>
+<br>
+  <tr>
+    <td>  <md-input-container>
+            <input required="true" mdInput [mdDatepicker]="pickerFrom" placeholder="From"  id="dateFrom" [(ngModel)]="item.task.dateFrom" >
+            <button mdSuffix [mdDatepickerToggle]="pickerFrom" (click)="checkFields()" ></button>
+              <md-error>This field is required</md-error>
+          </md-input-container>
+          <md-datepicker required="true" #pickerFrom></md-datepicker></td>
+     <td>  <md-input-container>
+            <input required="true" mdInput [mdDatepicker]="pickerTo" placeholder="To" [(ngModel)]="item.task.dateTo" [min]="item.task.dateFrom">
+            <button mdSuffix [mdDatepickerToggle]="pickerTo" (click)="checkFields()" ></button>
+              <md-error>This field is required</md-error>
+          </md-input-container>
+          <md-datepicker required="true" #pickerTo></md-datepicker></td>
+    
+  </tr>
+<br>
+<br>
+  <tr>
+    <td></td>
+    <td></td>
+  </tr>
+<br>
+<br>
+  <br>
+  <tr class="example-full-width" >
+      <td>
+      
+     <md-input-container style="width:300px">
+      <textarea mdInput #postalCode maxlength="200" class="example-full-width"  (keyup)="checkFields()" required="true" mdInput [(ngModel)]="item.task[0].remarks" placeholder="Remarks"></textarea>
+       <md-hint align="end">{{postalCode.value.length}} / 200</md-hint>
+         <md-error>This field is required</md-error>
+    </md-input-container>
+      </td>
+  </tr>
+
+    <br>
+    <br>
+       <tr>
+    <td></td>
+    <td></td>
+  </tr> 
+   
+      <tr>
+          <td></td>
+        <td>
+        <md-dialog-actions align="end" >
+           <td><button md-raised-button (click)="saveTask()"color="accent" [disabled]="!enableButton" >Save</button></td>
+           <td><button md-raised-button (click)="dialogRef.close()">Cancel</button></td>
+         </md-dialog-actions>
+       </td>
+      </tr>
+
+
+   </table>
+
+
+

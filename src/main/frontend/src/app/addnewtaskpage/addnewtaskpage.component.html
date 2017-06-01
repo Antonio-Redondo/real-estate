@@ -1,0 +1,37 @@
+<app-menu [firstname]="userFirstname" [lastname]="userLastname" ></app-menu>
+<br>
+<br>
+<br>
+<br>
+<md-card class="col-xs-12 col-md-10 col-md-offset-1 col-lg-8 col-lg-offset-2">
+  <md-toolbar style="color:#204d74">Add new Task</md-toolbar>
+  <br>
+  <br>
+  <br>
+  <md-card-content>
+    <form #loginForm="ngForm" >
+      <table style="width: 100%" cellspacing="0"><tr>
+        <td>
+          <md-input-container style="width: 100%">
+          <input mdInput name="Name" placeholder="Name"
+          [(ngModel)]="task.name" required  (keyup)="checkFiledsRequired()">
+                   <md-error>This field is required</md-error>
+          </md-input-container>
+        </td>
+       <td>
+          <md-input-container style="width: 100%">
+             <input mdInput name="Remarks" placeholder="Remarks"
+                 [(ngModel)]="task.remarks" required (keyup)="checkFiledsRequired()">
+                   <md-error>This field is required</md-error>
+            </md-input-container>
+        </td>
+      </tr></table>
+        <p>
+         <md-dialog-actions align="end" >
+           <td><button md-raised-button color="accent" [disabled]="disabled" (click)="saveTask()">Save</button></td>
+           <td><button md-raised-button  (click)="cancelNavigation()" >Cancel</button></td>
+         </md-dialog-actions>
+         </p>
+    </form>
+  </md-card-content>
+</md-card>
