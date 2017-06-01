@@ -16,7 +16,9 @@ export class LoginComponent implements OnInit {
     loading = false;
     firstname : string;
     lastname : string;
+    fromRegister: string;
     showInvalidUser: boolean= false;
+    showUserRegistered: boolean= false;
     returnUrl: string;
     logged : boolean =false;
 
@@ -24,21 +26,30 @@ export class LoginComponent implements OnInit {
         private route: ActivatedRoute,
         private router: Router,
         private authenticationService : AuthenticationService,
-        private alertService : AlertService
+        private alertService : AlertService,
+        private actRoute: ActivatedRoute
 
-        ) { }
+        ) { 
+
+            this.actRoute.queryParams.subscribe(params => {
+       
+            this.fromRegister = params["fromRegister"];
+        });
+
+        }
 
     ngOnInit() {
         this.model = new User();
-        // reset login status
-        this.authenticationService.logout();
-
         // get return url from route parameters or default to '/'
         this.returnUrl = '/employeelist/false';
+        if(this.fromRegister =="yes"){
+             this.showUserRegistered =true;
+        }
     }
 
     login() {
         this.loading = true;
+        this.showUserRegistered = false;
         this.authenticationService.login(this.model)
             .subscribe(
                 data => {

@@ -1,8 +1,10 @@
 package com.realestate.repository;
 
 import com.realestate.data.BaseJPARepository;
+import com.realestate.dto.UserDTO;
 import com.realestate.exception.NotFoundException;
 import com.realestate.model.entity.User;
+import org.springframework.web.bind.annotation.RequestBody;
 
 /**
  *
@@ -19,4 +21,23 @@ public interface UserRepository extends BaseJPARepository<User, Long> {
      * @return User
      */
     public User findByUsernameAndPassword(String username, String password)throws NotFoundException;
+
+    /**
+     * Finds a user with the given username and password
+     *
+     * @param firstname
+     * @param lastname
+     * @return User
+     */
+    public User findByFirstNameLastName(String firstname, String lastname)throws NotFoundException;
+
+
+
+
+    /**
+     * Method in charge to logout of the application
+     * @param userDTO
+     * @throws NotFoundException
+     */
+    public void logout(@RequestBody UserDTO userDTO)throws NotFoundException;
 }

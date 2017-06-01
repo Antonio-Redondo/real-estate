@@ -1,8 +1,11 @@
 package com.realestate.service;
 
+import com.realestate.api.APIResponse;
 import com.realestate.data.BaseService;
+import com.realestate.dto.UserDTO;
 import com.realestate.exception.NotFoundException;
 import com.realestate.model.entity.User;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -54,4 +57,19 @@ public interface UserService extends BaseService<User, Long> {
      * @return User
      */
     public User findByUsernameAndPassword(String username, String password) throws NotFoundException;
+
+    /**
+     * Finds a user entity by the given email
+     * @param firstname
+     * @param lastname
+     * @return User
+     */
+    public User findByFirstNameLastName(String firstname, String lastname) throws NotFoundException;
+
+
+    /**
+     * @param user
+     * @throws NotFoundException
+     */
+    public void logout(User user)throws NotFoundException;
 }

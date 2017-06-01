@@ -4,18 +4,14 @@ package com.realestate.dto;
  * Created by Antonio Redondo on 5/25/2017.
  */
 public class UserDTO {
-    String email;
-    String password;
-    String displayName;
-    String encryptedPassword;
-    String iv;
-    String salt;
-    String username;
-    String firstname;
-    String lastname;
+    private String email;
+    private String password;
+    private String displayName;
+    private String username;
+    private String firstname;
+    private String lastname;
+    private long id;
 
-    int keySize;
-    int iterations;
 
     public String getEmail() {
         return email;
@@ -41,46 +37,6 @@ public class UserDTO {
         this.displayName = displayName;
     }
 
-    public String getEncryptedPassword() {
-        return encryptedPassword;
-    }
-
-    public void setEncryptedPassword(String encryptedPassword) {
-        this.encryptedPassword = encryptedPassword;
-    }
-
-    public String getIv() {
-        return iv;
-    }
-
-    public void setIv(String iv) {
-        this.iv = iv;
-    }
-
-    public String getSalt() {
-        return salt;
-    }
-
-    public void setSalt(String salt) {
-        this.salt = salt;
-    }
-
-    public int getKeySize() {
-        return keySize;
-    }
-
-    public void setKeySize(int keySize) {
-        this.keySize = keySize;
-    }
-
-    public int getIterations() {
-        return iterations;
-    }
-
-    public void setIterations(int iterations) {
-        this.iterations = iterations;
-    }
-
     public String getUsername() {
         return username;
     }
@@ -103,5 +59,13 @@ public class UserDTO {
 
     public void setLastname(String lastname) {
         this.lastname = lastname;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 }

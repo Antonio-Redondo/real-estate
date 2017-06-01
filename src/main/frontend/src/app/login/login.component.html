@@ -10,6 +10,12 @@
 						Please try again
     	</div>
 
+	 <div  *ngIf="showUserRegistered" class="alert alert-success">
+    					New user successfully registered
+    	</div>
+
+	
+
     <form #loginForm="ngForm" (ngSubmit)="login()">
        	<div class="form-group">
 							<label for="name" class="cols-sm-2 control-label">UserName</label>

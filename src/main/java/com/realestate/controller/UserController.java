@@ -97,8 +97,11 @@ public class UserController{
      * @param userDTO
      * @return APIResponse
      */
-    @RequestMapping(value = "/logout", method = RequestMethod.DELETE)
-    public @ResponseBody APIResponse logout(@RequestBody UserDTO userDTO) {
+    @RequestMapping(value = "/logout",  method = RequestMethod.POST, headers = {JSON_API_CONTENT_HEADER})
+    public @ResponseBody APIResponse logout(@RequestBody UserDTO userDTO) throws NotFoundException {
+
+        User user = userService.findByFirstNameLastName(userDTO.getFirstname(), userDTO.getLastname());
+        userService.logout(user);
         return APIResponse.toOkResponse("success");
     }
 

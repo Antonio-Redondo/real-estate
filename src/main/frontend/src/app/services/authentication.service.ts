@@ -47,9 +47,16 @@ export class AuthenticationService {
  
    
 
-    logout(): void {
-        // clear token remove user from local storage to log user out
-      
-        localStorage.removeItem('currentUser');
+    logout(firstname: string, lastname:string) {
+      let body = JSON.stringify({ firstname: firstname, lastname: lastname });
+        let headers = new Headers({ 'Content-Type': 'application/json' });
+        let options = new RequestOptions({ headers: headers });
+
+        return this.http.post('http://localhost:8080/user/logout',body,options)
+            .map((response: Response) => {
+                console.log(response.json().result);
+                 let res =  response.json().result;
+        
+            });
     }
 }

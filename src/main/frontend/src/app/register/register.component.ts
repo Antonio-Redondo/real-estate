@@ -28,7 +28,12 @@ export class RegisterComponent implements OnInit {
         this.authenticationService.register(this.model)
             .subscribe(
                 data => {
-                    this.router.navigate([this.returnUrl]);
+                   let navigationExtras: NavigationExtras = {
+                             queryParams: {
+                             "fromRegister": "yes"
+                        }
+                     };
+                    this.router.navigate([this.returnUrl],navigationExtras);
                 },
                 error => {
                     console.log("Error");

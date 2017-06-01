@@ -1,5 +1,6 @@
 package com.realestate.service.impl;
 
+import com.realestate.dto.UserDTO;
 import com.realestate.exception.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -8,6 +9,7 @@ import com.realestate.data.BaseJPAServiceImpl;
 import com.realestate.model.entity.User;
 import com.realestate.repository.UserRepository;
 import com.realestate.service.UserService;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import javax.annotation.PostConstruct;
 import javax.servlet.http.HttpServletRequest;
@@ -64,5 +66,23 @@ public class UserServiceImpl extends BaseJPAServiceImpl<User, Long> implements U
         } else {
             throw new NotFoundException("User not found for username and password: "+username+ " " +password);
         }
+    }
+
+    @Override
+    public User findByFirstNameLastName(String firstname, String lastname) throws NotFoundException {
+        User user = userRepository.findByFirstNameLastName(firstname,lastname);
+
+        if(user != null) {
+            return user;
+        } else {
+            throw new NotFoundException("User not found for firstname and lastname: "+firstname+ " " +lastname);
+        }
+    }
+
+
+    @Override
+    public void logout(User user)throws NotFoundException{
+        user.setUpdatedAt(null);
+        userRepository.update(user);
     }
 }
