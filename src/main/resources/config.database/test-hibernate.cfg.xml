@@ -13,6 +13,9 @@
 
         <!-- Map the app related object entity classes here -->
         <mapping class="com.realestate.model.entity.User" />
+        <mapping class="com.realestate.model.entity.Property" />
+        <mapping class="com.realestate.model.entity.Task" />
+        <mapping class="com.realestate.model.entity.Employee" />
 
     </session-factory>
 </hibernate-configuration>

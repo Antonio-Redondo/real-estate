@@ -31,6 +31,7 @@ import java.security.spec.InvalidKeySpecException;
 import java.security.spec.KeySpec;
 import java.util.Date;
 import java.util.HashMap;
+import com.realestate.dto.UserDTO;
 
 /**
  * @author: Antonio Redondo
