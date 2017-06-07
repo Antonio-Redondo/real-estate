@@ -16,6 +16,7 @@ import java.util.Date;
  */
 @MappedSuperclass
 public abstract class JPAEntity<T extends Serializable> implements Entity {
+
     protected  T id;
     protected Date createdAt;
     protected Date updatedAt;
@@ -43,7 +44,7 @@ public abstract class JPAEntity<T extends Serializable> implements Entity {
     }
 
 
-    @XmlElement(type = Object.class) @Id @GeneratedValue
+    @Id @GeneratedValue(strategy=GenerationType.IDENTITY)
     public T getId() {
         return id;
     }

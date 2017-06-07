@@ -37,7 +37,7 @@
                         <select class="form-control input-sm" [(ngModel)]="sortBy">
                             <option ngValue="name">Name</option>
                             <option ngValue="email">Email</option>
-                            <option ngValue="age">Age</option>
+                            <option ngValue="telephone">Telephone</option>
                         </select>
                     </div>
                 </div>
@@ -66,7 +66,7 @@
                         <mfDefaultSorter by="email">Email</mfDefaultSorter>
                     </th>
                     <th style="width: 10%">
-                        <mfDefaultSorter by="age">Telephone</mfDefaultSorter>
+                        <mfDefaultSorter by="telephone">Telephone</mfDefaultSorter>
                     </th>
                     <th style="width: 20%">
                       
@@ -89,7 +89,7 @@
                     </td>
                     <td>{{item.name}}</td>
                     <td>{{item.email}}</td>
-                    <td >{{item.age}}</td>
+                    <td >{{item.telephone}}</td>
                     <td><app-dialog [item]="item"></app-dialog></td>
 
                     <td>

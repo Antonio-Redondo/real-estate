@@ -37,13 +37,19 @@ public class Employee extends JPAEntity<Long> implements Serializable {
     @Column(name = "IMAGE", nullable = true)
     private String image;
 
-    @Column(name = "PROPERTY_ID", nullable = true)
-    @OneToOne(targetEntity=Property.class, fetch = FetchType.LAZY, mappedBy = "employee")
+    @JoinColumn(name = "PROPERTY_ID", nullable = true)
+    @OneToOne(targetEntity=Property.class, fetch = FetchType.EAGER, mappedBy = "employee")
     private Property properties;
 
-    @Column(name = "TASK_ID", nullable = true)
-    @OneToOne(targetEntity=Task.class, fetch = FetchType.LAZY, mappedBy = "employee")
+    @JoinColumn(name = "id", nullable = false)
+    @OneToOne(targetEntity=Task.class, fetch = FetchType.EAGER, mappedBy = "employee")
     private Task tasks;
+
+    @Column(name = "PROPERTY_ID", nullable = true)
+    private long propertyId;
+
+    @Column(name = "TASK_ID", nullable = true)
+    private long taskId;
 
 
     public String getName() {
@@ -125,5 +131,22 @@ public class Employee extends JPAEntity<Long> implements Serializable {
 
     public void setProperties(Property properties) {
         this.properties = properties;
+    }
+
+
+    public long getPropertyId() {
+        return propertyId;
+    }
+
+    public void setPropertyId(long propertyId) {
+        this.propertyId = propertyId;
+    }
+
+    public long getTaskId() {
+        return taskId;
+    }
+
+    public void setTaskId(long taskId) {
+        this.taskId = taskId;
     }
 }

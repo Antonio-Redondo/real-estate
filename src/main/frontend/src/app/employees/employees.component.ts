@@ -2,6 +2,7 @@ import { Component, OnInit,Input } from '@angular/core';
 import {Http} from "@angular/http";
 import { Router, ActivatedRoute } from '@angular/router';
 import {Employee} from './../entities/employee';
+import {EmployeeService} from './../services/employee/employee.service';
 
 @Component({
     selector: 'app-employees',
@@ -23,21 +24,23 @@ export class EmployeesComponent implements OnInit {
   
    
 
-    constructor(private http: Http) {
+    constructor(private http: Http, private employeeService : EmployeeService) {
     }
 
   
 
     ngOnInit(): void {
        this.checkSuccessMessages();
-        this.http.get("assets/data.json")
+      this.employeeService.fetchAllEmployees()
             .subscribe((data)=> {
                 setTimeout(()=> {
-                    this.data = data.json() as Employee[];
+                    this.data = data;
                 }, 1000);
             });
         
     }
+
+    
 
     public toInt(num: string) {
         return +num;

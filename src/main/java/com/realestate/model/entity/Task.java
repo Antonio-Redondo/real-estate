@@ -15,6 +15,10 @@ import java.util.Date;
 public class Task extends JPAEntity<Long> implements Serializable {
 
 
+    @Column(name = "TASK_ID", nullable = false)
+    private long taskId;
+
+
     @Column(name = "NAME", nullable = false)
     private String name;
 
@@ -31,7 +35,7 @@ public class Task extends JPAEntity<Long> implements Serializable {
     @Column(name = "REMARKS", nullable = false)
     private String remarks;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "id")
     private Employee employee;
 
@@ -74,5 +78,13 @@ public class Task extends JPAEntity<Long> implements Serializable {
 
     public void setEmployee(Employee employee) {
         this.employee = employee;
+    }
+
+    public long getTaskId() {
+        return taskId;
+    }
+
+    public void setTaskId(long taskId) {
+        this.taskId = taskId;
     }
 }

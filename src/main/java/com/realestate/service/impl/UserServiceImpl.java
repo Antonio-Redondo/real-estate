@@ -24,7 +24,9 @@ import java.util.Date;
 @Service
 @Transactional
 public class UserServiceImpl extends BaseJPAServiceImpl<User, Long> implements UserService {
-    private @Autowired UserRepository userRepository;
+
+    @Autowired
+    private UserRepository userRepository;
 
     @PostConstruct
     public void setupService() {

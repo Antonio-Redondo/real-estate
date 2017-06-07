@@ -54,6 +54,7 @@ import { AddnewtaskpageComponent } from './addnewtaskpage/addnewtaskpage.compone
 import {DialogtaskModule} from './dialogtask/dialogtask.module';
 import {DialogTaskPopupComponent} from './dialogtask/dialogtask.component';
 import {HashLocationStrategy, LocationStrategy} from '@angular/common';
+import {EmployeeService} from './services/employee/employee.service';
 
 
 
@@ -102,6 +103,7 @@ import {HashLocationStrategy, LocationStrategy} from '@angular/common';
     FeedService,
     appRoutingProviders,
     AuthenticationService,
+    EmployeeService,
     AlertService,LoginComponent],
   bootstrap: [AppComponent,DialogPopupComponent
   , DialogInformationPopupComponent,DialogPropertyPopupComponent, DialogTaskPopupComponent]

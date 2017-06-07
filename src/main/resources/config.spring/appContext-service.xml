@@ -11,4 +11,5 @@
     <!-- Adding the services beans -->
     <context:component-scan base-package="com.realestate.service.impl" />
 
+
 </beans>

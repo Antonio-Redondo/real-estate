@@ -26,6 +26,10 @@ public class EmployeeDTO {
 
     private long taskId;
 
+    private PropertyDTO propertyDTO;
+
+    private TaskDTO taskDTO;
+
 
     public String getName() {
         return name;
@@ -105,5 +109,22 @@ public class EmployeeDTO {
 
     public void setTaskId(long taskId) {
         this.taskId = taskId;
+    }
+
+
+    public PropertyDTO getPropertyDTO() {
+        return propertyDTO;
+    }
+
+    public void setPropertyDTO(PropertyDTO propertyDTO) {
+        this.propertyDTO = propertyDTO;
+    }
+
+    public TaskDTO getTaskDTO() {
+        return taskDTO;
+    }
+
+    public void setTaskDTO(TaskDTO taskDTO) {
+        this.taskDTO = taskDTO;
     }
 }

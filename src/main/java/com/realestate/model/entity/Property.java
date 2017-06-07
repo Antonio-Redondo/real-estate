@@ -14,6 +14,10 @@ import java.io.Serializable;
 @Inheritance(strategy = InheritanceType.JOINED)
 public class Property extends JPAEntity<Long> implements Serializable {
 
+
+    @Column(name = "PROPERTY_ID", nullable = false)
+    private long propertyId;
+
     @Column(name = "NAME", nullable = false)
     private String name;
 
@@ -29,7 +33,7 @@ public class Property extends JPAEntity<Long> implements Serializable {
     private String image;
 
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "id")
     private Employee employee;
 
@@ -73,5 +77,11 @@ public class Property extends JPAEntity<Long> implements Serializable {
         this.employee = employee;
     }
 
+    public long getPropertyId() {
+        return propertyId;
+    }
 
+    public void setPropertyId(long propertyId) {
+        this.propertyId = propertyId;
+    }
 }
