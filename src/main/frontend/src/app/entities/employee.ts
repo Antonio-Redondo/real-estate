@@ -4,6 +4,8 @@ import {Task} from './task';
 
 export class Employee {
     id:number;
+    propertyId:number;
+    taskId:number;
     name: string;
     email: string;
     telephone: number;
@@ -13,7 +15,7 @@ export class Employee {
     city: string;
     age: number;
     image:string;
-    property:Property;
-    task:Task;
+    propertyDTO:Property;
+    taskDTO:Task;
 }
    

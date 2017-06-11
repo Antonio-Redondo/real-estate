@@ -11,7 +11,7 @@ import { DropdownpropertiesComponent } from './dropdownproperties.component';
     FormsModule,
     MaterialModule
   ],
-  declarations: [ DropdownpropertiesComponent  ],
+  declarations: [ DropdownpropertiesComponent],
   exports: [DropdownpropertiesComponent]
 })
 

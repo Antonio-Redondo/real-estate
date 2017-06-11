@@ -4,13 +4,14 @@ import com.realestate.data.BaseJPAServiceImpl;
 import com.realestate.dto.EmployeeDTO;
 import com.realestate.dto.PropertyDTO;
 import com.realestate.dto.TaskDTO;
+import com.realestate.exception.NotFoundException;
 import com.realestate.model.entity.Employee;
 import com.realestate.model.entity.Property;
+import com.realestate.model.entity.Task;
 import com.realestate.repository.EmployeeRepository;
 import com.realestate.repository.PropertyRepository;
+import com.realestate.repository.TaskRepository;
 import com.realestate.service.EmployeeService;
-import com.realestate.service.PropertyService;
-import com.realestate.util.UtilConverter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,13 +29,16 @@ import java.util.List;
 @Transactional
 public class EmployeeServiceImpl extends BaseJPAServiceImpl<Employee, Long> implements EmployeeService{
 
-    private static Logger LOG = LoggerFactory.getLogger(UtilConverter.class);
+    private static Logger LOG = LoggerFactory.getLogger(EmployeeServiceImpl.class);
 
     @Autowired
     private EmployeeRepository employeeRepository;
 
     @Autowired
     private PropertyRepository propertyRepository;
+
+    @Autowired
+    private TaskRepository taskRepository;
 
     @Override
     public List<EmployeeDTO> findAllEmployees() {
@@ -63,6 +67,7 @@ public class EmployeeServiceImpl extends BaseJPAServiceImpl<Employee, Long> impl
             EmployeeDTO employeeDTO = new EmployeeDTO();
             PropertyDTO propertyDTO = new PropertyDTO();
             Property property = null;
+            Task task = null;
             TaskDTO taskDTO = new TaskDTO();
             employeeDTO.setAddress(e.getAddress());
             employeeDTO.setAge(e.getAge());
@@ -71,6 +76,7 @@ public class EmployeeServiceImpl extends BaseJPAServiceImpl<Employee, Long> impl
             employeeDTO.setImage(e.getImage());
             employeeDTO.setName(e.getName());
             employeeDTO.setTelephone(e.getTelephone());
+            employeeDTO.setId(e.getId());
 
             try {
                 property = propertyRepository.findPropertyById(e.getPropertyId());
@@ -81,15 +87,25 @@ public class EmployeeServiceImpl extends BaseJPAServiceImpl<Employee, Long> impl
             propertyDTO.setName(property.getName());
             propertyDTO.setCity(property.getCity());
             propertyDTO.setAddress(property.getAddress());
+            propertyDTO.setId(property.getId());
+            employeeDTO.setPropertyId(property.getId());
 
             employeeDTO.setPropertyDTO(propertyDTO);
 
-          /*  taskDTO.setDateFrom(e.getTasks().getDateFrom());
-            taskDTO.setDateTo(e.getTasks().getDateTo());
-            taskDTO.setName(e.getTasks().getName());
-            taskDTO.setRemarks(e.getTasks().getRemarks());
+            try {
+                task = taskRepository.findTaskById(e.getTaskId());
+            } catch (NotFoundException e1) {
+                LOG.error(e1 + "task not found");
+            }
 
-            employeeDTO.setTaskDTO(taskDTO);*/
+            taskDTO.setDateFrom(task.getDateFrom());
+            taskDTO.setDateTo(task.getDateTo());
+            taskDTO.setName(task.getName());
+            taskDTO.setRemarks(task.getRemarks());
+            taskDTO.setId(task.getId());
+            employeeDTO.setTaskId(task.getId());
+
+            employeeDTO.setTaskDTO(taskDTO);
 
 
             listEmployeeDTO.add(employeeDTO);

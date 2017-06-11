@@ -6,6 +6,8 @@ package com.realestate.dto;
 public class EmployeeDTO {
 
 
+    private long id;
+
     private String name;
 
     private String email;
@@ -126,5 +128,13 @@ public class EmployeeDTO {
 
     public void setTaskDTO(TaskDTO taskDTO) {
         this.taskDTO = taskDTO;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 }

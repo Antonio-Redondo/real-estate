@@ -55,6 +55,9 @@ import {DialogtaskModule} from './dialogtask/dialogtask.module';
 import {DialogTaskPopupComponent} from './dialogtask/dialogtask.component';
 import {HashLocationStrategy, LocationStrategy} from '@angular/common';
 import {EmployeeService} from './services/employee/employee.service';
+import{PropertyService} from './services/property/property.service';
+import {TaskService} from './services/task/task.service';
+import {CommonService} from './services/common/common.service';
 
 
 
@@ -104,6 +107,9 @@ import {EmployeeService} from './services/employee/employee.service';
     appRoutingProviders,
     AuthenticationService,
     EmployeeService,
+    PropertyService,
+    TaskService,
+    CommonService,
     AlertService,LoginComponent],
   bootstrap: [AppComponent,DialogPopupComponent
   , DialogInformationPopupComponent,DialogPropertyPopupComponent, DialogTaskPopupComponent]

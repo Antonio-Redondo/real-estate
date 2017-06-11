@@ -3,7 +3,6 @@ package com.realestate.service;
 import com.realestate.data.BaseService;
 import com.realestate.dto.PropertyDTO;
 import com.realestate.model.entity.Property;
-import com.realestate.model.entity.User;
 import java.util.List;
 
 

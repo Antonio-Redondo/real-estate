@@ -18,6 +18,7 @@ import {DpDatePickerModule} from 'ng2-date-picker';
     DpDatePickerModule
   ],
   declarations: [DialogComponent,DialogPopupComponent],
-  exports: [DialogComponent,DialogPopupComponent]
+  exports: [DialogComponent,DialogPopupComponent],
+  
 })
 export class DialogModule { }

@@ -1,10 +1,10 @@
 
 <div class="select">
   
-    <md-select class="dropdown" mdInput placeholder="Select Property" [color]="drinksTheme" [(ngModel)]="currentDrink" [required]="drinksRequired" [disabled]="drinksDisabled"
-      [floatPlaceholder]="floatPlaceholder" #drinkControl="ngModel">
-      <md-option *ngFor="let drink of drinks" [value]="drink.value" [disabled]="drink.disabled">
-        {{ drink.viewValue }}
+    <md-select class="dropdown" mdInput placeholder="Select Property" [color]="primary" [(ngModel)]="currentProperty" [required]="true"
+      [floatPlaceholder]="floatPlaceholder" (ngModelChange)="selectedValue($event)" >
+      <md-option *ngFor="let property of data" [value]="property.id">
+        {{ property.name }}
       </md-option>
     </md-select>
 </div>

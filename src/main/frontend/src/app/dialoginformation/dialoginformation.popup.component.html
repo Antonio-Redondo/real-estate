@@ -3,28 +3,28 @@
    <br>   
  <md-card class="example-card" mdTooltip="Task assigned to {{item.name}}">
 
- <img style="height:100px;width:100px"id="ground" src={{item.image}}>
+ <!--<img style="height:100px;width:100px"id="ground" src={{item.image}}>-->
  <br>
 
 
   <md-card-content>
 
 <br>
-<img src="./assets/calendartask.jpg"><strong>&nbsp;&nbsp;</strong>From   {{item.task[0].dateFrom}} To {{item.task[0].dateTo}}
+<img src="./assets/calendartask.jpg"><strong>&nbsp;&nbsp;</strong>From   {{item.taskDTO.dateFrom}} To {{item.taskDTO.dateTo}}
 <br>
 <br>
-<img src="./assets/property.jpg"><strong>&nbsp;&nbsp;</strong>{{item.property[0].name}} Located in  {{item.property[0].address}}
+<img src="./assets/property.jpg"><strong>&nbsp;&nbsp;</strong>{{item.propertyDTO.name}} Located in  {{item.propertyDTO.address}}
 <br>
 <br>
-<img src="./assets/wrench.jpg"><strong>&nbsp;&nbsp;</strong>{{item.task[0].name}}<br>
+<img src="./assets/wrench.jpg"><strong>&nbsp;&nbsp;</strong>{{item.taskDTO.name}}<br>
 <br>
    <img src="./assets/email.jpg"><strong>&nbsp;&nbsp;</strong>{{item.email}}
 <br>
 <br>
-   <img src="./assets/cellphone.jpg"><strong>&nbsp;&nbsp;</strong>{{item.age}}
+   <img src="./assets/cellphone.jpg"><strong>&nbsp;&nbsp;</strong>{{item.telephone}}
 <br>
 <br>
- <img src="./assets/eye.jpg"><strong>&nbsp;&nbsp;</strong>{{item.task[0].remarks}}<br>
+ <img src="./assets/eye.jpg"><strong>&nbsp;&nbsp;</strong>{{item.taskDTO.remarks}}<br>
 <br>
 
 

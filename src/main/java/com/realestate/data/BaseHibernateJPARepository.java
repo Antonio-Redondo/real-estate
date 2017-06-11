@@ -66,7 +66,7 @@ public abstract class BaseHibernateJPARepository<T extends Entity, ID extends Se
 
     public Collection<T> findAllByPage(int pageNum, int countPerPage, Order order) {
         Criteria c = sessionFactory.getCurrentSession().createCriteria(clazz);
-        c.setMaxResults(countPerPage);
+         c.setMaxResults(countPerPage);
         c.setFirstResult(pageNum * countPerPage);
         return c.list();
     }

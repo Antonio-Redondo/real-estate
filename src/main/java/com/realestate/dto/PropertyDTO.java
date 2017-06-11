@@ -5,11 +5,11 @@ package com.realestate.dto;
  */
 public class PropertyDTO {
 
+    private long id;
+
     private String name;
 
-
     private String address;
-
 
     private String city;
 
@@ -56,5 +56,13 @@ public class PropertyDTO {
 
     public void setEmployeeId(long employeeId) {
         this.employeeId = employeeId;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 }

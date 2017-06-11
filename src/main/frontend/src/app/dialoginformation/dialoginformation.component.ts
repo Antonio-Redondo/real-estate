@@ -22,7 +22,7 @@ export class DialoginformationComponent implements OnInit {
   openDialog(item: Employee) {
     let config = new MdDialogConfig();
     let dialogRef:MdDialogRef<DialogInformationPopupComponent> = this.dialog.open(DialogInformationPopupComponent,{
-     height: '600px',
+     height: '550px',
      width: '600px',
     
     });

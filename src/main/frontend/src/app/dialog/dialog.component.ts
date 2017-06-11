@@ -3,7 +3,14 @@ import {MdDialog, MdDialogConfig, MdDialogRef} from '@angular/material';
 import {Employee} from './../entities/employee';
 import {Task} from './../entities/task';
 import {Property} from './../entities/property';
+import {DropdownpropertiesComponent} from './../dropdownproperties/dropdownproperties.component';
 import { Router, ActivatedRoute,NavigationExtras} from '@angular/router';
+import { Subscription } from 'rxjs/Subscription';
+import {CommonService} from './../services/common/common.service';
+import {EmployeeService} from './../services/employee/employee.service';
+
+
+
 
 
 
@@ -18,6 +25,9 @@ export class DialogComponent implements OnInit {
   @Input() item: Employee;
   public firstname: string;
   public lastname: string;
+  public dateFrom: string;
+  public dateTo: string;
+
  
   constructor(public dialog: MdDialog,private routerAct: ActivatedRoute) {
       
@@ -28,12 +38,22 @@ export class DialogComponent implements OnInit {
   openDialog(item: Employee) {
       console.log(this.item);
 
-      if(this.item.task[0] ==null){
+     
+     
+        if (this.item.taskDTO.dateFrom != undefined){
+          
+             console.log("this.dateFrom" + this.item.taskDTO.dateFrom);
+        }
+        if (this.item.taskDTO.dateTo != undefined){
+              console.log(" this.dateTo" + this.item.taskDTO.dateTo);
+        }
+
+      if(this.item.taskDTO ==null){
             console.log("yes");
             var task: Task[] = []; 
-            task.push(new Task(null, "", "", "", ""));
+            task.push(new Task(null, "",new Date, new Date, ""));
          
-            this.item.task[0] = task;
+           
       }
     let config = new MdDialogConfig();
     let dialogRef:MdDialogRef<DialogPopupComponent> = this.dialog.open(DialogPopupComponent,{
@@ -42,10 +62,6 @@ export class DialogComponent implements OnInit {
      
     
     });
-    if(this.item.task.dateFrom != null && this.item.task.dateTo !=null){
-       this.parseDate(this.item.task.dateFrom);
-    }
-
     
   
     
@@ -55,44 +71,59 @@ export class DialogComponent implements OnInit {
 
    ngOnInit() {
       console.log("init");
-      if(this.item.property == null){
-        this.item.property = new Property;
+      if(this.item.propertyDTO == null){
+        this.item.propertyDTO = new Property;
       }
-      if(this.item.task == null){
-        this.item.task = new Task(null, "", "", "", "");
+      if(this.item.taskDTO == null){
+        this.item.taskDTO = new Task(null, "", new Date, new Date, "");
       }
      
+    }
+
+   
   }
 
-  private parseDate(date: string) : Date {
-       console.log(new Date(date));
-     return new Date(date)
- }
-}
+  
+
 
 
 @Component({
   selector: 'dialog-popup',
   templateUrl: './dialog.popup.component.html',
   styles: ['./dialog.popup.component.css'],
+ 
+ 
   
 })
 export class DialogPopupComponent implements OnInit{
+   employee : Employee;
+   task : Task;
    name: String;
    dateFrom: Date;
    dateTo: Date;
+   minimumDate :string[];
+   minimum : Date;
    remarks : string;
    enableButton= false;
    firstname:string;
    lastname:string;
    item: Employee;
+   employeeToSave:Employee;
+   year :number;
+   month:number;
+   day:number;
+   idTask:number;
+   idProperty:number;
+   public datalistProperty;
+   public datalistTask;
+     private subscription: Subscription;
   
    returnUrl = '/employeelist/savedTask';
 
    
    
 
-  constructor(public dialogRef: MdDialogRef<DialogPopupComponent>,private router: Router,private routerAct: ActivatedRoute){
+  constructor(public dialogRef: MdDialogRef<DialogPopupComponent>,private router: Router,private routerAct: ActivatedRoute,private commonService: CommonService, private empployeeService : EmployeeService){
        this.remarks ="";
       this.routerAct.queryParams.subscribe(params => {
         console.log("firstname"+ params["firstname"]);
@@ -103,6 +134,24 @@ export class DialogPopupComponent implements OnInit{
 
   }
     ngOnInit() {
+      this.subscription = this.commonService.notifyObservable$.subscribe((res) => {
+        if(res.idPropertySelected !=null){
+          this.idProperty = res.idPropertySelected;
+             console.log(this.idProperty);
+        }
+
+         if(res.idTaskSelected !=null){
+          this.idTask = res.idTaskSelected;
+             console.log(this.idTask);
+        }
+     
+        
+      
+    });
+       
+
+     
+         
   }
   saveTask(){
     
@@ -114,9 +163,12 @@ export class DialogPopupComponent implements OnInit{
                          }
                      };
     console.log("save task");
+    this.employeeToSave = this.buildEmployee();
+    console.log("this.employeeToSave"+this.employeeToSave);
+   // this.empployeeService.updateEmployee(this.employeeToSave);
     this.dialogRef.close();
     this.router.navigate([this.returnUrl],navigationExtras);
-   this.refresh();
+  // this.refresh();
 
 
    
@@ -128,13 +180,41 @@ export class DialogPopupComponent implements OnInit{
 
 
   checkFields(){
-   console.log(this.item.task[0].remarks);
-    if(this.item.task.dateFrom != null &&  this.item.task.dateTo != null  &&  this.item.task[0].remarks != null){
+   console.log(this.item.taskDTO.remarks);
+    if(this.item.taskDTO.dateFrom != null &&  this.item.taskDTO.dateTo != null  &&  this.item.taskDTO.remarks != null){
       this.enableButton = true;
       
     }
   }
 
+  minDate(){
+        /* this.minimumDate = this.item.taskDTO.dateFrom.toString().split('-');
+          this.year =+this.minimumDate[0];
+          this.month =+this.minimumDate[1];
+          this.day=+this.minimumDate[2];
 
+            console.log(this.year);
+            console.log(this.month);
+            console.log(this.day);
+
+          this.minimum = new Date(this.year,this.month,this.day);
+          
+          return this.minimum;*/
+  }
+
+  buildEmployee(): Employee{
+    this.employee = new Employee();
+    this.task = new Task(this.item.taskDTO.id,this.item.taskDTO.name,this.item.taskDTO.dateFrom,this.item.taskDTO.dateTo, this.item.taskDTO.remarks);
+
+    this.employee.taskId = this.idTask;
+    this.employee.propertyId = this.idProperty;
+    this.employee.taskDTO =  this.task;
+
+    console.log("this.employee"+this.employee);
+    return this.employee;
+
+  }
+
+  
 
 }

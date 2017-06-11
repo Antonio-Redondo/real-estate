@@ -22,6 +22,8 @@ public class Task extends JPAEntity<Long> implements Serializable {
     @Column(name = "NAME", nullable = false)
     private String name;
 
+    @Column(name = "IMAGE", nullable = false)
+    private String image;
 
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "DATE_FROM", nullable = false)
@@ -86,5 +88,13 @@ public class Task extends JPAEntity<Long> implements Serializable {
 
     public void setTaskId(long taskId) {
         this.taskId = taskId;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 }

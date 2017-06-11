@@ -28,10 +28,15 @@ public class EmployeeController {
     protected static final String JSON_API_CONTENT_HEADER = "Content-type=application/json";
 
     @RequestMapping(value = "/fetchAll", method = RequestMethod.POST, headers = {JSON_API_CONTENT_HEADER})
-    public @ResponseBody
-    APIResponse fetchAll(@RequestBody EmployeeDTO employeeDTO) throws Exception {
+    public @ResponseBody APIResponse fetchAll(@RequestBody EmployeeDTO employeeDTO) throws Exception {
         List<EmployeeDTO> listEmployeeDTO = employeeService.findAllEmployees();
         return APIResponse.toOkResponse(listEmployeeDTO);
+    }
+
+    @RequestMapping(value = "/updateEmployee", method = RequestMethod.POST, headers = {JSON_API_CONTENT_HEADER})
+    public @ResponseBody APIResponse updateEmployee(@RequestBody EmployeeDTO employeeDTO) throws Exception {
+        System.out.println(employeeDTO);
+        return APIResponse.toOkResponse(null);
     }
 
 }

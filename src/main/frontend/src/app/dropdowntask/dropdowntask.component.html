@@ -1,9 +1,9 @@
 
 <div class="select">
-    <md-select class="dropdown" mdInput placeholder="Select Task" [color]="drinksTheme" [(ngModel)]="currentFood" [required]="foodsRequired" [disabled]="foodsDisabled"
-      [floatPlaceholder]="floatPlaceholder" #foodControl="ngModel">
-      <md-option *ngFor="let food of foods" [value]="food.value" [disabled]="food.disabled">
-        {{ food.viewValue }}
+    <md-select class="dropdown" mdInput placeholder="Select Task" [color]="primary" [(ngModel)]="currentTask" [required]="true"
+      [floatPlaceholder]="floatPlaceholder" (ngModelChange)="selectedValue($event)" >
+      <md-option *ngFor="let task of data" [value]="task.id">
+        {{task.name }}
       </md-option>
     </md-select>
 

@@ -6,13 +6,12 @@ import com.realestate.model.entity.Property;
 import com.realestate.model.entity.User;
 import com.realestate.repository.PropertyRepository;
 import com.realestate.service.PropertyService;
-import com.realestate.service.UserService;
-import com.realestate.util.UtilConverter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.PostConstruct;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -35,10 +34,30 @@ public class PropertyServiceImpl  extends BaseJPAServiceImpl<Property, Long> imp
     public List<PropertyDTO> findAllProperties() {
 
         List<Property> list = propertyRepository.findAllPorperties();
-        return UtilConverter.convertPropertyToPropertyDTO(list);
+        return convertPropertyToPropertyDTO(list);
     }
     @Override
     public Property findPropertyById(long id){
         return propertyRepository.findById(id);
+    }
+
+    /**
+     * Method responsible to convert from the entity to DTO object
+     * @param listProperty listProperty
+     * @return List<PropertyDTO>
+     */
+    private static List<PropertyDTO> convertPropertyToPropertyDTO(List<Property> listProperty){
+        List<PropertyDTO> listPropertyDTO = new ArrayList<>();
+
+        listProperty.stream().forEach(p ->{
+            PropertyDTO propertyDTO = new PropertyDTO();
+            propertyDTO.setAddress(p.getAddress());
+            propertyDTO.setCity(p.getCity());
+            propertyDTO.setName(p.getName());
+            propertyDTO.setImage(p.getImage());
+            propertyDTO.setId(p.getId());
+            listPropertyDTO.add(propertyDTO);
+        });
+        return listPropertyDTO;
     }
 }
