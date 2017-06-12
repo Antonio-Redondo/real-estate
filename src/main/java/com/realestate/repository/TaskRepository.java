@@ -24,5 +24,13 @@ public interface TaskRepository extends BaseJPARepository<Task, Long> {
      * @throws NotFoundException
      */
     public Task findTaskById(long id)throws NotFoundException;
+
+
+    /**
+     * Method in charge of updating a task entity
+     * @param task task
+     * @throws NotFoundException NotFoundException
+     */
+    public void updateTask(Task task) throws NotFoundException;
 }
 

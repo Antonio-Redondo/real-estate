@@ -17,5 +17,16 @@ public interface EmployeeService extends BaseService<Employee, Long> {
      */
     public List<EmployeeDTO> findAllEmployees();
 
+    /**
+     * Method in charge of getting and Employee by id
+     * @param id id
+     * @param taskId taskId
+     * @param propertyId propertyId
+     */
+    public void findEmployeeById(long id, long taskId, long propertyId);
+
+
+
+
 
 }

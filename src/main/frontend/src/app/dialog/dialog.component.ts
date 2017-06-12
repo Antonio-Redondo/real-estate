@@ -8,6 +8,7 @@ import { Router, ActivatedRoute,NavigationExtras} from '@angular/router';
 import { Subscription } from 'rxjs/Subscription';
 import {CommonService} from './../services/common/common.service';
 import {EmployeeService} from './../services/employee/employee.service';
+import { AlertService } from './../services/alert.service';
 
 
 
@@ -123,7 +124,8 @@ export class DialogPopupComponent implements OnInit{
    
    
 
-  constructor(public dialogRef: MdDialogRef<DialogPopupComponent>,private router: Router,private routerAct: ActivatedRoute,private commonService: CommonService, private empployeeService : EmployeeService){
+  constructor(public dialogRef: MdDialogRef<DialogPopupComponent>,private router: Router,private routerAct: ActivatedRoute,private commonService: CommonService
+  , private empployeeService : EmployeeService, private alertService : AlertService){
        this.remarks ="";
       this.routerAct.queryParams.subscribe(params => {
         console.log("firstname"+ params["firstname"]);
@@ -163,12 +165,10 @@ export class DialogPopupComponent implements OnInit{
                          }
                      };
     console.log("save task");
-    this.employeeToSave = this.buildEmployee();
-    console.log("this.employeeToSave"+this.employeeToSave);
-   // this.empployeeService.updateEmployee(this.employeeToSave);
+    this.buildEmployee();
     this.dialogRef.close();
     this.router.navigate([this.returnUrl],navigationExtras);
-  // this.refresh();
+    this.refresh();
 
 
    
@@ -202,19 +202,27 @@ export class DialogPopupComponent implements OnInit{
           return this.minimum;*/
   }
 
-  buildEmployee(): Employee{
-    this.employee = new Employee();
-    this.task = new Task(this.item.taskDTO.id,this.item.taskDTO.name,this.item.taskDTO.dateFrom,this.item.taskDTO.dateTo, this.item.taskDTO.remarks);
+  buildEmployee(){
+    this.item.taskId = this.idTask;
+    this.item.propertyId = this.idProperty;
 
-    this.employee.taskId = this.idTask;
-    this.employee.propertyId = this.idProperty;
-    this.employee.taskDTO =  this.task;
-
-    console.log("this.employee"+this.employee);
-    return this.employee;
-
+ 
+    this.empployeeService.updateEmployee(this.item).subscribe(
+                data => {
+                 
+                     let navigationExtras: NavigationExtras = {
+                             queryParams: {
+                             "firstname": this.firstname,
+                             "lastname": this.lastname
+                        }
+                     };
+                   this.router.navigate([this.returnUrl],navigationExtras);
+                },
+                error => {
+                    this.alertService.error(error);
+                });
+       
+       
+    };
   }
 
-  
-
-}

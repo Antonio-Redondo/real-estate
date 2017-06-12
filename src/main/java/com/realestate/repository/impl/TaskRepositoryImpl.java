@@ -26,9 +26,21 @@ public class TaskRepositoryImpl  extends BaseHibernateJPARepository<Task, Long> 
 
     @Override
     public Task findTaskById(long id) throws NotFoundException {
-        Query query = sessionFactory.getCurrentSession().createSQLQuery("select * from TASK p where p.TASK_ID = :id");
+        Query query = sessionFactory.getCurrentSession().createSQLQuery("select * from TASK t where t.TASK_ID = :id");
         query.setParameter("id", id);
         return buildResposnse((Object[]) query.uniqueResult());
+    }
+
+    public void updateTask(Task task) throws NotFoundException {
+        Query query = sessionFactory.getCurrentSession().createSQLQuery("UPDATE TASK t " +
+                "  SET t.REMARKS=:remarks, t.DATE_FROM=:dateFrom, t.DATE_TO=:dateTo where t.TASK_ID=:id"
+              );
+        query.setParameter("remarks", task.getRemarks());
+        query.setParameter("dateFrom", task.getDateFrom());
+        query.setParameter("dateTo", task.getDateTo());
+        query.setParameter("id", task.getId());
+        query.executeUpdate();
+
     }
 
 

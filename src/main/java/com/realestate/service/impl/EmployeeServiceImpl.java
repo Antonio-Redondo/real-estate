@@ -45,6 +45,13 @@ public class EmployeeServiceImpl extends BaseJPAServiceImpl<Employee, Long> impl
        List<Employee> list = employeeRepository.findAllEmployees();
        return this.convertEmployeeToEmployeeDTO(list);
     }
+    @Override
+    public void findEmployeeById(long id,long taskId, long propertyId){
+        Employee employee =  employeeRepository.findById(id);
+        employee.setPropertyId(propertyId);
+        employee.setTaskId(taskId);
+        employeeRepository.update(employee);
+    }
 
     @PostConstruct
     public void setupService() {
@@ -112,6 +119,21 @@ public class EmployeeServiceImpl extends BaseJPAServiceImpl<Employee, Long> impl
 
         });
         return listEmployeeDTO;
+    }
+
+    /**
+     * Method in charge of converting Employee entity to EmployeeDTO
+     * @param employee employee
+     * @return EmployeeDTO
+     */
+    private EmployeeDTO convertEmployeeToEmployeeDTO(Employee employee){
+        EmployeeDTO employeeDTO = new EmployeeDTO();
+        employeeDTO.setId(employee.getId());
+        employeeDTO.setTaskId(employee.getTaskId());
+        employeeDTO.setPropertyId(employee.getPropertyId());
+        employeeDTO.setTelephone(employee.getTelephone());
+
+        return employeeDTO;
     }
 
 }

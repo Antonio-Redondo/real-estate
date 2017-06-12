@@ -2,6 +2,7 @@ package com.realestate.service.impl;
 
 import com.realestate.data.BaseJPAServiceImpl;
 import com.realestate.dto.TaskDTO;
+import com.realestate.exception.NotFoundException;
 import com.realestate.model.entity.Task;
 import com.realestate.repository.TaskRepository;
 import com.realestate.service.TaskService;
@@ -27,6 +28,20 @@ public class TaskServiceImpl extends BaseJPAServiceImpl<Task, Long> implements T
     public List<TaskDTO> findAllTasks() {
         List<TaskDTO> listTaskDTO = new ArrayList<>();
         return convertFromEntityToTaskDTO(taskRepository.findAllTasks());
+    }
+
+    @Override
+    public void updateTask(TaskDTO taskDTO, long newTaskId) throws NotFoundException {
+        Task task = null;
+        try {
+            task = taskRepository.findTaskById(newTaskId);
+        } catch (NotFoundException e) {
+            throw new NotFoundException("Task not found by id : " + taskDTO.getId());
+        }
+        task.setRemarks(taskDTO.getRemarks());
+        task.setDateFrom(taskDTO.getDateFrom());
+        task.setDateTo(taskDTO.getDateTo());
+        taskRepository.updateTask(task);
     }
 
     @PostConstruct

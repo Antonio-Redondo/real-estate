@@ -3,6 +3,7 @@ package com.realestate.controller;
 import com.realestate.api.APIResponse;
 import com.realestate.dto.EmployeeDTO;
 import com.realestate.service.EmployeeService;
+import com.realestate.service.TaskService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,8 +25,12 @@ public class EmployeeController {
     @Autowired
     private EmployeeService employeeService;
 
+    @Autowired
+    private TaskService taskService;
+
     private static Logger LOG = LoggerFactory.getLogger(EmployeeController.class);
     protected static final String JSON_API_CONTENT_HEADER = "Content-type=application/json";
+    public static final String SUCCESS = "SUCCESS";
 
     @RequestMapping(value = "/fetchAll", method = RequestMethod.POST, headers = {JSON_API_CONTENT_HEADER})
     public @ResponseBody APIResponse fetchAll(@RequestBody EmployeeDTO employeeDTO) throws Exception {
@@ -35,8 +40,9 @@ public class EmployeeController {
 
     @RequestMapping(value = "/updateEmployee", method = RequestMethod.POST, headers = {JSON_API_CONTENT_HEADER})
     public @ResponseBody APIResponse updateEmployee(@RequestBody EmployeeDTO employeeDTO) throws Exception {
-        System.out.println(employeeDTO);
-        return APIResponse.toOkResponse(null);
+        employeeService.findEmployeeById(employeeDTO.getId(), employeeDTO.getTaskId(), employeeDTO.getPropertyId());
+        taskService.updateTask(employeeDTO.getTaskDTO(), employeeDTO.getTaskId());
+        return APIResponse.toOkResponse(SUCCESS);
     }
 
 }
