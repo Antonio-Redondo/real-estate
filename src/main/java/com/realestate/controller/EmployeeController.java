@@ -45,4 +45,11 @@ public class EmployeeController {
         return APIResponse.toOkResponse(SUCCESS);
     }
 
+    @RequestMapping(value = "/saveEmployee", method = RequestMethod.POST, headers = {JSON_API_CONTENT_HEADER})
+    public @ResponseBody APIResponse saveEmployee(@RequestBody EmployeeDTO employeeDTO) throws Exception {
+        employeeService.saveEmployee(employeeDTO);
+        return APIResponse.toOkResponse(SUCCESS);
+    }
+
+
 }

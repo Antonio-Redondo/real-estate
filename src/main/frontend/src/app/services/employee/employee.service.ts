@@ -43,5 +43,19 @@ export class EmployeeService {
             });
     }
 
+
+     saveEmployee(employee:Employee) {
+        console.log("employee" + employee.id);
+        var params = JSON.stringify(employee);
+        let headers = new Headers({ 'Content-Type': 'application/json' });
+        let options = new RequestOptions({ headers: headers });
+
+      return this.http.post('http://localhost:8080/employee/saveEmployee',params, options)
+            .map((response: Response) => {
+                 let res = <Employee> response.json().result;
+                 return res;
+            });
+    }
+
     
 }

@@ -53,6 +53,11 @@ public class EmployeeServiceImpl extends BaseJPAServiceImpl<Employee, Long> impl
         employeeRepository.update(employee);
     }
 
+    public void saveEmployee(EmployeeDTO employeeDTO){
+        Employee employee =convertFromEmployeeDTOToEmployee(employeeDTO);
+        employeeRepository.insert(employee);
+    }
+
     @PostConstruct
     public void setupService() {
         this.baseJpaRepository = employeeRepository;
@@ -84,36 +89,44 @@ public class EmployeeServiceImpl extends BaseJPAServiceImpl<Employee, Long> impl
             employeeDTO.setName(e.getName());
             employeeDTO.setTelephone(e.getTelephone());
             employeeDTO.setId(e.getId());
-
-            try {
-                property = propertyRepository.findPropertyById(e.getPropertyId());
-            } catch (Exception e1) {
-                LOG.error(e1 + "property not found");
-            }
-            propertyDTO.setImage(property.getImage());
-            propertyDTO.setName(property.getName());
-            propertyDTO.setCity(property.getCity());
-            propertyDTO.setAddress(property.getAddress());
-            propertyDTO.setId(property.getId());
-            employeeDTO.setPropertyId(property.getId());
-
-            employeeDTO.setPropertyDTO(propertyDTO);
-
-            try {
-                task = taskRepository.findTaskById(e.getTaskId());
-            } catch (NotFoundException e1) {
-                LOG.error(e1 + "task not found");
+            if(e.getUpdatedAt() != null){
+                employeeDTO.setCreatedAt(e.getUpdatedAt());
             }
 
-            taskDTO.setDateFrom(task.getDateFrom());
-            taskDTO.setDateTo(task.getDateTo());
-            taskDTO.setName(task.getName());
-            taskDTO.setRemarks(task.getRemarks());
-            taskDTO.setId(task.getId());
-            employeeDTO.setTaskId(task.getId());
 
-            employeeDTO.setTaskDTO(taskDTO);
+            if(e.getPropertyId()!= 0){
+                try {
+                    property = propertyRepository.findPropertyById(e.getPropertyId());
+                } catch (Exception e1) {
+                    LOG.error(e1 + "property not found");
+                }
+                propertyDTO.setImage(property.getImage());
+                propertyDTO.setName(property.getName());
+                propertyDTO.setCity(property.getCity());
+                propertyDTO.setAddress(property.getAddress());
+                propertyDTO.setId(property.getId());
+                employeeDTO.setPropertyId(property.getId());
 
+                employeeDTO.setPropertyDTO(propertyDTO);
+            }
+
+            if(e.getTaskId() != 0){
+                try {
+                    task = taskRepository.findTaskById(e.getTaskId());
+                } catch (NotFoundException e1) {
+                    LOG.error(e1 + "task not found");
+                }
+
+                taskDTO.setDateFrom(task.getDateFrom());
+                taskDTO.setDateTo(task.getDateTo());
+                taskDTO.setName(task.getName());
+                taskDTO.setRemarks(task.getRemarks());
+                taskDTO.setId(task.getId());
+                employeeDTO.setTaskId(task.getId());
+
+                employeeDTO.setTaskDTO(taskDTO);
+
+            }
 
             listEmployeeDTO.add(employeeDTO);
 
@@ -134,6 +147,22 @@ public class EmployeeServiceImpl extends BaseJPAServiceImpl<Employee, Long> impl
         employeeDTO.setTelephone(employee.getTelephone());
 
         return employeeDTO;
+    }
+
+    /**
+     * Method responsible to convert from DTO to entity
+     * @param employeeDTO employeeDTO
+     * @return Employee Employee
+     */
+    private Employee convertFromEmployeeDTOToEmployee(EmployeeDTO employeeDTO){
+        Employee employee = new Employee();
+        employee.setName(employeeDTO.getName());
+        employee.setEmail(employeeDTO.getEmail());
+        employee.setTelephone(employeeDTO.getTelephone());
+        employee.setAge(employeeDTO.getAge());
+        employee.setAddress(employeeDTO.getAddress());
+        employee.setRemarks(employeeDTO.getRemarks());
+        return employee;
     }
 
 }

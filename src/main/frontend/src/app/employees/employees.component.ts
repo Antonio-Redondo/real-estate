@@ -18,7 +18,7 @@ export class EmployeesComponent implements OnInit {
     public data;
     public filterQuery = "";
     public rowsOnPage = 10;
-    public sortBy = "email";
+    public sortBy = "createdAt";
     public sortOrder = "asc";
 
   

@@ -32,6 +32,9 @@ export class DialoginformationComponent implements OnInit {
   }
 
    ngOnInit() {
+     if(this.item.propertyId == 0){
+       this.disabled = true;
+     }
      console.log("ngOnInit" +this.disabled);
   }
 }

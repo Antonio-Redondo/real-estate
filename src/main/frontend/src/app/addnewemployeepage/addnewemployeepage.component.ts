@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import {FormControl, Validators} from '@angular/forms';
 import {Employee} from './../entities/employee';
 import { Router, ActivatedRoute,NavigationExtras } from '@angular/router';
+import {EmployeeService} from './../services/employee/employee.service';
+import { AlertService } from './../services/alert.service';
 
 
 let max = 10;
@@ -18,7 +20,7 @@ const AGE_REGEX = '\\d+';
 export class AddnewemployeepageComponent implements OnInit {
    userFirstname:string;
    userLastname:string;
- constructor(private router: Router,private routerAct: ActivatedRoute){
+ constructor(private router: Router,private routerAct: ActivatedRoute,private empployeeService : EmployeeService, private alertService : AlertService){
   this.routerAct.queryParams.subscribe(params => {
        
             this.userFirstname = params["firstname"];
@@ -62,6 +64,7 @@ export class AddnewemployeepageComponent implements OnInit {
         this.disabled =true;
     }
   }
+
   saveEmployee(){
        let navigationExtras: NavigationExtras = {
                              queryParams: {
@@ -77,7 +80,22 @@ export class AddnewemployeepageComponent implements OnInit {
     this.employee.telephone = this.telephone;
     this.employee.address = this.address;
     this.employee.remarks = this.remarks;
-    this.router.navigate([this.returnUrl],navigationExtras);
+    console.log("this.employee"+ this.employee);
+      this.empployeeService.saveEmployee(this.employee).subscribe(
+                data => {
+                 
+                     let navigationExtras: NavigationExtras = {
+                             queryParams: {
+                             "firstname": this.userFirstname,
+                             "lastname": this.userLastname
+                        }
+                     };
+                   this.router.navigate([this.returnUrl],navigationExtras);
+                },
+                error => {
+                    this.alertService.error(error);
+                });
+  
    
   }
 
@@ -93,5 +111,9 @@ export class AddnewemployeepageComponent implements OnInit {
       this.router.navigate([this.cancelUrl],navigationExtras);
   }
 
+
+
+   
  
+    
 }
