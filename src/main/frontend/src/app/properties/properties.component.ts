@@ -2,6 +2,7 @@ import { Component, OnInit,Input } from '@angular/core';
 import {Http} from "@angular/http";
 import { Router, ActivatedRoute } from '@angular/router';
 import {Property} from './../entities/property';
+import {PropertyService} from './../services/property/property.service';
 
 @Component({
     selector: 'app-properties',
@@ -17,23 +18,23 @@ export class PropertiesComponent implements OnInit {
     public data;
     public filterQuery = "";
     public rowsOnPage = 10;
-    public sortBy = "address";
+    public sortBy = "createdAt";
     public sortOrder = "asc";
 
   
    
 
-    constructor(private http: Http) {
+    constructor(private http: Http,private propertyService : PropertyService) {
     }
 
   
 
     ngOnInit(): void {
        this.checkSuccessMessages();
-        this.http.get("assets/dataProperty.json")
+             this.propertyService.fetchAllProperties()
             .subscribe((data)=> {
                 setTimeout(()=> {
-                    this.data = data.json() as Property[];
+                    this.data = data;
                 }, 1000);
             });
     }
@@ -48,7 +49,7 @@ export class PropertiesComponent implements OnInit {
 
 
   checkSuccessMessages(){
-        if (this.newproperty.toString()=='savedEmployee'){
+        if (this.newproperty.toString()=='savedProperty'){
               this.show =true;
         } 
         if (this.newproperty.toString()=='true'){

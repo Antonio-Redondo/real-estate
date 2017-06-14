@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository;
 import java.math.BigDecimal;
 import java.sql.PreparedStatement;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -80,9 +81,47 @@ public class PropertyRepositoryImpl  extends BaseHibernateJPARepository<Property
             if(p[3] != null){
                 property.setCity((String)p[3]);
             }
+            if(p[5] != null){
+                property.setCreatedAt((Date)p[5]);
+            }
+            if(p[6] != null){
+                property.setUpdatedAt((Date)p[6]);
+            }
             response.add(property);
         });
 
         return response;
+    }
+
+    @Override
+    public void updateProperty(Property property) throws NotFoundException {
+        Query query = sessionFactory.getCurrentSession().createSQLQuery("UPDATE PROPERTY p " +
+                "  SET p.NAME=:name, p.ADDRESS=:address, p.CITY=:city, p.UPDATED_AT=:updatedDate, p.CREATED_AT=:createdDate where p.PROPERTY_ID=:id"
+        );
+        query.setParameter("name", property.getName());
+        query.setParameter("city", property.getCity());
+        query.setParameter("address", property.getAddress());
+        query.setParameter("updatedDate", property.getUpdatedAt());
+        query.setParameter("createdDate", property.getCreatedAt());
+        query.setParameter("id", property.getId());
+        query.executeUpdate();
+
+    }
+
+
+    @Override
+    public void insertProperty(Property property) throws NotFoundException {
+        Query query = sessionFactory.getCurrentSession().createSQLQuery("INSERT INTO PROPERTY " +
+                "(PROPERTY_ID, NAME,ADDRESS,CITY,IMAGE,CREATED_AT, UPDATED_AT) VALUES (:id, :name, :address, :city , null,(CURRENT_TIMESTAMP),null)"
+        );
+
+
+        query.setParameter("name", property.getName());
+        query.setParameter("city", property.getCity());
+        query.setParameter("address", property.getAddress());
+        query.setParameter("id", property.getId());
+
+        query.executeUpdate();
+
     }
 }

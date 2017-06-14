@@ -8,14 +8,14 @@
         <td>
           <md-input-container style="width: 100%">
           <input mdInput name="Name" placeholder="Name"
-          [(ngModel)]="name" required  (keyup)="checkFields()">
+          [(ngModel)]="item.name" required  (keyup)="checkFields()">
                    <md-error>This field is required</md-error>
           </md-input-container>
         </td>
        <td>
          <md-input-container style="width: 100%">
              <input mdInput name="Remarks" placeholder="Remarks"
-                 [(ngModel)]="remarks" required (keyup)="checkFields()">
+                 [(ngModel)]="item.remarks" required (keyup)="checkFields()">
                    <md-error>This field is required</md-error>
             </md-input-container>
         </td>

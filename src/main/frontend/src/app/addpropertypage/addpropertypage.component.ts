@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import {Property} from './../entities/property';
 import {FormControl, Validators} from '@angular/forms';
 import { Router, ActivatedRoute,NavigationExtras } from '@angular/router';
+import {PropertyService} from './../services/property/property.service';
+import { AlertService } from './../services/alert.service';
 
 @Component({
   selector: 'app-addpropertypage',
@@ -12,7 +14,7 @@ export class AddpropertypageComponent implements OnInit {
   userFirstname:string;
    userLastname:string;
 
-  constructor(private router: Router,private routerAct: ActivatedRoute) { 
+  constructor(private router: Router,private routerAct: ActivatedRoute, private propertyService :PropertyService, private alertService:AlertService) { 
       this.routerAct.queryParams.subscribe(params => {
        
             this.userFirstname = params["firstname"];
@@ -53,15 +55,26 @@ export class AddpropertypageComponent implements OnInit {
     }
   }
   saveProperty(){
-    let navigationExtras: NavigationExtras = {
-                             queryParams: {
-                             "firstname":  this.userFirstname,
-                             "lastname":  this.userLastname
-              
-                         }
-                     };
+   
 
-     this.router.navigate([this.returnUrl],navigationExtras);
+      this.propertyService.saveProperty(this.property).subscribe(
+                data => {
+
+                     let navigationExtras: NavigationExtras = {
+                             queryParams: {
+                             "firstname": this.userFirstname,
+                             "lastname": this.userLastname
+                        }
+                     };
+                  this.router.navigate([this.returnUrl],navigationExtras);
+                },
+                error => {
+                    this.alertService.error(error);
+                });
+
+
+
+
    
   }
 

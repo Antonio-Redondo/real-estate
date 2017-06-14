@@ -79,7 +79,8 @@ public class UserController{
 
 
         if(userService.isUserNameExist(userDTO.getUsername(), userDTO.getPassword())) {
-            return APIResponse.toErrorResponse("Username and/or password is taken");
+            throw new NotFoundException("Username and password are already taken: "+userDTO.getUsername()+ " " +userDTO.getPassword());
+
         }
         User user = new User();
         user.setFirstname(userDTO.getFirstname());

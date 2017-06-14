@@ -24,4 +24,29 @@ public interface TaskService extends BaseService<Task, Long> {
      * @param newTaskId long
      */
     public void updateTask(TaskDTO taskDTO, long newTaskId) throws NotFoundException;
+
+
+    /**
+     * Method responsible to find a task by if
+     * @param taskDTO taskDTO
+     * @throws NotFoundException
+     */
+    public void findTaskById(TaskDTO taskDTO)throws NotFoundException;
+
+
+    /**
+     * Method in charge of updating a task
+     * @param task Task
+     * @throws NotFoundException
+     */
+    public void updateTask(Task task)throws NotFoundException;
+
+
+
+    /**
+     * Method in charge of saving a task
+     * @param TaskDTO taskDTO
+     * @throws NotFoundException
+     */
+    public void saveTask(TaskDTO taskDTO)throws NotFoundException;
 }

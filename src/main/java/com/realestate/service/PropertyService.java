@@ -2,6 +2,7 @@ package com.realestate.service;
 
 import com.realestate.data.BaseService;
 import com.realestate.dto.PropertyDTO;
+import com.realestate.exception.NotFoundException;
 import com.realestate.model.entity.Property;
 import java.util.List;
 
@@ -20,9 +21,23 @@ public interface PropertyService extends BaseService<Property, Long> {
 
     /**
      * Method in charge of fetching a property by id
-     * @param id id
+     * @param propertyDTO propertyDTO
      * @return Property Property
      */
-    public Property findPropertyById(long id);
+    public void findPropertyById(PropertyDTO propertyDTO)throws NotFoundException;
+
+
+    /**
+     * Method responsible of updating a property
+     * @param property
+     */
+    public void updateProperty(Property property)throws NotFoundException;
+
+    /**
+     * Method responsible to save a new property
+     * @param PropertyDTO
+     * @throws NotFoundException
+     */
+    public void saveProperty(PropertyDTO PropertyDTO) throws NotFoundException;
 
 }

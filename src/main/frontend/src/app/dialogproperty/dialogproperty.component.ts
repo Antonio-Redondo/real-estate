@@ -4,6 +4,8 @@ import {Employee} from './../entities/employee';
 import {Task} from './../entities/task';
 import {Property} from './../entities/property';
 import { Router, ActivatedRoute,NavigationExtras } from '@angular/router';
+import {PropertyService} from './../services/property/property.service';
+import { AlertService } from './../services/alert.service';
 
 
 
@@ -27,7 +29,7 @@ export class DialogPropertyComponent implements OnInit {
     
     let config = new MdDialogConfig();
     let dialogRef:MdDialogRef<DialogPropertyPopupComponent> = this.dialog.open(DialogPropertyPopupComponent,{
-     height: '320px',
+     height: '340px',
      width: '600px',
     
     });
@@ -67,11 +69,12 @@ export class DialogPropertyPopupComponent implements OnInit{
    lastname:string;
    item: Property;
    enableButton= false;
-   returnUrl = '/propertieslist/savedEmployee';
+   returnUrl = '/propertieslist/savedProperty';
    
    
 
-  constructor(public dialogRef: MdDialogRef<DialogPropertyPopupComponent>,private router: Router, private routerAct: ActivatedRoute){
+  constructor(public dialogRef: MdDialogRef<DialogPropertyPopupComponent>,private router: Router, private routerAct: ActivatedRoute
+  , private propertyService:PropertyService, private alertService:AlertService){
       this.routerAct.queryParams.subscribe(params => {
         console.log("firstname"+ params["firstname"]);
          console.log("lastname"+ params["lastname"]);
@@ -90,19 +93,21 @@ export class DialogPropertyPopupComponent implements OnInit{
   }
   saveProperty(){
 
-      let navigationExtras: NavigationExtras = {
+  let navigationExtras: NavigationExtras = {
                              queryParams: {
                              "firstname":  this.firstname,
                              "lastname":  this.lastname
-              
+
                          }
                      };
+    
 
     console.log("saveProperty");
+    this.updateProperty();
     this.dialogRef.close();
     this.router.navigate([this.returnUrl],navigationExtras);
     this.refresh();
-
+ 
 
    
   }
@@ -118,6 +123,24 @@ export class DialogPropertyPopupComponent implements OnInit{
        console.log("inside");
       this.enableButton =true;
     }
+
+  }
+  updateProperty(){
+      this.propertyService.updateProperty(this.item).subscribe(
+                data => {
+
+                     let navigationExtras: NavigationExtras = {
+                             queryParams: {
+                             "firstname": this.firstname,
+                             "lastname": this.lastname
+                        }
+                     };
+                  this.router.navigate([this.returnUrl],navigationExtras);
+                },
+                error => {
+                    this.alertService.error(error);
+                });
+
 
   }
 

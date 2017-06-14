@@ -12,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.PostConstruct;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -41,8 +42,48 @@ public class TaskServiceImpl extends BaseJPAServiceImpl<Task, Long> implements T
         task.setRemarks(taskDTO.getRemarks());
         task.setDateFrom(taskDTO.getDateFrom());
         task.setDateTo(taskDTO.getDateTo());
+        task.setCreatedAt(new Date());
+        task.setUpdatedAt(new Date());
         taskRepository.updateTask(task);
     }
+
+    @Override
+    public void findTaskById(TaskDTO taskDTO)throws NotFoundException{
+        Task task = null;
+        try {
+            task = taskRepository.findTaskById(taskDTO.getId());
+        } catch (NotFoundException e) {
+            throw new NotFoundException("Task not found by id : " + taskDTO.getId());
+        }
+        task.setName(taskDTO.getName());
+        task.setRemarks(taskDTO.getRemarks());
+        task.setCreatedAt(new Date());
+        task.setUpdatedAt(new Date());
+
+        this.updateTask(task);
+    }
+
+    @Override
+    public void updateTask(Task task)throws NotFoundException{
+        try{
+            taskRepository.updateTask(task);
+        } catch (NotFoundException e) {
+            throw new NotFoundException("Task not updated properly");
+        }
+
+    }
+
+    @Override
+    public void saveTask(TaskDTO taskDTO)throws NotFoundException{
+        try{
+            taskRepository.insertTask(convertFromTaskDTOTotask(taskDTO));
+        } catch (NotFoundException e) {
+            throw new NotFoundException("Task not updated properly");
+        }
+
+    }
+
+
 
     @PostConstruct
     public void setupService() {
@@ -62,9 +103,29 @@ public class TaskServiceImpl extends BaseJPAServiceImpl<Task, Long> implements T
             taskDTO.setDateFrom(t.getDateFrom());
             taskDTO.setId(t.getId());
             taskDTO.setImage(t.getImage());
+            if(t.getCreatedAt()!=null){
+                taskDTO.setCreatedAt(t.getCreatedAt());
+            }
+            if(t.getUpdatedAt()!= null){
+                taskDTO.setUpdatedAt(t.getUpdatedAt());
+            }
+
+
             listTaskDTO.add(taskDTO);
         });
             return listTaskDTO;
+    }
+
+    /**
+     * Method in charge of converting from the DTO to task entity
+     * @param taskDTO taskDTO
+     * @return Task
+     */
+    private Task convertFromTaskDTOTotask(TaskDTO taskDTO){
+        Task task = new Task();
+        task.setName(taskDTO.getName());
+        task.setRemarks(taskDTO.getRemarks());
+        return task;
     }
 
 }

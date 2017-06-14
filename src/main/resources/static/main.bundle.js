@@ -1,15 +1,15 @@
 webpackJsonp([0,4],{
 
-/***/ 108:
+/***/ 110:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_forms__ = __webpack_require__(7);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__entities_employee__ = __webpack_require__(75);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__entities_employee__ = __webpack_require__(77);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_router__ = __webpack_require__(8);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_employee_employee_service__ = __webpack_require__(56);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__services_alert_service__ = __webpack_require__(36);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_employee_employee_service__ = __webpack_require__(58);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__services_alert_service__ = __webpack_require__(22);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AddnewemployeepageComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -116,14 +116,16 @@ var _a, _b, _c, _d;
 
 /***/ }),
 
-/***/ 109:
+/***/ 111:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__entities_task__ = __webpack_require__(77);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__entities_task__ = __webpack_require__(79);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_forms__ = __webpack_require__(7);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_router__ = __webpack_require__(8);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_task_task_service__ = __webpack_require__(40);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__services_alert_service__ = __webpack_require__(22);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AddnewtaskpageComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -138,11 +140,15 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
+
 var AddnewtaskpageComponent = (function () {
-    function AddnewtaskpageComponent(router, routerAct) {
+    function AddnewtaskpageComponent(router, routerAct, taskService, alertService) {
         var _this = this;
         this.router = router;
         this.routerAct = routerAct;
+        this.taskService = taskService;
+        this.alertService = alertService;
         this.task = new __WEBPACK_IMPORTED_MODULE_1__entities_task__["a" /* Task */](null, null, null, null, null);
         this.disabled = true;
         this.cancelUrl = "/dutieslist/false";
@@ -165,6 +171,7 @@ var AddnewtaskpageComponent = (function () {
         }
     };
     AddnewtaskpageComponent.prototype.saveTask = function () {
+        var _this = this;
         console.log(this.task);
         var navigationExtras = {
             queryParams: {
@@ -173,6 +180,17 @@ var AddnewtaskpageComponent = (function () {
             }
         };
         this.router.navigate([this.returnUrl], navigationExtras);
+        this.taskService.saveTask(this.task).subscribe(function (data) {
+            var navigationExtras = {
+                queryParams: {
+                    "firstname": _this.userFirstname,
+                    "lastname": _this.userLastname
+                }
+            };
+            _this.router.navigate([_this.returnUrl], navigationExtras);
+        }, function (error) {
+            _this.alertService.error(error);
+        });
     };
     AddnewtaskpageComponent.prototype.cancelNavigation = function () {
         var navigationExtras = {
@@ -191,15 +209,15 @@ AddnewtaskpageComponent = __decorate([
         template: __webpack_require__(439),
         styles: [__webpack_require__(411)]
     }),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_3__angular_router__["a" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__angular_router__["a" /* Router */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_3__angular_router__["b" /* ActivatedRoute */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__angular_router__["b" /* ActivatedRoute */]) === "function" && _b || Object])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_3__angular_router__["a" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__angular_router__["a" /* Router */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_3__angular_router__["b" /* ActivatedRoute */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__angular_router__["b" /* ActivatedRoute */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_4__services_task_task_service__["a" /* TaskService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__services_task_task_service__["a" /* TaskService */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_5__services_alert_service__["a" /* AlertService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5__services_alert_service__["a" /* AlertService */]) === "function" && _d || Object])
 ], AddnewtaskpageComponent);
 
-var _a, _b;
+var _a, _b, _c, _d;
 //# sourceMappingURL=addnewtaskpage.component.js.map
 
 /***/ }),
 
-/***/ 110:
+/***/ 112:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -244,14 +262,16 @@ AddpropertyModule = __decorate([
 
 /***/ }),
 
-/***/ 111:
+/***/ 113:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__entities_property__ = __webpack_require__(76);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__entities_property__ = __webpack_require__(78);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_forms__ = __webpack_require__(7);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_router__ = __webpack_require__(8);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_property_property_service__ = __webpack_require__(39);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__services_alert_service__ = __webpack_require__(22);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AddpropertypageComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -266,11 +286,15 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
+
 var AddpropertypageComponent = (function () {
-    function AddpropertypageComponent(router, routerAct) {
+    function AddpropertypageComponent(router, routerAct, propertyService, alertService) {
         var _this = this;
         this.router = router;
         this.routerAct = routerAct;
+        this.propertyService = propertyService;
+        this.alertService = alertService;
         this.property = new __WEBPACK_IMPORTED_MODULE_1__entities_property__["a" /* Property */];
         this.disabled = true;
         this.cancelUrl = "/propertieslist/false";
@@ -294,13 +318,18 @@ var AddpropertypageComponent = (function () {
         }
     };
     AddpropertypageComponent.prototype.saveProperty = function () {
-        var navigationExtras = {
-            queryParams: {
-                "firstname": this.userFirstname,
-                "lastname": this.userLastname
-            }
-        };
-        this.router.navigate([this.returnUrl], navigationExtras);
+        var _this = this;
+        this.propertyService.saveProperty(this.property).subscribe(function (data) {
+            var navigationExtras = {
+                queryParams: {
+                    "firstname": _this.userFirstname,
+                    "lastname": _this.userLastname
+                }
+            };
+            _this.router.navigate([_this.returnUrl], navigationExtras);
+        }, function (error) {
+            _this.alertService.error(error);
+        });
     };
     AddpropertypageComponent.prototype.cancelNavigation = function () {
         var navigationExtras = {
@@ -319,15 +348,15 @@ AddpropertypageComponent = __decorate([
         template: __webpack_require__(441),
         styles: [__webpack_require__(413)]
     }),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_3__angular_router__["a" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__angular_router__["a" /* Router */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_3__angular_router__["b" /* ActivatedRoute */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__angular_router__["b" /* ActivatedRoute */]) === "function" && _b || Object])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_3__angular_router__["a" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__angular_router__["a" /* Router */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_3__angular_router__["b" /* ActivatedRoute */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__angular_router__["b" /* ActivatedRoute */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_4__services_property_property_service__["a" /* PropertyService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__services_property_property_service__["a" /* PropertyService */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_5__services_alert_service__["a" /* AlertService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5__services_alert_service__["a" /* AlertService */]) === "function" && _d || Object])
 ], AddpropertypageComponent);
 
-var _a, _b;
+var _a, _b, _c, _d;
 //# sourceMappingURL=addpropertypage.component.js.map
 
 /***/ }),
 
-/***/ 112:
+/***/ 114:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -372,7 +401,7 @@ AddtaskModule = __decorate([
 
 /***/ }),
 
-/***/ 113:
+/***/ 115:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -414,7 +443,7 @@ DeleteemployeeModule = __decorate([
 
 /***/ }),
 
-/***/ 114:
+/***/ 116:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -456,7 +485,7 @@ DeletepropertyModule = __decorate([
 
 /***/ }),
 
-/***/ 115:
+/***/ 117:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -498,19 +527,19 @@ DeletetaskModule = __decorate([
 
 /***/ }),
 
-/***/ 116:
+/***/ 118:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_material__ = __webpack_require__(10);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__entities_employee__ = __webpack_require__(75);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__entities_task__ = __webpack_require__(77);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__entities_property__ = __webpack_require__(76);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__entities_employee__ = __webpack_require__(77);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__entities_task__ = __webpack_require__(79);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__entities_property__ = __webpack_require__(78);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__angular_router__ = __webpack_require__(8);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__services_common_common_service__ = __webpack_require__(55);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__services_employee_employee_service__ = __webpack_require__(56);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__services_alert_service__ = __webpack_require__(36);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__services_common_common_service__ = __webpack_require__(57);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__services_employee_employee_service__ = __webpack_require__(58);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__services_alert_service__ = __webpack_require__(22);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return DialogComponent; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return DialogPopupComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -646,13 +675,23 @@ var DialogPopupComponent = (function () {
             console.log(this.day);
 
           this.minimum = new Date(this.year,this.month,this.day);
-          
+
           return this.minimum;*/
     };
     DialogPopupComponent.prototype.buildEmployee = function () {
         var _this = this;
-        this.item.taskId = this.idTask;
-        this.item.propertyId = this.idProperty;
+        if (this.idTask == undefined) {
+            this.item.taskId = this.item.taskDTO.id;
+        }
+        else {
+            this.item.taskId = this.idTask;
+        }
+        if (this.idProperty == undefined) {
+            this.item.propertyId = this.item.propertyDTO.id;
+        }
+        else {
+            this.item.propertyId = this.idProperty;
+        }
         this.empployeeService.updateEmployee(this.item).subscribe(function (data) {
             var navigationExtras = {
                 queryParams: {
@@ -682,13 +721,13 @@ var _a, _b, _c, _d, _e, _f, _g, _h, _j;
 
 /***/ }),
 
-/***/ 117:
+/***/ 119:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_material__ = __webpack_require__(10);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__entities_employee__ = __webpack_require__(75);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__entities_employee__ = __webpack_require__(77);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return DialoginformationComponent; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return DialogInformationPopupComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -766,17 +805,17 @@ var _a, _b, _c;
 
 /***/ }),
 
-/***/ 118:
+/***/ 120:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_material__ = __webpack_require__(10);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_forms__ = __webpack_require__(7);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__dialoginformation_component__ = __webpack_require__(117);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__dialoginformation_component__ = __webpack_require__(119);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_core__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_common__ = __webpack_require__(9);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__dropdownproperties_dropdownproperties_module__ = __webpack_require__(73);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__dropdowntask_dropdowntask_module__ = __webpack_require__(74);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__dropdownproperties_dropdownproperties_module__ = __webpack_require__(75);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__dropdowntask_dropdowntask_module__ = __webpack_require__(76);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_ng2_date_picker__ = __webpack_require__(270);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_ng2_date_picker___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_7_ng2_date_picker__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return DialoginformationModule; });
@@ -818,14 +857,16 @@ DialoginformationModule = __decorate([
 
 /***/ }),
 
-/***/ 119:
+/***/ 121:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_material__ = __webpack_require__(10);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__entities_property__ = __webpack_require__(76);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__entities_property__ = __webpack_require__(78);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_router__ = __webpack_require__(8);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_property_property_service__ = __webpack_require__(39);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__services_alert_service__ = __webpack_require__(22);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return DialogPropertyComponent; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return DialogPropertyPopupComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -841,6 +882,8 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
+
 var DialogPropertyComponent = (function () {
     function DialogPropertyComponent(dialog) {
         this.dialog = dialog;
@@ -849,7 +892,7 @@ var DialogPropertyComponent = (function () {
         console.log(this.item);
         var config = new __WEBPACK_IMPORTED_MODULE_1__angular_material__["c" /* MdDialogConfig */]();
         var dialogRef = this.dialog.open(DialogPropertyPopupComponent, {
-            height: '320px',
+            height: '340px',
             width: '600px',
         });
         dialogRef.componentInstance.item = this.item;
@@ -878,13 +921,15 @@ DialogPropertyComponent = __decorate([
 ], DialogPropertyComponent);
 
 var DialogPropertyPopupComponent = (function () {
-    function DialogPropertyPopupComponent(dialogRef, router, routerAct) {
+    function DialogPropertyPopupComponent(dialogRef, router, routerAct, propertyService, alertService) {
         var _this = this;
         this.dialogRef = dialogRef;
         this.router = router;
         this.routerAct = routerAct;
+        this.propertyService = propertyService;
+        this.alertService = alertService;
         this.enableButton = false;
-        this.returnUrl = '/propertieslist/savedEmployee';
+        this.returnUrl = '/propertieslist/savedProperty';
         this.routerAct.queryParams.subscribe(function (params) {
             console.log("firstname" + params["firstname"]);
             console.log("lastname" + params["lastname"]);
@@ -906,6 +951,7 @@ var DialogPropertyPopupComponent = (function () {
             }
         };
         console.log("saveProperty");
+        this.updateProperty();
         this.dialogRef.close();
         this.router.navigate([this.returnUrl], navigationExtras);
         this.refresh();
@@ -920,6 +966,20 @@ var DialogPropertyPopupComponent = (function () {
             this.enableButton = true;
         }
     };
+    DialogPropertyPopupComponent.prototype.updateProperty = function () {
+        var _this = this;
+        this.propertyService.updateProperty(this.item).subscribe(function (data) {
+            var navigationExtras = {
+                queryParams: {
+                    "firstname": _this.firstname,
+                    "lastname": _this.lastname
+                }
+            };
+            _this.router.navigate([_this.returnUrl], navigationExtras);
+        }, function (error) {
+            _this.alertService.error(error);
+        });
+    };
     return DialogPropertyPopupComponent;
 }());
 DialogPropertyPopupComponent = __decorate([
@@ -928,22 +988,22 @@ DialogPropertyPopupComponent = __decorate([
         template: __webpack_require__(452),
         styles: ['./dialogproperty.popup.component.css']
     }),
-    __metadata("design:paramtypes", [typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1__angular_material__["e" /* MdDialogRef */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_material__["e" /* MdDialogRef */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_3__angular_router__["a" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__angular_router__["a" /* Router */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_3__angular_router__["b" /* ActivatedRoute */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__angular_router__["b" /* ActivatedRoute */]) === "function" && _e || Object])
+    __metadata("design:paramtypes", [typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1__angular_material__["e" /* MdDialogRef */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_material__["e" /* MdDialogRef */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_3__angular_router__["a" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__angular_router__["a" /* Router */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_3__angular_router__["b" /* ActivatedRoute */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__angular_router__["b" /* ActivatedRoute */]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_4__services_property_property_service__["a" /* PropertyService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__services_property_property_service__["a" /* PropertyService */]) === "function" && _f || Object, typeof (_g = typeof __WEBPACK_IMPORTED_MODULE_5__services_alert_service__["a" /* AlertService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5__services_alert_service__["a" /* AlertService */]) === "function" && _g || Object])
 ], DialogPropertyPopupComponent);
 
-var _a, _b, _c, _d, _e;
+var _a, _b, _c, _d, _e, _f, _g;
 //# sourceMappingURL=dialogproperty.component.js.map
 
 /***/ }),
 
-/***/ 120:
+/***/ 122:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_common__ = __webpack_require__(9);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_material__ = __webpack_require__(10);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_forms__ = __webpack_require__(7);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__dialogproperty_component__ = __webpack_require__(119);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__dialogproperty_component__ = __webpack_require__(121);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_core__ = __webpack_require__(2);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return DialogpropertyModule; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -978,14 +1038,16 @@ DialogpropertyModule = __decorate([
 
 /***/ }),
 
-/***/ 121:
+/***/ 123:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_material__ = __webpack_require__(10);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__entities_task__ = __webpack_require__(77);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__entities_task__ = __webpack_require__(79);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_router__ = __webpack_require__(8);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_task_task_service__ = __webpack_require__(40);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__services_alert_service__ = __webpack_require__(22);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return DialogTaskComponent; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return DialogTaskPopupComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -997,6 +1059,8 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+
+
 
 
 
@@ -1038,11 +1102,13 @@ DialogTaskComponent = __decorate([
 ], DialogTaskComponent);
 
 var DialogTaskPopupComponent = (function () {
-    function DialogTaskPopupComponent(dialogRef, router, routerAct) {
+    function DialogTaskPopupComponent(dialogRef, router, routerAct, taskService, alertService) {
         var _this = this;
         this.dialogRef = dialogRef;
         this.router = router;
         this.routerAct = routerAct;
+        this.taskService = taskService;
+        this.alertService = alertService;
         this.enableButton = false;
         this.returnUrl = '/dutieslist/editTask';
         this.routerAct.queryParams.subscribe(function (params) {
@@ -1063,6 +1129,7 @@ var DialogTaskPopupComponent = (function () {
                 "lastname": this.lastname
             }
         };
+        this.updateTask();
         this.dialogRef.close();
         this.router.navigate([this.returnUrl], navigationExtras);
         this.refresh();
@@ -1077,6 +1144,20 @@ var DialogTaskPopupComponent = (function () {
             this.enableButton = true;
         }
     };
+    DialogTaskPopupComponent.prototype.updateTask = function () {
+        var _this = this;
+        this.taskService.updateTask(this.item).subscribe(function (data) {
+            var navigationExtras = {
+                queryParams: {
+                    "firstname": _this.firstname,
+                    "lastname": _this.lastname
+                }
+            };
+            _this.router.navigate([_this.returnUrl], navigationExtras);
+        }, function (error) {
+            _this.alertService.error(error);
+        });
+    };
     return DialogTaskPopupComponent;
 }());
 DialogTaskPopupComponent = __decorate([
@@ -1085,15 +1166,15 @@ DialogTaskPopupComponent = __decorate([
         template: __webpack_require__(454),
         styles: ['./dialogtask.popup.component.css']
     }),
-    __metadata("design:paramtypes", [typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1__angular_material__["e" /* MdDialogRef */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_material__["e" /* MdDialogRef */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_3__angular_router__["a" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__angular_router__["a" /* Router */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_3__angular_router__["b" /* ActivatedRoute */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__angular_router__["b" /* ActivatedRoute */]) === "function" && _e || Object])
+    __metadata("design:paramtypes", [typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1__angular_material__["e" /* MdDialogRef */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_material__["e" /* MdDialogRef */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_3__angular_router__["a" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__angular_router__["a" /* Router */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_3__angular_router__["b" /* ActivatedRoute */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__angular_router__["b" /* ActivatedRoute */]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_4__services_task_task_service__["a" /* TaskService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__services_task_task_service__["a" /* TaskService */]) === "function" && _f || Object, typeof (_g = typeof __WEBPACK_IMPORTED_MODULE_5__services_alert_service__["a" /* AlertService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5__services_alert_service__["a" /* AlertService */]) === "function" && _g || Object])
 ], DialogTaskPopupComponent);
 
-var _a, _b, _c, _d, _e;
+var _a, _b, _c, _d, _e, _f, _g;
 //# sourceMappingURL=dialogtask.component.js.map
 
 /***/ }),
 
-/***/ 122:
+/***/ 124:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1101,7 +1182,7 @@ var _a, _b, _c, _d, _e;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common__ = __webpack_require__(9);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_material__ = __webpack_require__(10);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_forms__ = __webpack_require__(7);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__dialogtask_component__ = __webpack_require__(121);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__dialogtask_component__ = __webpack_require__(123);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return DialogtaskModule; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -1135,12 +1216,13 @@ DialogtaskModule = __decorate([
 
 /***/ }),
 
-/***/ 123:
+/***/ 125:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__(20);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_task_task_service__ = __webpack_require__(40);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return DutiesComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -1153,29 +1235,29 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 
 
+
 var DutiesComponent = (function () {
-    function DutiesComponent(http) {
+    function DutiesComponent(http, taskService) {
         this.http = http;
+        this.taskService = taskService;
         this.showRemovedTask = false;
         this.showNewTask = false;
         this.showEditTask = false;
         this.filterQuery = "";
         this.rowsOnPage = 10;
-        this.sortBy = "name";
+        this.sortBy = "createdAt";
         this.sortOrder = "asc";
         this.sortByWordLength = function (a) {
             return a.city.length;
         };
-        console.log("constructor");
     }
     DutiesComponent.prototype.ngOnInit = function () {
         var _this = this;
-        console.log("ngOnInit");
         this.checkSuccessMessages();
-        this.http.get("assets/dataTask.json")
+        this.taskService.fetchAllTasks()
             .subscribe(function (data) {
             setTimeout(function () {
-                _this.data = data.json();
+                _this.data = data;
             }, 1000);
         });
     };
@@ -1208,15 +1290,15 @@ DutiesComponent = __decorate([
         template: __webpack_require__(457),
         styles: [__webpack_require__(422)]
     }),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */]) === "function" && _a || Object])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__services_task_task_service__["a" /* TaskService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__services_task_task_service__["a" /* TaskService */]) === "function" && _b || Object])
 ], DutiesComponent);
 
-var _a;
+var _a, _b;
 //# sourceMappingURL=duties.component.js.map
 
 /***/ }),
 
-/***/ 124:
+/***/ 126:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1270,7 +1352,7 @@ var _a, _b;
 
 /***/ }),
 
-/***/ 125:
+/***/ 127:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1321,13 +1403,13 @@ var _a, _b;
 
 /***/ }),
 
-/***/ 126:
+/***/ 128:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__(20);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_employee_employee_service__ = __webpack_require__(56);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_employee_employee_service__ = __webpack_require__(58);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return EmployeesComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -1402,7 +1484,7 @@ var _a, _b;
 
 /***/ }),
 
-/***/ 127:
+/***/ 129:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1417,14 +1499,14 @@ var User = (function () {
 
 /***/ }),
 
-/***/ 128:
+/***/ 130:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_router__ = __webpack_require__(8);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_authentication_service__ = __webpack_require__(38);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_alert_service__ = __webpack_require__(36);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_alert_service__ = __webpack_require__(22);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MenuComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -1516,13 +1598,13 @@ var _a, _b, _c, _d;
 
 /***/ }),
 
-/***/ 129:
+/***/ 131:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common__ = __webpack_require__(9);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__menu_component__ = __webpack_require__(128);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__menu_component__ = __webpack_require__(130);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_material__ = __webpack_require__(10);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_forms__ = __webpack_require__(7);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__angular_router__ = __webpack_require__(8);
@@ -1561,12 +1643,13 @@ MenuModule = __decorate([
 
 /***/ }),
 
-/***/ 130:
+/***/ 132:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__(20);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_property_property_service__ = __webpack_require__(39);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return PropertiesComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -1579,15 +1662,17 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 
 
+
 var PropertiesComponent = (function () {
-    function PropertiesComponent(http) {
+    function PropertiesComponent(http, propertyService) {
         this.http = http;
+        this.propertyService = propertyService;
         this.show = false;
         this.showproperty = false;
         this.showdeletedmessage = false;
         this.filterQuery = "";
         this.rowsOnPage = 10;
-        this.sortBy = "address";
+        this.sortBy = "createdAt";
         this.sortOrder = "asc";
         this.sortByWordLength = function (a) {
             return a.city.length;
@@ -1596,10 +1681,10 @@ var PropertiesComponent = (function () {
     PropertiesComponent.prototype.ngOnInit = function () {
         var _this = this;
         this.checkSuccessMessages();
-        this.http.get("assets/dataProperty.json")
+        this.propertyService.fetchAllProperties()
             .subscribe(function (data) {
             setTimeout(function () {
-                _this.data = data.json();
+                _this.data = data;
             }, 1000);
         });
     };
@@ -1607,7 +1692,7 @@ var PropertiesComponent = (function () {
         return +num;
     };
     PropertiesComponent.prototype.checkSuccessMessages = function () {
-        if (this.newproperty.toString() == 'savedEmployee') {
+        if (this.newproperty.toString() == 'savedProperty') {
             this.show = true;
         }
         if (this.newproperty.toString() == 'true') {
@@ -1628,15 +1713,15 @@ PropertiesComponent = __decorate([
         selector: 'app-properties',
         template: __webpack_require__(463),
     }),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */]) === "function" && _a || Object])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__services_property_property_service__["a" /* PropertyService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__services_property_property_service__["a" /* PropertyService */]) === "function" && _b || Object])
 ], PropertiesComponent);
 
-var _a;
+var _a, _b;
 //# sourceMappingURL=properties.component.js.map
 
 /***/ }),
 
-/***/ 131:
+/***/ 133:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1692,13 +1777,13 @@ var _a, _b;
 
 /***/ }),
 
-/***/ 132:
+/***/ 134:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__entities_user__ = __webpack_require__(127);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_alert_service__ = __webpack_require__(36);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__entities_user__ = __webpack_require__(129);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_alert_service__ = __webpack_require__(22);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_authentication_service__ = __webpack_require__(38);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_router__ = __webpack_require__(8);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return RegisterComponent; });
@@ -1724,6 +1809,7 @@ var RegisterComponent = (function () {
         this.alertService = alertService;
         this.loading = false;
         this.returnUrl = "/login";
+        this.showUserIstaken = false;
     }
     RegisterComponent.prototype.ngOnInit = function () {
         this.model = new __WEBPACK_IMPORTED_MODULE_1__entities_user__["a" /* User */]();
@@ -1740,6 +1826,7 @@ var RegisterComponent = (function () {
             };
             _this.router.navigate([_this.returnUrl], navigationExtras);
         }, function (error) {
+            _this.showUserIstaken = true;
             console.log("Error");
             _this.alertService.error(error);
             _this.loading = false;
@@ -1758,100 +1845,6 @@ RegisterComponent = __decorate([
 
 var _a, _b, _c, _d;
 //# sourceMappingURL=register.component.js.map
-
-/***/ }),
-
-/***/ 133:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__(20);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map__ = __webpack_require__(37);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return PropertyService; });
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-
-var PropertyService = (function () {
-    function PropertyService(http) {
-        this.http = http;
-        this.logged = false;
-    }
-    PropertyService.prototype.fetchAllProperties = function () {
-        var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["c" /* Headers */]({ 'Content-Type': 'application/json' });
-        var options = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["d" /* RequestOptions */]({ headers: headers });
-        return this.http.post('http://localhost:8080/property/fetchAll', options)
-            .map(function (response) {
-            var res = response.json().result;
-            return res;
-        });
-    };
-    return PropertyService;
-}());
-PropertyService = __decorate([
-    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"])(),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */]) === "function" && _a || Object])
-], PropertyService);
-
-var _a;
-//# sourceMappingURL=property.service.js.map
-
-/***/ }),
-
-/***/ 134:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__(20);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map__ = __webpack_require__(37);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return TaskService; });
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-
-var TaskService = (function () {
-    function TaskService(http) {
-        this.http = http;
-        this.logged = false;
-    }
-    TaskService.prototype.fetchAllTasks = function () {
-        var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["c" /* Headers */]({ 'Content-Type': 'application/json' });
-        var options = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["d" /* RequestOptions */]({ headers: headers });
-        return this.http.post('http://localhost:8080/task/fetchAll', options)
-            .map(function (response) {
-            var res = response.json().result;
-            return res;
-        });
-    };
-    return TaskService;
-}());
-TaskService = __decorate([
-    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"])(),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */]) === "function" && _a || Object])
-], TaskService);
-
-var _a;
-//# sourceMappingURL=task.service.js.map
 
 /***/ }),
 
@@ -1885,6 +1878,72 @@ UserService = __decorate([
 ], UserService);
 
 //# sourceMappingURL=user.service.js.map
+
+/***/ }),
+
+/***/ 22:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_router__ = __webpack_require__(8);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_Subject__ = __webpack_require__(12);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_Subject___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_Subject__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AlertService; });
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+var AlertService = (function () {
+    function AlertService(router) {
+        var _this = this;
+        this.router = router;
+        this.subject = new __WEBPACK_IMPORTED_MODULE_2_rxjs_Subject__["Subject"]();
+        this.keepAfterNavigationChange = false;
+        // clear alert message on route change
+        router.events.subscribe(function (event) {
+            if (event instanceof __WEBPACK_IMPORTED_MODULE_1__angular_router__["c" /* NavigationStart */]) {
+                if (_this.keepAfterNavigationChange) {
+                    // only keep for a single location change
+                    _this.keepAfterNavigationChange = false;
+                }
+                else {
+                    // clear alert
+                    _this.subject.next();
+                }
+            }
+        });
+    }
+    AlertService.prototype.success = function (message, keepAfterNavigationChange) {
+        if (keepAfterNavigationChange === void 0) { keepAfterNavigationChange = false; }
+        this.keepAfterNavigationChange = keepAfterNavigationChange;
+        this.subject.next({ type: 'success', text: message });
+    };
+    AlertService.prototype.error = function (message, keepAfterNavigationChange) {
+        if (keepAfterNavigationChange === void 0) { keepAfterNavigationChange = false; }
+        this.keepAfterNavigationChange = keepAfterNavigationChange;
+        this.subject.next({ type: 'error', text: message });
+    };
+    AlertService.prototype.getMessage = function () {
+        return this.subject.asObservable();
+    };
+    return AlertService;
+}());
+AlertService = __decorate([
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"])(),
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* Router */]) === "function" && _a || Object])
+], AlertService);
+
+var _a;
+//# sourceMappingURL=alert.service.js.map
 
 /***/ }),
 
@@ -2041,11 +2100,11 @@ var _a, _b;
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common__ = __webpack_require__(9);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__addpropertypage_component__ = __webpack_require__(111);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__addpropertypage_component__ = __webpack_require__(113);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_material__ = __webpack_require__(10);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_forms__ = __webpack_require__(7);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__angular_router__ = __webpack_require__(8);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__menu_menu_module__ = __webpack_require__(129);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__menu_menu_module__ = __webpack_require__(131);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AddpropertypageModule; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -2173,10 +2232,10 @@ AppComponent = __decorate([
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__services_alert_service__ = __webpack_require__(36);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__services_alert_service__ = __webpack_require__(22);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_authentication_service__ = __webpack_require__(38);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__feed_service__ = __webpack_require__(349);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_platform_browser__ = __webpack_require__(32);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_platform_browser__ = __webpack_require__(33);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_core__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__angular_forms__ = __webpack_require__(7);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__angular_http__ = __webpack_require__(20);
@@ -2185,36 +2244,36 @@ AppComponent = __decorate([
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__app_component__ = __webpack_require__(336);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__user_service__ = __webpack_require__(135);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__app_routing__ = __webpack_require__(338);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__login_login_component__ = __webpack_require__(78);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__register_register_component__ = __webpack_require__(132);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__login_login_component__ = __webpack_require__(80);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__register_register_component__ = __webpack_require__(134);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__employees_employees_module__ = __webpack_require__(348);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__employeelist_employeelist_component__ = __webpack_require__(125);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__dialog_dialog_component__ = __webpack_require__(116);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__dialoginformation_dialoginformation_component__ = __webpack_require__(117);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__dialog_dialog_module__ = __webpack_require__(72);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__dialoginformation_dialoginformation_module__ = __webpack_require__(118);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__dropdownproperties_dropdownproperties_module__ = __webpack_require__(73);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__dropdowntask_dropdowntask_module__ = __webpack_require__(74);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__addemployee_addemployee_module__ = __webpack_require__(71);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__addnewemployeepage_addnewemployeepage_component__ = __webpack_require__(108);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__employeelist_employeelist_component__ = __webpack_require__(127);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__dialog_dialog_component__ = __webpack_require__(118);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__dialoginformation_dialoginformation_component__ = __webpack_require__(119);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__dialog_dialog_module__ = __webpack_require__(74);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__dialoginformation_dialoginformation_module__ = __webpack_require__(120);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__dropdownproperties_dropdownproperties_module__ = __webpack_require__(75);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__dropdowntask_dropdowntask_module__ = __webpack_require__(76);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__addemployee_addemployee_module__ = __webpack_require__(73);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__addnewemployeepage_addnewemployeepage_component__ = __webpack_require__(110);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_24__properties_properties_module__ = __webpack_require__(351);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_25__propertylist_propertylist_component__ = __webpack_require__(131);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_26__dialogproperty_dialogproperty_module__ = __webpack_require__(120);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_27__dialogproperty_dialogproperty_component__ = __webpack_require__(119);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_28__addproperty_addproperty_module__ = __webpack_require__(110);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_29__menu_menu_module__ = __webpack_require__(129);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_30__deleteproperty_deleteproperty_module__ = __webpack_require__(114);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_31__dutieslist_dutieslist_component__ = __webpack_require__(124);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_25__propertylist_propertylist_component__ = __webpack_require__(133);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_26__dialogproperty_dialogproperty_module__ = __webpack_require__(122);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_27__dialogproperty_dialogproperty_component__ = __webpack_require__(121);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_28__addproperty_addproperty_module__ = __webpack_require__(112);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_29__menu_menu_module__ = __webpack_require__(131);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_30__deleteproperty_deleteproperty_module__ = __webpack_require__(116);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_31__dutieslist_dutieslist_component__ = __webpack_require__(126);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_32__duties_duties_module__ = __webpack_require__(346);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_33__deletetask_deletetask_module__ = __webpack_require__(115);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_34__addtask_addtask_module__ = __webpack_require__(112);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_35__addnewtaskpage_addnewtaskpage_component__ = __webpack_require__(109);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_36__dialogtask_dialogtask_module__ = __webpack_require__(122);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_37__dialogtask_dialogtask_component__ = __webpack_require__(121);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_38__services_employee_employee_service__ = __webpack_require__(56);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_39__services_property_property_service__ = __webpack_require__(133);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_40__services_task_task_service__ = __webpack_require__(134);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_41__services_common_common_service__ = __webpack_require__(55);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_33__deletetask_deletetask_module__ = __webpack_require__(117);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_34__addtask_addtask_module__ = __webpack_require__(114);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_35__addnewtaskpage_addnewtaskpage_component__ = __webpack_require__(111);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_36__dialogtask_dialogtask_module__ = __webpack_require__(124);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_37__dialogtask_dialogtask_component__ = __webpack_require__(123);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_38__services_employee_employee_service__ = __webpack_require__(58);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_39__services_property_property_service__ = __webpack_require__(39);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_40__services_task_task_service__ = __webpack_require__(40);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_41__services_common_common_service__ = __webpack_require__(57);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AppModule; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -2331,18 +2390,18 @@ AppModule = __decorate([
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__employeelist_employeelist_component__ = __webpack_require__(125);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__employees_employees_component__ = __webpack_require__(126);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__register_register_component__ = __webpack_require__(132);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__addnewemployeepage_addnewemployeepage_component__ = __webpack_require__(108);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__addpropertypage_addpropertypage_component__ = __webpack_require__(111);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__dutieslist_dutieslist_component__ = __webpack_require__(124);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__addnewtaskpage_addnewtaskpage_component__ = __webpack_require__(109);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__menu_menu_component__ = __webpack_require__(128);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__login_login_component__ = __webpack_require__(78);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__duties_duties_component__ = __webpack_require__(123);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__properties_properties_component__ = __webpack_require__(130);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__propertylist_propertylist_component__ = __webpack_require__(131);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__employeelist_employeelist_component__ = __webpack_require__(127);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__employees_employees_component__ = __webpack_require__(128);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__register_register_component__ = __webpack_require__(134);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__addnewemployeepage_addnewemployeepage_component__ = __webpack_require__(110);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__addpropertypage_addpropertypage_component__ = __webpack_require__(113);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__dutieslist_dutieslist_component__ = __webpack_require__(126);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__addnewtaskpage_addnewtaskpage_component__ = __webpack_require__(111);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__menu_menu_component__ = __webpack_require__(130);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__login_login_component__ = __webpack_require__(80);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__duties_duties_component__ = __webpack_require__(125);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__properties_properties_component__ = __webpack_require__(132);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__propertylist_propertylist_component__ = __webpack_require__(133);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__angular_router__ = __webpack_require__(8);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__authguard__ = __webpack_require__(339);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return appRoutingProviders; });
@@ -2389,7 +2448,7 @@ var routing = __WEBPACK_IMPORTED_MODULE_12__angular_router__["d" /* RouterModule
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_router__ = __webpack_require__(8);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__login_login_component__ = __webpack_require__(78);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__login_login_component__ = __webpack_require__(80);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_authentication_service__ = __webpack_require__(38);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Authguard; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -2578,8 +2637,8 @@ var _a;
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_property_property_service__ = __webpack_require__(133);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_common_common_service__ = __webpack_require__(55);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_property_property_service__ = __webpack_require__(39);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_common_common_service__ = __webpack_require__(57);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return DropdownpropertiesComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -2637,8 +2696,8 @@ var _a, _b;
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_task_task_service__ = __webpack_require__(134);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_common_common_service__ = __webpack_require__(55);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_task_task_service__ = __webpack_require__(40);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_common_common_service__ = __webpack_require__(57);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return DropdowntaskComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -2695,7 +2754,7 @@ var _a, _b;
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_lodash__ = __webpack_require__(45);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_lodash__ = __webpack_require__(47);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_lodash___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_lodash__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(2);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return DataFilterPipe; });
@@ -2712,7 +2771,7 @@ var DataFilterPipe = (function () {
     }
     DataFilterPipe.prototype.transform = function (array, query) {
         if (query) {
-            return __WEBPACK_IMPORTED_MODULE_0_lodash__["filter"](array, function (row) { return row.name.indexOf(query) > -1; });
+            return __WEBPACK_IMPORTED_MODULE_0_lodash__["filter"](array, function (row) { return row.name.toLowerCase().indexOf(query.toLowerCase()) > -1; });
         }
         return array;
     };
@@ -2733,19 +2792,19 @@ DataFilterPipe = __decorate([
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_material__ = __webpack_require__(10);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__dialog_dialog_module__ = __webpack_require__(72);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__dialog_dialog_module__ = __webpack_require__(74);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_core__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_common__ = __webpack_require__(9);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_forms__ = __webpack_require__(7);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_angular2_datatable__ = __webpack_require__(79);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_angular2_datatable__ = __webpack_require__(81);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_angular2_datatable___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_angular2_datatable__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__angular_http__ = __webpack_require__(20);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__data_filter_pipe__ = __webpack_require__(345);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__duties_component__ = __webpack_require__(123);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__deletetask_deletetask_module__ = __webpack_require__(115);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__addemployee_addemployee_module__ = __webpack_require__(71);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__addtask_addtask_module__ = __webpack_require__(112);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__dialogtask_dialogtask_module__ = __webpack_require__(122);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__duties_component__ = __webpack_require__(125);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__deletetask_deletetask_module__ = __webpack_require__(117);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__addemployee_addemployee_module__ = __webpack_require__(73);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__addtask_addtask_module__ = __webpack_require__(114);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__dialogtask_dialogtask_module__ = __webpack_require__(124);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return DutiesModule; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -2798,7 +2857,7 @@ DutiesModule = __decorate([
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_lodash__ = __webpack_require__(45);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_lodash__ = __webpack_require__(47);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_lodash___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_lodash__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(2);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return DataFilterPipe; });
@@ -2836,18 +2895,18 @@ DataFilterPipe = __decorate([
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_material__ = __webpack_require__(10);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__dialog_dialog_module__ = __webpack_require__(72);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__employees_component__ = __webpack_require__(126);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__dialog_dialog_module__ = __webpack_require__(74);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__employees_component__ = __webpack_require__(128);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_core__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_common__ = __webpack_require__(9);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__angular_forms__ = __webpack_require__(7);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_angular2_datatable__ = __webpack_require__(79);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_angular2_datatable__ = __webpack_require__(81);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_angular2_datatable___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_angular2_datatable__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__angular_http__ = __webpack_require__(20);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__data_filter_pipe__ = __webpack_require__(347);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__dialoginformation_dialoginformation_module__ = __webpack_require__(118);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__deleteemployee_deleteemployee_module__ = __webpack_require__(113);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__addemployee_addemployee_module__ = __webpack_require__(71);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__dialoginformation_dialoginformation_module__ = __webpack_require__(120);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__deleteemployee_deleteemployee_module__ = __webpack_require__(115);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__addemployee_addemployee_module__ = __webpack_require__(73);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return EmployeesModule; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -2960,7 +3019,7 @@ var _a;
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_lodash__ = __webpack_require__(45);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_lodash__ = __webpack_require__(47);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_lodash___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_lodash__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(2);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return DataFilterPipe; });
@@ -2977,7 +3036,7 @@ var DataFilterPipe = (function () {
     }
     DataFilterPipe.prototype.transform = function (array, query) {
         if (query) {
-            return __WEBPACK_IMPORTED_MODULE_0_lodash__["filter"](array, function (row) { return row.name.indexOf(query) > -1; });
+            return __WEBPACK_IMPORTED_MODULE_0_lodash__["filter"](array, function (row) { return row.name.toLowerCase().indexOf(query.toLowerCase()) > -1; });
         }
         return array;
     };
@@ -2998,19 +3057,19 @@ DataFilterPipe = __decorate([
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_material__ = __webpack_require__(10);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__properties_component__ = __webpack_require__(130);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__properties_component__ = __webpack_require__(132);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_core__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_common__ = __webpack_require__(9);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_forms__ = __webpack_require__(7);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_angular2_datatable__ = __webpack_require__(79);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_angular2_datatable__ = __webpack_require__(81);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_angular2_datatable___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_angular2_datatable__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__angular_http__ = __webpack_require__(20);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__data_filter_pipe__ = __webpack_require__(350);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__deleteemployee_deleteemployee_module__ = __webpack_require__(113);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__dialogproperty_dialogproperty_module__ = __webpack_require__(120);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__addproperty_addproperty_module__ = __webpack_require__(110);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__deleteemployee_deleteemployee_module__ = __webpack_require__(115);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__dialogproperty_dialogproperty_module__ = __webpack_require__(122);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__addproperty_addproperty_module__ = __webpack_require__(112);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__addpropertypage_addpropertypage_module__ = __webpack_require__(334);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__deleteproperty_deleteproperty_module__ = __webpack_require__(114);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__deleteproperty_deleteproperty_module__ = __webpack_require__(116);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return PropertiesModule; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -3103,72 +3162,6 @@ var environment = {
 
 /***/ }),
 
-/***/ 36:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_router__ = __webpack_require__(8);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_Subject__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_Subject___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_Subject__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AlertService; });
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-
-var AlertService = (function () {
-    function AlertService(router) {
-        var _this = this;
-        this.router = router;
-        this.subject = new __WEBPACK_IMPORTED_MODULE_2_rxjs_Subject__["Subject"]();
-        this.keepAfterNavigationChange = false;
-        // clear alert message on route change
-        router.events.subscribe(function (event) {
-            if (event instanceof __WEBPACK_IMPORTED_MODULE_1__angular_router__["c" /* NavigationStart */]) {
-                if (_this.keepAfterNavigationChange) {
-                    // only keep for a single location change
-                    _this.keepAfterNavigationChange = false;
-                }
-                else {
-                    // clear alert
-                    _this.subject.next();
-                }
-            }
-        });
-    }
-    AlertService.prototype.success = function (message, keepAfterNavigationChange) {
-        if (keepAfterNavigationChange === void 0) { keepAfterNavigationChange = false; }
-        this.keepAfterNavigationChange = keepAfterNavigationChange;
-        this.subject.next({ type: 'success', text: message });
-    };
-    AlertService.prototype.error = function (message, keepAfterNavigationChange) {
-        if (keepAfterNavigationChange === void 0) { keepAfterNavigationChange = false; }
-        this.keepAfterNavigationChange = keepAfterNavigationChange;
-        this.subject.next({ type: 'error', text: message });
-    };
-    AlertService.prototype.getMessage = function () {
-        return this.subject.asObservable();
-    };
-    return AlertService;
-}());
-AlertService = __decorate([
-    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"])(),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* Router */]) === "function" && _a || Object])
-], AlertService);
-
-var _a;
-//# sourceMappingURL=alert.service.js.map
-
-/***/ }),
-
 /***/ 38:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -3236,6 +3229,144 @@ AuthenticationService = __decorate([
 
 var _a;
 //# sourceMappingURL=authentication.service.js.map
+
+/***/ }),
+
+/***/ 39:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__(20);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map__ = __webpack_require__(37);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return PropertyService; });
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+var PropertyService = (function () {
+    function PropertyService(http) {
+        this.http = http;
+        this.logged = false;
+    }
+    PropertyService.prototype.fetchAllProperties = function () {
+        var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["c" /* Headers */]({ 'Content-Type': 'application/json' });
+        var options = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["d" /* RequestOptions */]({ headers: headers });
+        return this.http.post('http://localhost:8080/property/fetchAll', options)
+            .map(function (response) {
+            var res = response.json().result;
+            return res;
+        });
+    };
+    PropertyService.prototype.updateProperty = function (property) {
+        console.log("property" + property.id);
+        var params = JSON.stringify(property);
+        var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["c" /* Headers */]({ 'Content-Type': 'application/json' });
+        var options = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["d" /* RequestOptions */]({ headers: headers });
+        return this.http.post('http://localhost:8080/property/updateProperty', params, options)
+            .map(function (response) {
+            var res = response.json().result;
+            return res;
+        });
+    };
+    PropertyService.prototype.saveProperty = function (property) {
+        console.log("property" + property.id);
+        var params = JSON.stringify(property);
+        var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["c" /* Headers */]({ 'Content-Type': 'application/json' });
+        var options = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["d" /* RequestOptions */]({ headers: headers });
+        return this.http.post('http://localhost:8080/property/saveProperty', params, options)
+            .map(function (response) {
+            var res = response.json().result;
+            return res;
+        });
+    };
+    return PropertyService;
+}());
+PropertyService = __decorate([
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"])(),
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */]) === "function" && _a || Object])
+], PropertyService);
+
+var _a;
+//# sourceMappingURL=property.service.js.map
+
+/***/ }),
+
+/***/ 40:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__(20);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map__ = __webpack_require__(37);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return TaskService; });
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+var TaskService = (function () {
+    function TaskService(http) {
+        this.http = http;
+        this.logged = false;
+    }
+    TaskService.prototype.fetchAllTasks = function () {
+        var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["c" /* Headers */]({ 'Content-Type': 'application/json' });
+        var options = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["d" /* RequestOptions */]({ headers: headers });
+        return this.http.post('http://localhost:8080/task/fetchAll', options)
+            .map(function (response) {
+            var res = response.json().result;
+            return res;
+        });
+    };
+    TaskService.prototype.updateTask = function (task) {
+        console.log("property" + task.id);
+        var params = JSON.stringify(task);
+        var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["c" /* Headers */]({ 'Content-Type': 'application/json' });
+        var options = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["d" /* RequestOptions */]({ headers: headers });
+        return this.http.post('http://localhost:8080/task/updateTask', params, options)
+            .map(function (response) {
+            var res = response.json().result;
+            return res;
+        });
+    };
+    TaskService.prototype.saveTask = function (task) {
+        console.log("property" + task.id);
+        var params = JSON.stringify(task);
+        var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["c" /* Headers */]({ 'Content-Type': 'application/json' });
+        var options = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["d" /* RequestOptions */]({ headers: headers });
+        return this.http.post('http://localhost:8080/task/saveTask', params, options)
+            .map(function (response) {
+            var res = response.json().result;
+            return res;
+        });
+    };
+    return TaskService;
+}());
+TaskService = __decorate([
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"])(),
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */]) === "function" && _a || Object])
+], TaskService);
+
+var _a;
+//# sourceMappingURL=task.service.js.map
 
 /***/ }),
 
@@ -3961,7 +4092,7 @@ module.exports = "<div class=\"example-tooltip-host\" mdTooltip=\"Edit property\
 /***/ 452:
 /***/ (function(module, exports) {
 
-module.exports = " <h2 style=\"color:#204d74\">{{item.name}}</h2>\r\n  <br>\r\n\r\n  <md-card-content>\r\n    <form #loginForm=\"ngForm\" >\r\n     \r\n      <table style=\"width: 100%\" cellspacing=\"0\"><tr>\r\n        <td>\r\n          <md-input-container style=\"width: 100%\">\r\n          <input mdInput name=\"Name\" placeholder=\"Name\"\r\n          [(ngModel)]=\"name\" required  (keyup)=\"checkFields()\">\r\n                   <md-error>This field is required</md-error>\r\n          </md-input-container>\r\n        </td>\r\n       <td>\r\n         <md-input-container style=\"width: 100%\">\r\n             <input mdInput name=\"City\" placeholder=\"City\"\r\n                 [(ngModel)]=\"city\" required (keyup)=\"checkFields()\">\r\n                   <md-error>This field is required</md-error>\r\n            </md-input-container>\r\n        </td>\r\n      </tr></table>\r\n    <table style=\"width: 100%\" cellspacing=\"0\"><tr>\r\n        <tr>\r\n            <td>\r\n            <md-input-container style=\"width: 100%\">\r\n             <input mdInput name=\"Adress\" placeholder=\"Adress\"\r\n                 [(ngModel)]=\"address\" required (keyup)=\"checkFields()\">\r\n                   <md-error>This field is required</md-error>\r\n            </md-input-container>\r\n        \r\n            </td>\r\n        </tr>\r\n        </table>\r\n\r\n     \r\n\r\n    </form>\r\n    <br>\r\n    <br>\r\n     <md-dialog-actions align=\"end\" >\r\n           <td><button md-raised-button (click)=\"saveProperty()\"color=\"accent\" [disabled]=\"!enableButton\" >Save</button></td>\r\n           <td><button md-raised-button (click)=\"dialogRef.close()\">Cancel</button></td>\r\n         </md-dialog-actions>\r\n  </md-card-content>\r\n\r\n   "
+module.exports = " <h2 style=\"color:#204d74\">{{item.name}}</h2>\r\n  <br>\r\n\r\n  <md-card-content>\r\n    <form #loginForm=\"ngForm\" >\r\n     \r\n      <table style=\"width: 100%\" cellspacing=\"0\"><tr>\r\n        <td>\r\n          <md-input-container style=\"width: 100%\">\r\n          <input mdInput name=\"Name\" placeholder=\"Name\"\r\n          [(ngModel)]=\"item.name\" required  (keyup)=\"checkFields()\">\r\n                   <md-error>This field is required</md-error>\r\n          </md-input-container>\r\n        </td>\r\n       <td>\r\n         <md-input-container style=\"width: 100%\">\r\n             <input mdInput name=\"City\" placeholder=\"City\"\r\n                 [(ngModel)]=\"item.city\" required (keyup)=\"checkFields()\">\r\n                   <md-error>This field is required</md-error>\r\n            </md-input-container>\r\n        </td>\r\n      </tr></table>\r\n    <table style=\"width: 100%\" cellspacing=\"0\"><tr>\r\n        <tr>\r\n            <td>\r\n            <md-input-container style=\"width: 100%\">\r\n             <input mdInput name=\"Adress\" placeholder=\"Adress\"\r\n                 [(ngModel)]=\"item.address\" required (keyup)=\"checkFields()\">\r\n                   <md-error>This field is required</md-error>\r\n            </md-input-container>\r\n        \r\n            </td>\r\n        </tr>\r\n        </table>\r\n\r\n     \r\n\r\n    </form>\r\n    <br>\r\n    <br>\r\n     <md-dialog-actions align=\"end\" >\r\n           <td><button md-raised-button (click)=\"saveProperty()\"color=\"accent\" [disabled]=\"!enableButton\" >Save</button></td>\r\n           <td><button md-raised-button (click)=\"dialogRef.close()\">Cancel</button></td>\r\n         </md-dialog-actions>\r\n  </md-card-content>\r\n\r\n   "
 
 /***/ }),
 
@@ -3975,7 +4106,7 @@ module.exports = "<div class=\"example-tooltip-host\" mdTooltip=\"Edit task\" >\
 /***/ 454:
 /***/ (function(module, exports) {
 
-module.exports = " <h2 style=\"color:#204d74\">{{item.name}}</h2>\r\n  <br>\r\n\r\n  <md-card-content>\r\n    <form #loginForm=\"ngForm\" >\r\n     \r\n      <table style=\"width: 100%\" cellspacing=\"0\"><tr>\r\n        <td>\r\n          <md-input-container style=\"width: 100%\">\r\n          <input mdInput name=\"Name\" placeholder=\"Name\"\r\n          [(ngModel)]=\"name\" required  (keyup)=\"checkFields()\">\r\n                   <md-error>This field is required</md-error>\r\n          </md-input-container>\r\n        </td>\r\n       <td>\r\n         <md-input-container style=\"width: 100%\">\r\n             <input mdInput name=\"Remarks\" placeholder=\"Remarks\"\r\n                 [(ngModel)]=\"remarks\" required (keyup)=\"checkFields()\">\r\n                   <md-error>This field is required</md-error>\r\n            </md-input-container>\r\n        </td>\r\n      </tr></table>\r\n   \r\n    </form>\r\n    <br>\r\n    <br>\r\n     <md-dialog-actions align=\"end\" >\r\n           <td><button md-raised-button (click)=\"saveTask()\"color=\"accent\" [disabled]=\"!enableButton\" >Save</button></td>\r\n           <td><button md-raised-button (click)=\"dialogRef.close()\">Cancel</button></td>\r\n         </md-dialog-actions>\r\n  </md-card-content>\r\n\r\n   "
+module.exports = " <h2 style=\"color:#204d74\">{{item.name}}</h2>\r\n  <br>\r\n\r\n  <md-card-content>\r\n    <form #loginForm=\"ngForm\" >\r\n     \r\n      <table style=\"width: 100%\" cellspacing=\"0\"><tr>\r\n        <td>\r\n          <md-input-container style=\"width: 100%\">\r\n          <input mdInput name=\"Name\" placeholder=\"Name\"\r\n          [(ngModel)]=\"item.name\" required  (keyup)=\"checkFields()\">\r\n                   <md-error>This field is required</md-error>\r\n          </md-input-container>\r\n        </td>\r\n       <td>\r\n         <md-input-container style=\"width: 100%\">\r\n             <input mdInput name=\"Remarks\" placeholder=\"Remarks\"\r\n                 [(ngModel)]=\"item.remarks\" required (keyup)=\"checkFields()\">\r\n                   <md-error>This field is required</md-error>\r\n            </md-input-container>\r\n        </td>\r\n      </tr></table>\r\n   \r\n    </form>\r\n    <br>\r\n    <br>\r\n     <md-dialog-actions align=\"end\" >\r\n           <td><button md-raised-button (click)=\"saveTask()\"color=\"accent\" [disabled]=\"!enableButton\" >Save</button></td>\r\n           <td><button md-raised-button (click)=\"dialogRef.close()\">Cancel</button></td>\r\n         </md-dialog-actions>\r\n  </md-card-content>\r\n\r\n   "
 
 /***/ }),
 
@@ -3996,7 +4127,7 @@ module.exports = "\r\n<div class=\"select\">\r\n    <md-select class=\"dropdown\
 /***/ 457:
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container-fluid\">\n    <div class=\"col-xs-12 col-md-10 col-md-offset-1 col-lg-8 col-lg-offset-2\">\n\n       <app-addtask></app-addtask>\n\n     \n     \n         <div  *ngIf=\"showRemovedTask\" class=\"alert alert-success\">\n    \t\t\t\t\tA task has been removed\n    \t</div>\n\n          <div  *ngIf=\"showNewTask\" class=\"alert alert-success\">\n    \t\t\t\t\tA new task has been created\n    \t</div>\n\n        <div  *ngIf=\"showEditTask\" class=\"alert alert-success\">\n    \t\t\t\t\tA task has been modified\n    \t</div>\n\n\n        \n\n\n        \n\n\n        <div class=\"row\">\n            <h2 class=\"col-xs-6\"></h2>\n            \n            <div class=\"col-xs-2\">\n                \n                <label class=\"label-control\" style=\"color:#204d74\" >Rows on page</label>\n                <select class=\"form-control input-sm\" [(ngModel)]=\"rowsOnPage\">\n                    <option [ngValue]=\"5\">5</option>\n                    <option [ngValue]=\"10\">10</option>\n                    <option [ngValue]=\"15\">15</option>\n                </select>\n            </div>\n            <div class=\"col-xs-4\">\n                <div class=\"row\">\n                    <label class=\"col-xs-12 label-control\" style=\"color:#204d74\">Sort by</label>\n                </div>\n                <div class=\"col-xs-6\">\n                    <div class=\"row\">\n                        <select class=\"form-control input-sm\" [(ngModel)]=\"sortBy\">\n                            <option ngValue=\"name\">Name</option>\n                            <option ngValue=\"remarks\">remarks</option>\n                        </select>\n                    </div>\n                </div>\n                <div class=\"col-xs-6\">\n                    <div class=\"row\">\n                        <select class=\"form-control input-sm\" [(ngModel)]=\"sortOrder\">\n                            <option ngValue=\"asc\">Ascending</option>\n                            <option ngValue=\"desc\">Descending</option>\n                        </select>\n                    </div>\n                </div>\n            </div>\n        </div>\n        <div class=\"panel panel-default\">\n            <div class=\"panel-heading\">Task information</div>\n\n            <table class=\"table table-striped\" [mfData]=\"data | dataFilter : filterQuery\" #mf=\"mfDataTable\"\n                   [mfRowsOnPage]=\"rowsOnPage\" [(mfSortBy)]=\"sortBy\" [(mfSortOrder)]=\"sortOrder\">\n                <thead>\n                <tr>\n                    <th style=\"width: 10%\"></th>\n                    <th style=\"width: 30%\">\n                        <mfDefaultSorter by=\"name\">Name</mfDefaultSorter>\n                    </th>\n                    <th style=\"width: 50%\">\n                        <mfDefaultSorter by=\"remarks\">remarks</mfDefaultSorter>\n                    </th>\n                  \n                    <th style=\"width: 20%\">\n                      \n                    </th>\n                  \n                </tr>\n                <tr>\n                    <th colspan=\"5\">\n                        Filter by name:\n                        <input class=\"form-control\" [(ngModel)]=\"filterQuery\"/>\n                    </th>\n                </tr>\n                </thead>\n                <tbody>\n                <tr *ngFor=\"let item of mf.data\">\n                    <td>\n                     <app-deletetask></app-deletetask> \n                    </td>\n                    <td>{{item.name}}</td>\n                    <td>{{item.remarks}}</td>\n                    <td><dialog-task [item]=\"item\"></dialog-task></td>\n\n\n                </tr>\n                </tbody>\n                <tfoot>\n                <tr>\n                    <td colspan=\"5\">\n                        <mfBootstrapPaginator [rowsOnPageSet]=\"[5,10,15]\"></mfBootstrapPaginator>\n                    </td>\n                </tr>\n                </tfoot>\n            </table>\n        </div>\n    </div>\n</div>"
+module.exports = "<div class=\"container-fluid\">\n    <div class=\"col-xs-12 col-md-10 col-md-offset-1 col-lg-8 col-lg-offset-2\">\n\n       <app-addtask></app-addtask>\n\n     \n     \n         <div  *ngIf=\"showRemovedTask\" class=\"alert alert-success\">\n    \t\t\t\t\tA task has been removed\n    \t</div>\n\n          <div  *ngIf=\"showNewTask\" class=\"alert alert-success\">\n    \t\t\t\t\tA new task has been created\n    \t</div>\n\n        <div  *ngIf=\"showEditTask\" class=\"alert alert-success\">\n    \t\t\t\t\tA task has been modified\n    \t</div>\n\n\n        \n\n\n        \n\n\n        <div class=\"row\">\n            <h2 class=\"col-xs-6\"></h2>\n            \n            <div class=\"col-xs-2\">\n                \n                <label class=\"label-control\" style=\"color:#204d74\" >Rows on page</label>\n                <select class=\"form-control input-sm\" [(ngModel)]=\"rowsOnPage\">\n                    <option [ngValue]=\"5\">5</option>\n                    <option [ngValue]=\"10\">10</option>\n                    <option [ngValue]=\"15\">15</option>\n                </select>\n            </div>\n            <div class=\"col-xs-4\">\n                <div class=\"row\">\n                    <label class=\"col-xs-12 label-control\" style=\"color:#204d74\">Sort by</label>\n                </div>\n                <div class=\"col-xs-6\">\n                    <div class=\"row\">\n                        <select class=\"form-control input-sm\" [(ngModel)]=\"sortBy\">\n                            <option ngValue=\"name\">Name</option>\n                            <option ngValue=\"remarks\">Remarks</option>\n                             <option ngValue=\"createdAt\">Creation Date</option>\n                        </select>\n                    </div>\n                </div>\n                <div class=\"col-xs-6\">\n                    <div class=\"row\">\n                        <select class=\"form-control input-sm\" [(ngModel)]=\"sortOrder\">\n                            <option ngValue=\"asc\">Ascending</option>\n                            <option ngValue=\"desc\">Descending</option>\n                        </select>\n                    </div>\n                </div>\n            </div>\n        </div>\n        <div class=\"panel panel-default\">\n            <div class=\"panel-heading\">Task information</div>\n\n            <table class=\"table table-striped\" [mfData]=\"data | dataFilter : filterQuery\" #mf=\"mfDataTable\"\n                   [mfRowsOnPage]=\"rowsOnPage\" [(mfSortBy)]=\"sortBy\" [(mfSortOrder)]=\"sortOrder\">\n                <thead>\n                <tr>\n                    <th style=\"width: 10%\"></th>\n                    <th style=\"width: 30%\">\n                        <mfDefaultSorter by=\"name\">Name</mfDefaultSorter>\n                    </th>\n                    <th style=\"width: 50%\">\n                        <mfDefaultSorter by=\"remarks\">remarks</mfDefaultSorter>\n                    </th>\n                  \n                    <th style=\"width: 20%\">\n                      \n                    </th>\n                  \n                </tr>\n                <tr>\n                    <th colspan=\"5\">\n                        Filter by name:\n                        <input class=\"form-control\" [(ngModel)]=\"filterQuery\"/>\n                    </th>\n                </tr>\n                </thead>\n                <tbody>\n                <tr *ngFor=\"let item of mf.data\">\n                    <td>\n                     <app-deletetask></app-deletetask> \n                    </td>\n                    <td>{{item.name}}</td>\n                    <td>{{item.remarks}}</td>\n                    <td><dialog-task [item]=\"item\"></dialog-task></td>\n\n\n                </tr>\n                </tbody>\n                <tfoot>\n                <tr>\n                    <td colspan=\"5\">\n                        <mfBootstrapPaginator [rowsOnPageSet]=\"[5,10,15]\"></mfBootstrapPaginator>\n                    </td>\n                </tr>\n                </tfoot>\n            </table>\n        </div>\n    </div>\n</div>"
 
 /***/ }),
 
@@ -4038,7 +4169,7 @@ module.exports = "<div class=\"ui secondary pointing menu active\">\r\n  <a clas
 /***/ 463:
 /***/ (function(module, exports) {
 
-module.exports = "\r\n<div class=\"container-fluid\">\r\n    <div class=\"col-xs-12 col-md-10 col-md-offset-1 col-lg-8 col-lg-offset-2\">\r\n\r\n\r\n      <app-addproperty></app-addproperty>\r\n        \r\n        <div  *ngIf=\"show\" class=\"alert alert-success\">\r\n    \t\t\t\t\tA property has been modified\r\n    \t</div>\r\n\r\n        <div  *ngIf=\"showproperty\" class=\"alert alert-success\">\r\n    \t\t\t\t\tA new property has been created\r\n    \t</div>\r\n\r\n          <div  *ngIf=\"showdeletedmessage\" class=\"alert alert-success\">\r\n    \t\t\t\t\tA property has been removed\r\n    \t</div>\r\n        \r\n\r\n\r\n        <div class=\"row\">\r\n            <h2 class=\"col-xs-6\"></h2>\r\n            \r\n            <div class=\"col-xs-2\">\r\n                \r\n                <label class=\"label-control\" style=\"color:#204d74\" >Rows on page</label>\r\n                <select class=\"form-control input-sm\" [(ngModel)]=\"rowsOnPage\">\r\n                    <option [ngValue]=\"5\">5</option>\r\n                    <option [ngValue]=\"10\">10</option>\r\n                    <option [ngValue]=\"15\">15</option>\r\n                </select>\r\n            </div>\r\n            <div class=\"col-xs-4\">\r\n                <div class=\"row\">\r\n                    <label class=\"col-xs-12 label-control\" style=\"color:#204d74\">Sort by</label>\r\n                </div>\r\n                <div class=\"col-xs-6\">\r\n                    <div class=\"row\">\r\n                        <select class=\"form-control input-sm\" [(ngModel)]=\"sortBy\">\r\n                            <option ngValue=\"name\">Name</option>\r\n                            <option ngValue=\"address\">Address</option>\r\n                            <option ngValue=\"city\">City</option>\r\n                        </select>\r\n                    </div>\r\n                </div>\r\n                <div class=\"col-xs-6\">\r\n                    <div class=\"row\">\r\n                        <select class=\"form-control input-sm\" [(ngModel)]=\"sortOrder\">\r\n                            <option ngValue=\"asc\">Ascending</option>\r\n                            <option ngValue=\"desc\">Descending</option>\r\n                        </select>\r\n                    </div>\r\n                </div>\r\n            </div>\r\n        </div>\r\n        <div class=\"panel panel-default\">\r\n            <div class=\"panel-heading\">Property information</div>\r\n\r\n            <table class=\"table table-striped\" [mfData]=\"data | dataFilter : filterQuery\" #mf=\"mfDataTable\"\r\n                   [mfRowsOnPage]=\"rowsOnPage\" [(mfSortBy)]=\"sortBy\" [(mfSortOrder)]=\"sortOrder\">\r\n                <thead>\r\n                <tr>\r\n                    <th style=\"width: 10%\"></th>\r\n                    <th style=\"width: 20%\">\r\n                        <mfDefaultSorter by=\"name\">Name</mfDefaultSorter>\r\n                    </th>\r\n                    <th style=\"width: 40%\">\r\n                        <mfDefaultSorter by=\"address\">Address</mfDefaultSorter>\r\n                    </th>\r\n                    <th style=\"width: 10%\">\r\n                        <mfDefaultSorter by=\"city\">City</mfDefaultSorter>\r\n                    </th>\r\n                    <th style=\"width: 20%\">\r\n                      \r\n                    </th>\r\n                     <th style=\"width: 10%\">\r\n                      \r\n                    </th>\r\n                </tr>\r\n                <tr>\r\n                    <th colspan=\"5\">\r\n                        Filter by name:\r\n                        <input class=\"form-control\" [(ngModel)]=\"filterQuery\"/>\r\n                    </th>\r\n                </tr>\r\n                </thead>\r\n                <tbody>\r\n                <tr *ngFor=\"let item of mf.data\">\r\n                    <td>\r\n                       <app-deleteproperty></app-deleteproperty> \r\n                    </td>\r\n                    <td>{{item.name}}</td>\r\n                    <td>{{item.address}}</td>\r\n                    <td >{{item.city}}</td>\r\n                    <td><dialog-property [item]=\"item\"></dialog-property></td>\r\n                </tr>\r\n                </tbody>\r\n                <tfoot>\r\n                <tr>\r\n                    <td colspan=\"5\">\r\n                        <mfBootstrapPaginator [rowsOnPageSet]=\"[5,10,15]\"></mfBootstrapPaginator>\r\n                    </td>\r\n                </tr>\r\n                </tfoot>\r\n            </table>\r\n        </div>\r\n    </div>\r\n</div>"
+module.exports = "\r\n<div class=\"container-fluid\">\r\n    <div class=\"col-xs-12 col-md-10 col-md-offset-1 col-lg-8 col-lg-offset-2\">\r\n\r\n\r\n      <app-addproperty></app-addproperty>\r\n        \r\n        <div  *ngIf=\"show\" class=\"alert alert-success\">\r\n    \t\t\t\t\tA property has been modified\r\n    \t</div>\r\n\r\n        <div  *ngIf=\"showproperty\" class=\"alert alert-success\">\r\n    \t\t\t\t\tA new property has been created\r\n    \t</div>\r\n\r\n          <div  *ngIf=\"showdeletedmessage\" class=\"alert alert-success\">\r\n    \t\t\t\t\tA property has been removed\r\n    \t</div>\r\n        \r\n\r\n\r\n        <div class=\"row\">\r\n            <h2 class=\"col-xs-6\"></h2>\r\n            \r\n            <div class=\"col-xs-2\">\r\n                \r\n                <label class=\"label-control\" style=\"color:#204d74\" >Rows on page</label>\r\n                <select class=\"form-control input-sm\" [(ngModel)]=\"rowsOnPage\">\r\n                    <option [ngValue]=\"5\">5</option>\r\n                    <option [ngValue]=\"10\">10</option>\r\n                    <option [ngValue]=\"15\">15</option>\r\n                </select>\r\n            </div>\r\n            <div class=\"col-xs-4\">\r\n                <div class=\"row\">\r\n                    <label class=\"col-xs-12 label-control\" style=\"color:#204d74\">Sort by</label>\r\n                </div>\r\n                <div class=\"col-xs-6\">\r\n                    <div class=\"row\">\r\n                        <select class=\"form-control input-sm\" [(ngModel)]=\"sortBy\">\r\n                            <option ngValue=\"name\">Name</option>\r\n                            <option ngValue=\"address\">Address</option>\r\n                            <option ngValue=\"city\">City</option>\r\n                            <option ngValue=\"createdAt\">Creation Date</option>\r\n                        </select>\r\n                    </div>\r\n                </div>\r\n                <div class=\"col-xs-6\">\r\n                    <div class=\"row\">\r\n                        <select class=\"form-control input-sm\" [(ngModel)]=\"sortOrder\">\r\n                            <option ngValue=\"asc\">Ascending</option>\r\n                            <option ngValue=\"desc\">Descending</option>\r\n                        </select>\r\n                    </div>\r\n                </div>\r\n            </div>\r\n        </div>\r\n        <div class=\"panel panel-default\">\r\n            <div class=\"panel-heading\">Property information</div>\r\n\r\n            <table class=\"table table-striped\" [mfData]=\"data | dataFilter : filterQuery\" #mf=\"mfDataTable\"\r\n                   [mfRowsOnPage]=\"rowsOnPage\" [(mfSortBy)]=\"sortBy\" [(mfSortOrder)]=\"sortOrder\">\r\n                <thead>\r\n                <tr>\r\n                    <th style=\"width: 10%\"></th>\r\n                    <th style=\"width: 20%\">\r\n                        <mfDefaultSorter by=\"name\">Name</mfDefaultSorter>\r\n                    </th>\r\n                    <th style=\"width: 40%\">\r\n                        <mfDefaultSorter by=\"address\">Address</mfDefaultSorter>\r\n                    </th>\r\n                    <th style=\"width: 10%\">\r\n                        <mfDefaultSorter by=\"city\">City</mfDefaultSorter>\r\n                    </th>\r\n                    <th style=\"width: 20%\">\r\n                      \r\n                    </th>\r\n                     <th style=\"width: 10%\">\r\n                      \r\n                    </th>\r\n                </tr>\r\n                <tr>\r\n                    <th colspan=\"5\">\r\n                        Filter by name:\r\n                        <input class=\"form-control\" [(ngModel)]=\"filterQuery\"/>\r\n                    </th>\r\n                </tr>\r\n                </thead>\r\n                <tbody>\r\n                <tr *ngFor=\"let item of mf.data\">\r\n                    <td>\r\n                       <app-deleteproperty></app-deleteproperty> \r\n                    </td>\r\n                    <td>{{item.name}}</td>\r\n                    <td>{{item.address}}</td>\r\n                    <td >{{item.city}}</td>\r\n                    <td><dialog-property [item]=\"item\"></dialog-property></td>\r\n                </tr>\r\n                </tbody>\r\n                <tfoot>\r\n                <tr>\r\n                    <td colspan=\"5\">\r\n                        <mfBootstrapPaginator [rowsOnPageSet]=\"[5,10,15]\"></mfBootstrapPaginator>\r\n                    </td>\r\n                </tr>\r\n                </tfoot>\r\n            </table>\r\n        </div>\r\n    </div>\r\n</div>"
 
 /***/ }),
 
@@ -4052,11 +4183,11 @@ module.exports = "<app-menu [firstname]=\"firstname\" [lastname]=\"lastname\" ><
 /***/ 465:
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"jumbotron height\">\r\n    <div class=\"container\">\r\n        <div class=\"col-sm-8 col-sm-offset-2\">\r\n<div class=\"main-login col-md-6 col-md-offset-3\">\r\n    <h2>Register</h2>\r\n    <form #registerForm=\"ngForm\" (ngSubmit)=\"register()\" >\r\n        <div class=\"form-group\">\r\n\t\t\t\t <label for=\"firstName\">First Name</label>\r\n\t\t\t\t\t<div class=\"cols-sm-10\">\r\n\t\t\t\t\t\t<div class=\"input-group\">\r\n\t\t\t\t\t\t\t<span class=\"input-group-addon\"><i class=\"fa fa-user fa\" aria-hidden=\"true\"></i></span>\r\n\t\t\t\t\t\t   <input type=\"text\" class=\"form-control\" name=\"firstname\"  [(ngModel)]=\"model.firstname\" #firstname=\"ngModel\" required minlength=\"4\" />\r\n\t\t\t\t\t\t</div>\r\n\t\t\t\t</div>\r\n\t\t</div>\r\n\r\n\t\t<div *ngIf=\"firstname.errors && (firstname.dirty || firstname.touched)\"\r\n     \t\t\t\t\tclass=\"alert alert-danger\">\r\n    \t\t\t\t<div [hidden]=\"!firstname.errors.required\">\r\n      \t\t\t\t\tFirst Name is required\r\n    \t\t\t\t</div>\r\n   \t\t\t\t\t <div [hidden]=\"!firstname.errors.minlength\">\r\n    \t\t\t\t  First Name must be at least 4 characters long.\r\n   \t\t\t\t\t </div>\r\n\t\t</div>\r\n\r\n         <div class=\"form-group\">\r\n\t\t\t\t  <label for=\"lastName\">Last Name</label>\r\n\t\t\t\t\t<div class=\"cols-sm-10\">\r\n\t\t\t\t\t\t<div class=\"input-group\">\r\n\t\t\t\t\t\t\t<span class=\"input-group-addon\"><i class=\"fa fa-user fa\" aria-hidden=\"true\"></i></span>\r\n\t\t\t\t\t\t      <input type=\"text\" class=\"form-control\" name=\"lastname\"   [(ngModel)]=\"model.lastname\" #lastname=\"ngModel\" required minlength=\"4\"  />\r\n\t\t\t\t\t\t</div>\r\n\t\t\t\t</div>\r\n\t\t</div>\r\n\r\n\r\n\t\t<div *ngIf=\"lastname.errors && (lastname.dirty || lastname.touched)\"\r\n     \t\t\t\t\tclass=\"alert alert-danger\">\r\n    \t\t\t\t<div [hidden]=\"!lastname.errors.required\">\r\n      \t\t\t\t\tLast Name is required\r\n    \t\t\t\t</div>\r\n   \t\t\t\t\t <div [hidden]=\"!lastname.errors.minlength\">\r\n    \t\t\t\t  Last Name must be at least 4 characters long.\r\n   \t\t\t\t\t </div>\r\n   \t\t\t\t\r\n\t\t</div>\r\n\r\n\r\n         <div class=\"form-group\">\r\n\t\t\t     <label for=\"username\">Username</label>\r\n\t\t\t\t\t<div class=\"cols-sm-10\">\r\n\t\t\t\t\t\t<div class=\"input-group\">\r\n\t\t\t\t\t\t\t<span class=\"input-group-addon\"><i class=\"fa fa-user fa\" aria-hidden=\"true\"></i></span>\r\n\t\t\t\t\t\t       <input type=\"text\" class=\"form-control\" name=\"username\"   [(ngModel)]=\"model.username\" #username=\"ngModel\" required minlength=\"4\"   />\r\n\t\t\t\t\t\t</div>\r\n\t\t\t\t</div>\r\n\t\t</div>\r\n\r\n\t\t<div *ngIf=\"username.errors && (username.dirty || username.touched)\"\r\n     \t\t\t\t\tclass=\"alert alert-danger\">\r\n    \t\t\t\t<div [hidden]=\"!username.errors.required\">\r\n      \t\t\t\t\tUsername is required\r\n    \t\t\t\t</div>\r\n   \t\t\t\t\t <div [hidden]=\"!username.errors.minlength\">\r\n    \t\t\t\t  Username must be at least 4 characters long.\r\n   \t\t\t\t\t </div>\r\n   \t\t\t\t\t\r\n\t\t</div>\r\n\r\n        <div class=\"form-group\">\r\n\t\t\t\t\t\t  <label for=\"password\">Password</label>\r\n\t\t\t\t\t\t\t<div class=\"cols-sm-10\">\r\n\t\t\t\t\t\t\t\t<div class=\"input-group\">\r\n\t\t\t\t\t\t\t\t\t<span class=\"input-group-addon\"><i class=\"fa fa-lock fa-lg\" aria-hidden=\"true\"></i></span>\r\n\t\t\t\t\t\t\t\t\t  <input type=\"password\" class=\"form-control\" name=\"password\"  [(ngModel)]=\"model.password\"  #password=\"ngModel\" required minlength=\"4\" />\r\n\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t</div>\r\n\t\t</div>\r\n\r\n\t\t<div *ngIf=\"password.errors && (password.dirty || password.touched)\"\r\n     \t\t\t\t\tclass=\"alert alert-danger\">\r\n    \t\t\t\t<div [hidden]=\"!password.errors.required\">\r\n      \t\t\t\t\tPassword is required\r\n    \t\t\t\t</div>\r\n   \t\t\t\t\t <div [hidden]=\"!password.errors.minlength\">\r\n    \t\t\t\t  Password must be at least 4 characters long.\r\n   \t\t\t\t\t </div>\r\n   \t\t\t\t\t\r\n\t\t</div>\r\n\r\n       \r\n        <div class=\"form-group\">\r\n            <!--<button [disabled]=\"loading\" class=\"btn btn-primary\">Register</button>-->\r\n\t\t\t <button [disabled]=\"!registerForm.form.valid\" md-raised-button color=\"accent\" >Register</button>\r\n        \t <button  md-raised-button [routerLink]=\"['/login']\" >Cancel</button>\r\n        </div>\r\n    </form>\r\n</div>\r\n</div>\r\n</div>\r\n</div>\r\n"
+module.exports = "<div class=\"jumbotron height\">\r\n    <div class=\"container\">\r\n        <div class=\"col-sm-8 col-sm-offset-2\">\r\n<div class=\"main-login col-md-6 col-md-offset-3\">\r\n    <h2>Register</h2>\r\n\r\n\r\n <div  *ngIf=\"showUserIstaken\" class=\"alert alert-danger\">\r\n    \t\t\t\t\tUsername and password are already taken\r\n    \t</div>\r\n\r\n    <form #registerForm=\"ngForm\" (ngSubmit)=\"register()\" >\r\n        <div class=\"form-group\">\r\n\t\t\t\t <label for=\"firstName\">First Name</label>\r\n\t\t\t\t\t<div class=\"cols-sm-10\">\r\n\t\t\t\t\t\t<div class=\"input-group\">\r\n\t\t\t\t\t\t\t<span class=\"input-group-addon\"><i class=\"fa fa-user fa\" aria-hidden=\"true\"></i></span>\r\n\t\t\t\t\t\t   <input type=\"text\" class=\"form-control\" name=\"firstname\"  [(ngModel)]=\"model.firstname\" #firstname=\"ngModel\" required minlength=\"4\" />\r\n\t\t\t\t\t\t</div>\r\n\t\t\t\t</div>\r\n\t\t</div>\r\n\r\n\t\t<div *ngIf=\"firstname.errors && (firstname.dirty || firstname.touched)\"\r\n     \t\t\t\t\tclass=\"alert alert-danger\">\r\n    \t\t\t\t<div [hidden]=\"!firstname.errors.required\">\r\n      \t\t\t\t\tFirst Name is required\r\n    \t\t\t\t</div>\r\n   \t\t\t\t\t <div [hidden]=\"!firstname.errors.minlength\">\r\n    \t\t\t\t  First Name must be at least 4 characters long.\r\n   \t\t\t\t\t </div>\r\n\t\t</div>\r\n\r\n         <div class=\"form-group\">\r\n\t\t\t\t  <label for=\"lastName\">Last Name</label>\r\n\t\t\t\t\t<div class=\"cols-sm-10\">\r\n\t\t\t\t\t\t<div class=\"input-group\">\r\n\t\t\t\t\t\t\t<span class=\"input-group-addon\"><i class=\"fa fa-user fa\" aria-hidden=\"true\"></i></span>\r\n\t\t\t\t\t\t      <input type=\"text\" class=\"form-control\" name=\"lastname\"   [(ngModel)]=\"model.lastname\" #lastname=\"ngModel\" required minlength=\"4\"  />\r\n\t\t\t\t\t\t</div>\r\n\t\t\t\t</div>\r\n\t\t</div>\r\n\r\n\r\n\t\t<div *ngIf=\"lastname.errors && (lastname.dirty || lastname.touched)\"\r\n     \t\t\t\t\tclass=\"alert alert-danger\">\r\n    \t\t\t\t<div [hidden]=\"!lastname.errors.required\">\r\n      \t\t\t\t\tLast Name is required\r\n    \t\t\t\t</div>\r\n   \t\t\t\t\t <div [hidden]=\"!lastname.errors.minlength\">\r\n    \t\t\t\t  Last Name must be at least 4 characters long.\r\n   \t\t\t\t\t </div>\r\n   \t\t\t\t\r\n\t\t</div>\r\n\r\n\r\n         <div class=\"form-group\">\r\n\t\t\t     <label for=\"username\">Username</label>\r\n\t\t\t\t\t<div class=\"cols-sm-10\">\r\n\t\t\t\t\t\t<div class=\"input-group\">\r\n\t\t\t\t\t\t\t<span class=\"input-group-addon\"><i class=\"fa fa-user fa\" aria-hidden=\"true\"></i></span>\r\n\t\t\t\t\t\t       <input type=\"text\" class=\"form-control\" name=\"username\"   [(ngModel)]=\"model.username\" #username=\"ngModel\" required minlength=\"4\"   />\r\n\t\t\t\t\t\t</div>\r\n\t\t\t\t</div>\r\n\t\t</div>\r\n\r\n\t\t<div *ngIf=\"username.errors && (username.dirty || username.touched)\"\r\n     \t\t\t\t\tclass=\"alert alert-danger\">\r\n    \t\t\t\t<div [hidden]=\"!username.errors.required\">\r\n      \t\t\t\t\tUsername is required\r\n    \t\t\t\t</div>\r\n   \t\t\t\t\t <div [hidden]=\"!username.errors.minlength\">\r\n    \t\t\t\t  Username must be at least 4 characters long.\r\n   \t\t\t\t\t </div>\r\n   \t\t\t\t\t\r\n\t\t</div>\r\n\r\n        <div class=\"form-group\">\r\n\t\t\t\t\t\t  <label for=\"password\">Password</label>\r\n\t\t\t\t\t\t\t<div class=\"cols-sm-10\">\r\n\t\t\t\t\t\t\t\t<div class=\"input-group\">\r\n\t\t\t\t\t\t\t\t\t<span class=\"input-group-addon\"><i class=\"fa fa-lock fa-lg\" aria-hidden=\"true\"></i></span>\r\n\t\t\t\t\t\t\t\t\t  <input type=\"password\" class=\"form-control\" name=\"password\"  [(ngModel)]=\"model.password\"  #password=\"ngModel\" required minlength=\"4\" />\r\n\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t</div>\r\n\t\t</div>\r\n\r\n\t\t<div *ngIf=\"password.errors && (password.dirty || password.touched)\"\r\n     \t\t\t\t\tclass=\"alert alert-danger\">\r\n    \t\t\t\t<div [hidden]=\"!password.errors.required\">\r\n      \t\t\t\t\tPassword is required\r\n    \t\t\t\t</div>\r\n   \t\t\t\t\t <div [hidden]=\"!password.errors.minlength\">\r\n    \t\t\t\t  Password must be at least 4 characters long.\r\n   \t\t\t\t\t </div>\r\n   \t\t\t\t\t\r\n\t\t</div>\r\n\r\n       \r\n        <div class=\"form-group\"  align=\"end\">\r\n            <!--<button [disabled]=\"loading\" class=\"btn btn-primary\">Register</button>-->\r\n\t\t\t <button [disabled]=\"!registerForm.form.valid\" md-raised-button color=\"accent\" >Register</button>\r\n        \t <button  md-raised-button [routerLink]=\"['/login']\" >Cancel</button>\r\n        </div>\r\n    </form>\r\n</div>\r\n</div>\r\n</div>\r\n</div>\r\n"
 
 /***/ }),
 
-/***/ 55:
+/***/ 57:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -4099,7 +4230,7 @@ CommonService = __decorate([
 
 /***/ }),
 
-/***/ 56:
+/***/ 58:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -4168,7 +4299,15 @@ var _a;
 
 /***/ }),
 
-/***/ 71:
+/***/ 718:
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__(325);
+
+
+/***/ }),
+
+/***/ 73:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -4213,25 +4352,17 @@ AddemployeeModule = __decorate([
 
 /***/ }),
 
-/***/ 718:
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__(325);
-
-
-/***/ }),
-
-/***/ 72:
+/***/ 74:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_material__ = __webpack_require__(10);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_forms__ = __webpack_require__(7);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__dialog_component__ = __webpack_require__(116);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__dialog_component__ = __webpack_require__(118);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_core__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_common__ = __webpack_require__(9);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__dropdownproperties_dropdownproperties_module__ = __webpack_require__(73);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__dropdowntask_dropdowntask_module__ = __webpack_require__(74);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__dropdownproperties_dropdownproperties_module__ = __webpack_require__(75);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__dropdowntask_dropdowntask_module__ = __webpack_require__(76);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_ng2_date_picker__ = __webpack_require__(270);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_ng2_date_picker___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_7_ng2_date_picker__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return DialogModule; });
@@ -4273,7 +4404,7 @@ DialogModule = __decorate([
 
 /***/ }),
 
-/***/ 73:
+/***/ 75:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -4315,7 +4446,7 @@ DropdownpropertiesModule = __decorate([
 
 /***/ }),
 
-/***/ 74:
+/***/ 76:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -4357,7 +4488,7 @@ DropdowntaskModule = __decorate([
 
 /***/ }),
 
-/***/ 75:
+/***/ 77:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -4372,7 +4503,7 @@ var Employee = (function () {
 
 /***/ }),
 
-/***/ 76:
+/***/ 78:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -4387,7 +4518,7 @@ var Property = (function () {
 
 /***/ }),
 
-/***/ 77:
+/***/ 79:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -4402,16 +4533,16 @@ var Task = (function () {
 
 /***/ }),
 
-/***/ 78:
+/***/ 80:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__services_alert_service__ = __webpack_require__(36);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__services_alert_service__ = __webpack_require__(22);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_authentication_service__ = __webpack_require__(38);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_core__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_router__ = __webpack_require__(8);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__entities_user__ = __webpack_require__(127);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_add_operator_catch__ = __webpack_require__(98);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__entities_user__ = __webpack_require__(129);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_add_operator_catch__ = __webpack_require__(100);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_add_operator_catch___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_rxjs_add_operator_catch__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return LoginComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {

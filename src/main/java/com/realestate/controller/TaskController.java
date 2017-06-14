@@ -23,6 +23,8 @@ public class TaskController {
 
     private static Logger LOG = LoggerFactory.getLogger(TaskController.class);
     protected static final String JSON_API_CONTENT_HEADER = "Content-type=application/json";
+    public static final String SUCCESS = "SUCCESS";
+
 
     @Autowired
     private TaskService taskService;
@@ -32,5 +34,18 @@ public class TaskController {
     APIResponse fetchAll(@RequestBody TaskDTO taskDTO) throws Exception {
         List<TaskDTO> listTaskDTO = taskService.findAllTasks();
         return APIResponse.toOkResponse(listTaskDTO);
+    }
+
+
+    @RequestMapping(value = "/updateTask", method = RequestMethod.POST, headers = {JSON_API_CONTENT_HEADER})
+    public @ResponseBody APIResponse updateTask(@RequestBody TaskDTO taskDTO) throws Exception {
+        taskService.findTaskById(taskDTO);
+        return APIResponse.toOkResponse(SUCCESS);
+    }
+
+    @RequestMapping(value = "/saveTask", method = RequestMethod.POST, headers = {JSON_API_CONTENT_HEADER})
+    public @ResponseBody APIResponse saveTask(@RequestBody TaskDTO taskDTO) throws Exception {
+        taskService.saveTask(taskDTO);
+        return APIResponse.toOkResponse(SUCCESS);
     }
 }

@@ -23,8 +23,7 @@ public abstract class JPAEntity<T extends Serializable> implements Entity {
 
 
     public JPAEntity() {
-        createdAt = new Date();
-        updatedAt = new Date();
+
     }
 
 

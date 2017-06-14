@@ -4,6 +4,8 @@ import {Employee} from './../entities/employee';
 import {Task} from './../entities/task';
 import {Property} from './../entities/property';
 import { Router, ActivatedRoute,NavigationExtras } from '@angular/router';
+import {TaskService} from "./../services/task/task.service";
+import { AlertService } from './../services/alert.service';
 
 
 
@@ -71,7 +73,8 @@ export class DialogTaskPopupComponent implements OnInit{
    
    
 
-  constructor(public dialogRef: MdDialogRef<DialogTaskPopupComponent>,private router: Router,private routerAct: ActivatedRoute){
+  constructor(public dialogRef: MdDialogRef<DialogTaskPopupComponent>,private router: Router
+  ,private routerAct: ActivatedRoute, private taskService: TaskService, private alertService:AlertService){
     
       this.routerAct.queryParams.subscribe(params => {
        
@@ -96,6 +99,7 @@ export class DialogTaskPopupComponent implements OnInit{
               
                          }
                      };
+    this.updateTask()
     this.dialogRef.close();
     this.router.navigate([this.returnUrl],navigationExtras);
    this.refresh();
@@ -115,6 +119,26 @@ export class DialogTaskPopupComponent implements OnInit{
        console.log("inside");
       this.enableButton =true;
     }
+
+  }
+
+
+   updateTask(){
+      this.taskService.updateTask(this.item).subscribe(
+                data => {
+
+                     let navigationExtras: NavigationExtras = {
+                             queryParams: {
+                             "firstname": this.firstname,
+                             "lastname": this.lastname
+                        }
+                     };
+                  this.router.navigate([this.returnUrl],navigationExtras);
+                },
+                error => {
+                    this.alertService.error(error);
+                });
+
 
   }
 

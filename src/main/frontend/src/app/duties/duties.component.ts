@@ -2,6 +2,7 @@ import { Component, OnInit,Input } from '@angular/core';
 import {Http} from "@angular/http";
 import { Router, ActivatedRoute } from '@angular/router';
 import {Task} from './../entities/task';
+import {TaskService} from './../services/task/task.service';
 
 @Component({
   selector: 'app-duties',
@@ -18,27 +19,27 @@ export class DutiesComponent implements OnInit {
     public data;
     public filterQuery = "";
     public rowsOnPage = 10;
-    public sortBy = "name";
+    public sortBy = "createdAt";
     public sortOrder = "asc";
 
   
    
 
-    constructor(private http: Http) {
-        console.log("constructor");
+    constructor(private http: Http, private taskService :TaskService) {
     }
 
   
 
     ngOnInit(): void {
-      console.log("ngOnInit");
        this.checkSuccessMessages();
-        this.http.get("assets/dataTask.json")
+          this.taskService.fetchAllTasks()
             .subscribe((data)=> {
                 setTimeout(()=> {
-                    this.data = data.json() as Task[];
+                    this.data = data;
                 }, 1000);
             });
+    
+       
     }
 
     public toInt(num: string) {

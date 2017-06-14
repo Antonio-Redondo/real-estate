@@ -30,5 +30,33 @@ export class TaskService {
             });
     }
 
+
+     updateTask(task:Task) {
+        console.log("property" + task.id);
+        var params = JSON.stringify(task);
+        let headers = new Headers({ 'Content-Type': 'application/json' });
+        let options = new RequestOptions({ headers: headers });
+
+      return this.http.post('http://localhost:8080/task/updateTask',params, options)
+            .map((response: Response) => {
+                 let res = <Task> response.json().result;
+                 return res;
+            });
+    }
+
+
+    saveTask(task:Task) {
+        console.log("property" + task.id);
+        var params = JSON.stringify(task);
+        let headers = new Headers({ 'Content-Type': 'application/json' });
+        let options = new RequestOptions({ headers: headers });
+
+      return this.http.post('http://localhost:8080/task/saveTask',params, options)
+            .map((response: Response) => {
+                 let res = <Task> response.json().result;
+                 return res;
+            });
+    }
+
     
 }

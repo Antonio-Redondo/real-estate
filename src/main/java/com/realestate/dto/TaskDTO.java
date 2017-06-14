@@ -22,6 +22,10 @@ public class TaskDTO {
 
     private String image;
 
+    private Date createdAt;
+
+    private Date updatedAt;
+
 
     public String getName() {
         return name;
@@ -78,5 +82,21 @@ public class TaskDTO {
 
     public void setImage(String image) {
         this.image = image;
+    }
+
+    public Date getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(Date createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public Date getUpdatedAt() {
+        return updatedAt;
+    }
+
+    public void setUpdatedAt(Date updatedAt) {
+        this.updatedAt = updatedAt;
     }
 }

@@ -26,6 +26,12 @@ public interface EmployeeService extends BaseService<Employee, Long> {
     public void findEmployeeById(long id, long taskId, long propertyId);
 
     /**
+     * Method responsible to update an employee
+     * @param employee employee
+     */
+    public void updateEmloyee(Employee employee);
+
+    /**
      * Method responsible to save an employee
      * @param employeeDTO employeeDTO
      */

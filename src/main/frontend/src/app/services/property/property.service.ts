@@ -30,5 +30,32 @@ export class PropertyService {
             });
     }
 
+  updateProperty(property:Property) {
+        console.log("property" + property.id);
+        var params = JSON.stringify(property);
+        let headers = new Headers({ 'Content-Type': 'application/json' });
+        let options = new RequestOptions({ headers: headers });
+
+      return this.http.post('http://localhost:8080/property/updateProperty',params, options)
+            .map((response: Response) => {
+                 let res = <Property> response.json().result;
+                 return res;
+            });
+    }
+
+
+    saveProperty(property:Property) {
+        console.log("property" + property.id);
+        var params = JSON.stringify(property);
+        let headers = new Headers({ 'Content-Type': 'application/json' });
+        let options = new RequestOptions({ headers: headers });
+
+      return this.http.post('http://localhost:8080/property/saveProperty',params, options)
+            .map((response: Response) => {
+                 let res = <Property> response.json().result;
+                 return res;
+            });
+    }
+
     
 }

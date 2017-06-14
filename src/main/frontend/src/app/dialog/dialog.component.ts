@@ -29,20 +29,20 @@ export class DialogComponent implements OnInit {
   public dateFrom: string;
   public dateTo: string;
 
- 
+
   constructor(public dialog: MdDialog,private routerAct: ActivatedRoute) {
-      
+
   }
 
- 
+
 
   openDialog(item: Employee) {
       console.log(this.item);
 
-     
-     
+
+
         if (this.item.taskDTO.dateFrom != undefined){
-          
+
              console.log("this.dateFrom" + this.item.taskDTO.dateFrom);
         }
         if (this.item.taskDTO.dateTo != undefined){
@@ -51,21 +51,21 @@ export class DialogComponent implements OnInit {
 
       if(this.item.taskDTO ==null){
             console.log("yes");
-            var task: Task[] = []; 
+            var task: Task[] = [];
             task.push(new Task(null, "",new Date, new Date, ""));
-         
-           
+
+
       }
     let config = new MdDialogConfig();
     let dialogRef:MdDialogRef<DialogPopupComponent> = this.dialog.open(DialogPopupComponent,{
      height: '600px',
      width: '600px',
-     
-    
+
+
     });
-    
-  
-    
+
+
+
     dialogRef.componentInstance.item = this.item;
     console.log(dialogRef.componentInstance.item);
   }
@@ -78,13 +78,13 @@ export class DialogComponent implements OnInit {
       if(this.item.taskDTO == null){
         this.item.taskDTO = new Task(null, "", new Date, new Date, "");
       }
-     
+
     }
 
-   
+
   }
 
-  
+
 
 
 
@@ -92,9 +92,9 @@ export class DialogComponent implements OnInit {
   selector: 'dialog-popup',
   templateUrl: './dialog.popup.component.html',
   styles: ['./dialog.popup.component.css'],
- 
- 
-  
+
+
+
 })
 export class DialogPopupComponent implements OnInit{
    employee : Employee;
@@ -118,11 +118,11 @@ export class DialogPopupComponent implements OnInit{
    public datalistProperty;
    public datalistTask;
      private subscription: Subscription;
-  
+
    returnUrl = '/employeelist/savedTask';
 
-   
-   
+
+
 
   constructor(public dialogRef: MdDialogRef<DialogPopupComponent>,private router: Router,private routerAct: ActivatedRoute,private commonService: CommonService
   , private empployeeService : EmployeeService, private alertService : AlertService){
@@ -146,22 +146,22 @@ export class DialogPopupComponent implements OnInit{
           this.idTask = res.idTaskSelected;
              console.log(this.idTask);
         }
-     
-        
-      
-    });
-       
 
-     
-         
+
+
+    });
+
+
+
+
   }
   saveTask(){
-    
+
       let navigationExtras: NavigationExtras = {
                              queryParams: {
                              "firstname":  this.firstname,
                              "lastname":  this.lastname
-              
+
                          }
                      };
     console.log("save task");
@@ -171,7 +171,7 @@ export class DialogPopupComponent implements OnInit{
     this.refresh();
 
 
-   
+
   }
 
   refresh(): void {
@@ -183,7 +183,7 @@ export class DialogPopupComponent implements OnInit{
    console.log(this.item.taskDTO.remarks);
     if(this.item.taskDTO.dateFrom != null &&  this.item.taskDTO.dateTo != null  &&  this.item.taskDTO.remarks != null){
       this.enableButton = true;
-      
+
     }
   }
 
@@ -198,31 +198,41 @@ export class DialogPopupComponent implements OnInit{
             console.log(this.day);
 
           this.minimum = new Date(this.year,this.month,this.day);
-          
+
           return this.minimum;*/
   }
 
   buildEmployee(){
-    this.item.taskId = this.idTask;
-    this.item.propertyId = this.idProperty;
+    if(this.idTask == undefined ){
+        this.item.taskId =  this.item.taskDTO.id;
 
- 
+    }else{
+         this.item.taskId =  this.idTask;
+    }
+
+     if(this.idProperty == undefined){
+         this.item.propertyId = this.item.propertyDTO.id;
+
+     }else{
+          this.item.propertyId = this.idProperty;
+     }
+
     this.empployeeService.updateEmployee(this.item).subscribe(
                 data => {
-                 
+
                      let navigationExtras: NavigationExtras = {
                              queryParams: {
                              "firstname": this.firstname,
                              "lastname": this.lastname
                         }
                      };
-                   this.router.navigate([this.returnUrl],navigationExtras);
+                  this.router.navigate([this.returnUrl],navigationExtras);
                 },
                 error => {
                     this.alertService.error(error);
                 });
-       
-       
+
+
     };
   }
 

@@ -1,5 +1,7 @@
 package com.realestate.dto;
 
+import java.util.Date;
+
 /**
  * Created by arm on 6/4/2017.
  */
@@ -17,6 +19,11 @@ public class PropertyDTO {
 
 
     private long employeeId;
+
+    private Date createdAt;
+
+    private Date updatedAt;
+
 
     public String getName() {
         return name;
@@ -64,5 +71,21 @@ public class PropertyDTO {
 
     public void setId(long id) {
         this.id = id;
+    }
+
+    public Date getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(Date createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public Date getUpdatedAt() {
+        return updatedAt;
+    }
+
+    public void setUpdatedAt(Date updatedAt) {
+        this.updatedAt = updatedAt;
     }
 }

@@ -20,6 +20,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.PostConstruct;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -50,6 +51,12 @@ public class EmployeeServiceImpl extends BaseJPAServiceImpl<Employee, Long> impl
         Employee employee =  employeeRepository.findById(id);
         employee.setPropertyId(propertyId);
         employee.setTaskId(taskId);
+        employee.setCreatedAt(new Date());
+        employee.setUpdatedAt(new Date());
+        this.updateEmloyee(employee);
+    }
+    @Override
+    public void updateEmloyee(Employee employee){
         employeeRepository.update(employee);
     }
 
@@ -160,6 +167,8 @@ public class EmployeeServiceImpl extends BaseJPAServiceImpl<Employee, Long> impl
         employee.setEmail(employeeDTO.getEmail());
         employee.setTelephone(employeeDTO.getTelephone());
         employee.setAge(employeeDTO.getAge());
+        employee.setCreatedAt(new Date());
+        employee.setUpdatedAt(new Date());
         employee.setAddress(employeeDTO.getAddress());
         employee.setRemarks(employeeDTO.getRemarks());
         return employee;

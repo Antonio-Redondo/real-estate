@@ -31,14 +31,33 @@ public class TaskRepositoryImpl  extends BaseHibernateJPARepository<Task, Long> 
         return buildResposnse((Object[]) query.uniqueResult());
     }
 
+    @Override
     public void updateTask(Task task) throws NotFoundException {
         Query query = sessionFactory.getCurrentSession().createSQLQuery("UPDATE TASK t " +
-                "  SET t.REMARKS=:remarks, t.DATE_FROM=:dateFrom, t.DATE_TO=:dateTo where t.TASK_ID=:id"
+                "  SET t.REMARKS=:remarks, t.CREATED_AT=:createdDate, UPDATED_AT=:updatedDate, t.NAME=:name, t.DATE_FROM=:dateFrom, t.DATE_TO=:dateTo where t.TASK_ID=:id"
               );
         query.setParameter("remarks", task.getRemarks());
+        query.setParameter("name", task.getName());
         query.setParameter("dateFrom", task.getDateFrom());
         query.setParameter("dateTo", task.getDateTo());
+        query.setParameter("updatedDate", task.getUpdatedAt());
+        query.setParameter("createdDate", task.getCreatedAt());
         query.setParameter("id", task.getId());
+        query.executeUpdate();
+
+    }
+
+
+    @Override
+    public void insertTask(Task task) throws NotFoundException {
+        Query query = sessionFactory.getCurrentSession().createSQLQuery("INSERT INTO TASK " +
+                "(TASK_ID, DATE_FROM,DATE_TO,REMARKS,IMAGE,NAME,CREATED_AT, UPDATED_AT) VALUES (:id, null, null, :remarks , null, :name ,(CURRENT_TIMESTAMP),null)"
+        );
+
+        query.setParameter("name", task.getName());
+        query.setParameter("remarks", task.getRemarks());
+        query.setParameter("id", task.getId());
+
         query.executeUpdate();
 
     }
@@ -109,6 +128,14 @@ public class TaskRepositoryImpl  extends BaseHibernateJPARepository<Task, Long> 
             if(t[5] != null){
                 task.setName((String)t[5]);
             }
+            if(t[6] != null){
+                task.setCreatedAt((Date)t[6]);
+            }
+
+            if(t[7] != null){
+                task.setUpdatedAt((Date)t[7]);
+            }
+
             response.add(task);
         });
 

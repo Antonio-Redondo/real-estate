@@ -13,6 +13,7 @@ export class RegisterComponent implements OnInit {
     model: User;
     loading = false;
     returnUrl: string = "/login";
+    showUserIstaken :boolean = false;
     
   constructor( private route: ActivatedRoute,
         private router: Router,
@@ -36,6 +37,7 @@ export class RegisterComponent implements OnInit {
                     this.router.navigate([this.returnUrl],navigationExtras);
                 },
                 error => {
+                    this.showUserIstaken=true;
                     console.log("Error");
                     this.alertService.error(error);
                     this.loading = false;

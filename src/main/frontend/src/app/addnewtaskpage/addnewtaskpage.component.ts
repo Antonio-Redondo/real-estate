@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import {Task} from './../entities/task';
 import {FormControl, Validators} from '@angular/forms';
 import { Router, ActivatedRoute,NavigationExtras } from '@angular/router';
+import {TaskService} from './../services/task/task.service';
+import { AlertService } from './../services/alert.service';
 
 @Component({
   selector: 'app-addnewtaskpage',
@@ -12,7 +14,7 @@ export class AddnewtaskpageComponent implements OnInit {
    userFirstname:string;
    userLastname:string;
 
-constructor(private router: Router,private routerAct: ActivatedRoute) { 
+constructor(private router: Router,private routerAct: ActivatedRoute, private taskService: TaskService, private alertService:AlertService) { 
 
    this.routerAct.queryParams.subscribe(params => {
        
@@ -63,6 +65,22 @@ constructor(private router: Router,private routerAct: ActivatedRoute) {
                      };
 
      this.router.navigate([this.returnUrl],navigationExtras);
+
+       this.taskService.saveTask(this.task).subscribe(
+                data => {
+
+                     let navigationExtras: NavigationExtras = {
+                             queryParams: {
+                             "firstname": this.userFirstname,
+                             "lastname": this.userLastname
+                        }
+                     };
+                  this.router.navigate([this.returnUrl],navigationExtras);
+                },
+                error => {
+                    this.alertService.error(error);
+                });
+
     
    
   }
