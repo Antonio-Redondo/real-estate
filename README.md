@@ -1,7 +1,7 @@
 # Real Estate Application
 
 
-How to install it and use it:
+#### How to install it and use it:
 
 You guys need to have installed java 1.8 and Maven 3.X.X
 
@@ -14,7 +14,7 @@ After that go to the browser and write localhost:8080
 That's all!!! simple and fast.
 
 
-Technologies used:
+####Technologies used:
 
 -Java 8
 
