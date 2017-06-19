@@ -125,7 +125,7 @@ export class DialogPopupComponent implements OnInit{
 
 
   constructor(public dialogRef: MdDialogRef<DialogPopupComponent>,private router: Router,private routerAct: ActivatedRoute,private commonService: CommonService
-  , private empployeeService : EmployeeService, private alertService : AlertService){
+  , private employeeService : EmployeeService, private alertService : AlertService){
        this.remarks ="";
       this.routerAct.queryParams.subscribe(params => {
         console.log("firstname"+ params["firstname"]);
@@ -217,7 +217,7 @@ export class DialogPopupComponent implements OnInit{
           this.item.propertyId = this.idProperty;
      }
 
-    this.empployeeService.updateEmployee(this.item).subscribe(
+    this.employeeService.updateEmployee(this.item).subscribe(
                 data => {
 
                      let navigationExtras: NavigationExtras = {

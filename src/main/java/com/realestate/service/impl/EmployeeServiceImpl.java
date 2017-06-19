@@ -65,6 +65,13 @@ public class EmployeeServiceImpl extends BaseJPAServiceImpl<Employee, Long> impl
         employeeRepository.insert(employee);
     }
 
+
+    @Override
+    public void deleteEmployee(long id){
+        Employee employee =  employeeRepository.findById(id);
+        employeeRepository.delete(employee);
+    }
+
     @PostConstruct
     public void setupService() {
         this.baseJpaRepository = employeeRepository;

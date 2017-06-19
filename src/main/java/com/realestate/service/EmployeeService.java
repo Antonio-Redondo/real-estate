@@ -38,6 +38,13 @@ public interface EmployeeService extends BaseService<Employee, Long> {
     public void saveEmployee(EmployeeDTO employeeDTO);
 
 
+    /**
+     * Method responsible to save an employee
+     * @param id id
+     */
+    public void deleteEmployee(long id);
+
+
 
 
 
