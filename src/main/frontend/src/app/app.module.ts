@@ -58,6 +58,7 @@ import {EmployeeService} from './services/employee/employee.service';
 import{PropertyService} from './services/property/property.service';
 import {TaskService} from './services/task/task.service';
 import {CommonService} from './services/common/common.service';
+import {DeleteEmployeePopupComponent} from './deleteemployee/deleteemployee.component';
 
 
 
@@ -112,6 +113,6 @@ import {CommonService} from './services/common/common.service';
     CommonService,
     AlertService,LoginComponent],
   bootstrap: [AppComponent,DialogPopupComponent
-  , DialogInformationPopupComponent,DialogPropertyPopupComponent, DialogTaskPopupComponent]
+  , DialogInformationPopupComponent,DialogPropertyPopupComponent, DialogTaskPopupComponent,DeleteEmployeePopupComponent]
 })
 export class AppModule { }

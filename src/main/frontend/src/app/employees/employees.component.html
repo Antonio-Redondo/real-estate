@@ -87,7 +87,7 @@
                 <tbody>
                 <tr *ngFor="let item of mf.data">
                     <td>
-                     <app-deleteemployee></app-deleteemployee> 
+                     <app-deleteemployee [id]="item.id" [name]="item.name"></app-deleteemployee> 
                     </td>
                     <td>{{item.name}}</td>
                     <td>{{item.email}}</td>

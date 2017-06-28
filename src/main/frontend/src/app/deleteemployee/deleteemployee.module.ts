@@ -2,7 +2,8 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MaterialModule } from '@angular/material';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import {DeleteemployeeComponent} from './deleteemployee.component';
+import {DeleteemployeeComponent, DeleteEmployeePopupComponent} from './deleteemployee.component';
+
 
 @NgModule({
   imports: [
@@ -11,7 +12,7 @@ import {DeleteemployeeComponent} from './deleteemployee.component';
     MaterialModule
    
   ],
-  declarations: [DeleteemployeeComponent],
-    exports: [DeleteemployeeComponent]
+  declarations: [DeleteemployeeComponent,DeleteEmployeePopupComponent],
+    exports: [DeleteemployeeComponent, DeleteEmployeePopupComponent]
 })
 export class DeleteemployeeModule { }

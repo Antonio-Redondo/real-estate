@@ -58,9 +58,9 @@ export class EmployeeService {
     }
 
 
-     deleteEmployee(employee:Employee) {
-        console.log("employee" + employee.id);
-        var params = JSON.stringify(employee);
+     deleteEmployee(id:number) {
+        console.log("employee" +id);
+        var params = JSON.stringify(id);
         let headers = new Headers({ 'Content-Type': 'application/json' });
         let options = new RequestOptions({ headers: headers });
 

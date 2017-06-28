@@ -52,8 +52,8 @@ public class EmployeeController {
     }
 
     @RequestMapping(value = "/deleteEmployee", method = RequestMethod.POST, headers = {JSON_API_CONTENT_HEADER})
-    public @ResponseBody APIResponse deleteEmployee(@RequestBody EmployeeDTO employeeDTO) throws Exception {
-        employeeService.deleteEmployee(employeeDTO.getId());
+    public @ResponseBody APIResponse deleteEmployee(@RequestBody long id) throws Exception {
+        employeeService.deleteEmployee(id);
         return APIResponse.toOkResponse(SUCCESS);
     }
 

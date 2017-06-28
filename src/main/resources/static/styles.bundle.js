@@ -57,7 +57,7 @@ module.exports = function() {
 
 /***/ }),
 
-/***/ 327:
+/***/ 328:
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
@@ -66,7 +66,7 @@ module.exports = function() {
 var content = __webpack_require__(408);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // add the styles to the DOM
-var update = __webpack_require__(716)(content, {});
+var update = __webpack_require__(717)(content, {});
 if(content.locals) module.exports = content.locals;
 // Hot Module Replacement
 if(false) {
@@ -114,7 +114,7 @@ exports.push([module.i, "/* You can add global styles to this file, and also imp
 
 /***/ }),
 
-/***/ 716:
+/***/ 717:
 /***/ (function(module, exports) {
 
 /*
@@ -367,13 +367,13 @@ function updateLink(linkElement, obj) {
 
 /***/ }),
 
-/***/ 720:
+/***/ 721:
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(327);
+module.exports = __webpack_require__(328);
 
 
 /***/ })
 
-},[720]);
+},[721]);
 //# sourceMappingURL=styles.bundle.js.map

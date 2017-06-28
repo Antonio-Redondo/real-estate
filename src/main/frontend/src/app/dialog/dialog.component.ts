@@ -58,7 +58,7 @@ export class DialogComponent implements OnInit {
       }
     let config = new MdDialogConfig();
     let dialogRef:MdDialogRef<DialogPopupComponent> = this.dialog.open(DialogPopupComponent,{
-     height: '600px',
+     height: '650px',
      width: '600px',
 
 
