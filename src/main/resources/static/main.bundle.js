@@ -4187,7 +4187,7 @@ module.exports = "  <button class=\"btn btn-defaul\"md-button (click)=\"openDial
 /***/ 445:
 /***/ (function(module, exports) {
 
-module.exports = "<h2 style=\"color:#204d74\">Are you sure you want to remove {{name}} from the system?</h2>\r\n<br>\r\n<br>\r\n<br>\r\n <md-dialog-actions align=\"end\" >\r\n           <td><button md-raised-button (click)=\"remove()\"color=\"accent\" >Delete</button></td>\r\n           <td><button md-raised-button (click)=\"dialogRef.close()\">Cancel</button></td>\r\n         </md-dialog-actions>"
+module.exports = "<h2 style=\"color:#204d74;text-align:center\">Are you sure you want to remove {{name}} from the system?</h2>\r\n<br>\r\n<br>\r\n<br>\r\n <md-dialog-actions align=\"end\" >\r\n           <td><button md-raised-button (click)=\"remove()\"color=\"accent\" >Delete</button></td>\r\n           <td><button md-raised-button (click)=\"dialogRef.close()\">Cancel</button></td>\r\n         </md-dialog-actions>"
 
 /***/ }),
 
