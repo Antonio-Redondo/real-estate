@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { MaterialModule } from '@angular/material';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {DeletepropertyComponent} from "./deleteproperty.component";
+import {DeletePropertyPopupComponent} from "./deleteproperty.component";
 
 @NgModule({
   imports: [
@@ -10,7 +11,7 @@ import {DeletepropertyComponent} from "./deleteproperty.component";
      FormsModule,
     MaterialModule
   ],
-  declarations: [DeletepropertyComponent],
-  exports: [DeletepropertyComponent]
+  declarations: [DeletepropertyComponent, DeletePropertyPopupComponent],
+  exports: [DeletepropertyComponent, DeletePropertyPopupComponent]
 })
 export class DeletepropertyModule { }

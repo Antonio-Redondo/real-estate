@@ -49,6 +49,7 @@ export class PropertiesComponent implements OnInit {
 
 
   checkSuccessMessages(){
+      console.log("newproperty"+ this.newproperty);
         if (this.newproperty.toString()=='savedProperty'){
               this.show =true;
         } 

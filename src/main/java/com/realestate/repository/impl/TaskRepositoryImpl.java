@@ -62,6 +62,14 @@ public class TaskRepositoryImpl  extends BaseHibernateJPARepository<Task, Long> 
 
     }
 
+    @Override
+    public void deleteTaskById(long id)throws NotFoundException{
+        Query query = sessionFactory.getCurrentSession().createSQLQuery("Delete from TASK t where t.TASK_ID = :id");
+        query.setParameter("id", id);
+        query.executeUpdate();
+
+    }
+
 
     /**
      * Method responsible to customize the expected response

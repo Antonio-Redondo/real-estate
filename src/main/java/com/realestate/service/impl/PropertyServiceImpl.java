@@ -10,6 +10,7 @@ import com.realestate.service.PropertyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import com.realestate.repository.EmployeeRepository;
 
 import javax.annotation.PostConstruct;
 import java.util.ArrayList;
@@ -24,6 +25,8 @@ import java.util.List;
 public class PropertyServiceImpl  extends BaseJPAServiceImpl<Property, Long> implements PropertyService {
      @Autowired
      private PropertyRepository propertyRepository;
+     @Autowired
+     private EmployeeRepository employeeRepository;
 
     @PostConstruct
     public void setupService() {
@@ -67,6 +70,12 @@ public class PropertyServiceImpl  extends BaseJPAServiceImpl<Property, Long> imp
     @Override
     public void saveProperty(PropertyDTO PropertyDTO) throws NotFoundException{
         propertyRepository.insertProperty(converFromPropertyTOToProperty(PropertyDTO));
+    }
+
+    @Override
+    public void deleteProperty(long id)throws NotFoundException{
+        propertyRepository.deletePropertyById(id);
+        employeeRepository.updatePropertyIdIntoEmployee(id);
     }
 
     /**

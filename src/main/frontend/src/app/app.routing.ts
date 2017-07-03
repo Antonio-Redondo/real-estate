@@ -11,6 +11,7 @@ import { LoginComponent } from './login/login.component';
 import { DutiesComponent } from './duties/duties.component';
 import { PropertiesComponent } from './properties/properties.component';
 import { PropertylistComponent } from './propertylist/propertylist.component';
+import {DummyComponent} from './dummy/dummy.component';
 import {ModuleWithProviders} from '@angular/core';
 import {Routes, RouterModule} from '@angular/router';
 import {Authguard} from './authguard';
@@ -31,7 +32,8 @@ const appRoutes: Routes =  [
     {path: 'properties', component: PropertiesComponent},
     {path: 'propertieslist/:newproperty', component: PropertylistComponent},
     {path: 'dutieslist/:newDuty', component: DutieslistComponent},
-    {path: 'duties', component:DutiesComponent}
+    {path: 'duties', component:DutiesComponent},
+    {path: 'dummyComponent', component:DummyComponent}
 ]
 
 export const appRoutingProviders: any[] = [Authguard

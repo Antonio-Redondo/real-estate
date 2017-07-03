@@ -32,6 +32,14 @@ public class PropertyRepositoryImpl  extends BaseHibernateJPARepository<Property
         return buildResposnse((Object[]) query.uniqueResult());
     }
 
+    @Override
+    public void deletePropertyById(long id)throws NotFoundException{
+        Query query = sessionFactory.getCurrentSession().createSQLQuery("Delete from PROPERTY p where p.PROPERTY_ID = :id");
+        query.setParameter("id", id);
+        query.executeUpdate();
+
+    }
+
     /**
      * Method responsible to customize the expected response
      * @param result Object[] result

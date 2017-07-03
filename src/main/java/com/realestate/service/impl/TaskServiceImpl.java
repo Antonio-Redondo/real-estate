@@ -4,6 +4,7 @@ import com.realestate.data.BaseJPAServiceImpl;
 import com.realestate.dto.TaskDTO;
 import com.realestate.exception.NotFoundException;
 import com.realestate.model.entity.Task;
+import com.realestate.repository.EmployeeRepository;
 import com.realestate.repository.TaskRepository;
 import com.realestate.service.TaskService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +25,8 @@ public class TaskServiceImpl extends BaseJPAServiceImpl<Task, Long> implements T
 
     @Autowired
     private TaskRepository taskRepository;
+    @Autowired
+    private EmployeeRepository employeeRepository;
 
     @Override
     public List<TaskDTO> findAllTasks() {
@@ -81,6 +84,12 @@ public class TaskServiceImpl extends BaseJPAServiceImpl<Task, Long> implements T
             throw new NotFoundException("Task not updated properly");
         }
 
+    }
+
+    @Override
+    public void deleteTask(long id) throws NotFoundException{
+        taskRepository.deleteTaskById(id);
+        employeeRepository.updateTaskIdIntoEmployee(id);
     }
 
 

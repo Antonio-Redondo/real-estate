@@ -29,7 +29,7 @@ export class DeleteemployeeComponent implements OnInit {
     let config = new MdDialogConfig();
     let dialogRef:MdDialogRef<DeleteEmployeePopupComponent> = this.dialog.open(DeleteEmployeePopupComponent,{
      height: '200px',
-     width: '780px',
+     width: '880px',
     
     });
     dialogRef.componentInstance.name = this.name;
@@ -47,20 +47,24 @@ export class DeleteemployeeComponent implements OnInit {
   styles: ['./deleteemployee.popup.component.css']
 })
 export class DeleteEmployeePopupComponent implements OnInit{
-    returnUrl = '/employeelist/deleteEmployee';
+   returnUrl = '/employeelist/deleteEmployee';
    item : Employee;
    dateFrom: any;
    dateTo :any;
    remarks : string;
    enableButton= false;
    name : string;
-    firstname:string;
+   firstname:string;
    lastname:string;
-    id: number
+   id: number
    
 
   constructor(public dialogRef: MdDialogRef<DeleteEmployeePopupComponent>,private employeeService:EmployeeService,
-                                                          private router: Router, private alertService:AlertService){
+                                                          private router: Router,private routerAct: ActivatedRoute, private alertService:AlertService){
+          this.routerAct.queryParams.subscribe(params => {
+          this.firstname = params["firstname"];
+          this.lastname = params["lastname"];
+        });
  
   }
     ngOnInit() {
@@ -71,26 +75,26 @@ export class DeleteEmployeePopupComponent implements OnInit{
   remove(){
     console.log("removeid"+this.id);
     console.log("remove");
-      this.employeeService.deleteEmployee(this.id).subscribe(
-                data => {
-
-                     let navigationExtras: NavigationExtras = {
+     let navigationExtras: NavigationExtras = {
                              queryParams: {
                              "firstname": this.firstname,
                              "lastname": this.lastname
                         }
                      };
-                  this.router.navigate([this.returnUrl],navigationExtras);
-                },
+             this.employeeService.deleteEmployee(this.id).subscribe(
+                data => {
+               
+               },
                 error => {
                     this.alertService.error(error);
                 });
-      this.router.navigate([this.returnUrl]);
-      this.refresh();
+     this.router.navigateByUrl('/propertieslist/false',true);
+    this.dialogRef.close();
+    
+    this.dialogRef.afterClosed().subscribe(result => {
+       this.router.navigate([this.returnUrl],navigationExtras);
+    });
   }
 
- refresh(): void {
-    window.location.reload();
-}
 
 }

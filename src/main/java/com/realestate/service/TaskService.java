@@ -49,4 +49,12 @@ public interface TaskService extends BaseService<Task, Long> {
      * @throws NotFoundException
      */
     public void saveTask(TaskDTO taskDTO)throws NotFoundException;
+
+
+    /**
+     * Method in charge of deleting a particular task
+     * @param id id
+     * @throws NotFoundException NotFoundException
+     */
+    public void deleteTask(long id) throws NotFoundException;
 }

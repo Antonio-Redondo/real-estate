@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 import { MaterialModule } from '@angular/material';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {DeletetaskComponent} from './deletetask.component';
+import {DeleteTaskPopupComponent} from './deletetask.component';
+
 
 @NgModule({
   imports: [
@@ -10,7 +12,7 @@ import {DeletetaskComponent} from './deletetask.component';
      FormsModule,
     MaterialModule
   ],
-  declarations: [DeletetaskComponent],
-  exports : [DeletetaskComponent]
+  declarations: [DeletetaskComponent, DeleteTaskPopupComponent],
+  exports : [DeletetaskComponent,DeleteTaskPopupComponent]
 })
 export class DeletetaskModule { }

@@ -58,5 +58,20 @@ export class TaskService {
             });
     }
 
+     deleteTask(id:number) {
+        console.log("task" +id);
+        var params = JSON.stringify(id);
+        let headers = new Headers({ 'Content-Type': 'application/json' });
+        let options = new RequestOptions({ headers: headers });
+
+      return this.http.post('http://localhost:8080/task/deleteTask',params, options)
+            .map((response: Response) => {
+                 let res = <Task> response.json().result;
+                 return res;
+            });
+    }
+
+
+
     
 }

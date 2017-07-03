@@ -9,6 +9,10 @@
     					A task has been removed
     	</div>
 
+        <div  *ngIf="showRemovedTask" class="alert alert-info">
+    					Please, be advised that if the removed task was associated to one employee, it will be disassociated automatically
+    	</div>
+
           <div  *ngIf="showNewTask" class="alert alert-success">
     					A new task has been created
     	</div>
@@ -89,7 +93,7 @@
                 <tbody>
                 <tr *ngFor="let item of mf.data">
                     <td>
-                     <app-deletetask></app-deletetask> 
+                     <app-deletetask [id]="item.id" [name]="item.name"></app-deletetask> 
                     </td>
                     <td>{{item.name}}</td>
                     <td>{{item.remarks}}</td>

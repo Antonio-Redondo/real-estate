@@ -104,18 +104,17 @@ export class DialogPropertyPopupComponent implements OnInit{
 
     console.log("saveProperty");
     this.updateProperty();
+     this.router.navigateByUrl('/employeelist/false',true);
     this.dialogRef.close();
-    this.router.navigate([this.returnUrl],navigationExtras);
-    this.refresh();
+    
+    this.dialogRef.afterClosed().subscribe(result => {
+       this.router.navigate([this.returnUrl],navigationExtras);
+    });
  
 
    
   }
- 
 
- refresh(): void {
-    window.location.reload();
-  }
   checkFields(){
 
     if(this.name != null && this.name != '' && this.city !=null

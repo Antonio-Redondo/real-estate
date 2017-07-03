@@ -41,5 +41,12 @@ public interface TaskRepository extends BaseJPARepository<Task, Long> {
      */
     public void insertTask(Task task) throws NotFoundException;
 
+    /**
+     * Method in charge of removing a task by id
+     * @param id
+     * @throws NotFoundException
+     */
+    public void deleteTaskById(long id) throws NotFoundException;
+
 }
 

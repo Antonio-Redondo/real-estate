@@ -57,5 +57,19 @@ export class PropertyService {
             });
     }
 
+      deleteProperty(id:number) {
+        console.log("property" +id);
+        var params = JSON.stringify(id);
+        let headers = new Headers({ 'Content-Type': 'application/json' });
+        let options = new RequestOptions({ headers: headers });
+
+      return this.http.post('http://localhost:8080/property/deleteProperty',params, options)
+            .map((response: Response) => {
+                 let res = <Property> response.json().result;
+                 return res;
+            });
+    }
+
+
     
 }

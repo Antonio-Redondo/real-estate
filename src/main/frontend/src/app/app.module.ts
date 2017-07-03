@@ -59,6 +59,10 @@ import{PropertyService} from './services/property/property.service';
 import {TaskService} from './services/task/task.service';
 import {CommonService} from './services/common/common.service';
 import {DeleteEmployeePopupComponent} from './deleteemployee/deleteemployee.component';
+import {DeletePropertyPopupComponent} from './deleteproperty/deleteproperty.component';
+import {DeleteTaskPopupComponent} from './deletetask/deletetask.component';
+import { DummyComponent } from './dummy/dummy.component';
+
 
 
 
@@ -74,6 +78,7 @@ import {DeleteEmployeePopupComponent} from './deleteemployee/deleteemployee.comp
     PropertylistComponent,
     DutieslistComponent,
     AddnewtaskpageComponent,
+    DummyComponent,
   ],
   imports: [
     BrowserModule,
@@ -113,6 +118,6 @@ import {DeleteEmployeePopupComponent} from './deleteemployee/deleteemployee.comp
     CommonService,
     AlertService,LoginComponent],
   bootstrap: [AppComponent,DialogPopupComponent
-  , DialogInformationPopupComponent,DialogPropertyPopupComponent, DialogTaskPopupComponent,DeleteEmployeePopupComponent]
+  , DialogInformationPopupComponent,DialogPropertyPopupComponent, DialogTaskPopupComponent,DeleteEmployeePopupComponent,DeletePropertyPopupComponent,DeleteTaskPopupComponent]
 })
 export class AppModule { }

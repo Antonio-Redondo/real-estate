@@ -48,4 +48,10 @@ public class TaskController {
         taskService.saveTask(taskDTO);
         return APIResponse.toOkResponse(SUCCESS);
     }
+
+    @RequestMapping(value = "/deleteTask", method = RequestMethod.POST, headers = {JSON_API_CONTENT_HEADER})
+    public @ResponseBody APIResponse deleteEmployee(@RequestBody long id) throws Exception {
+        taskService.deleteTask(id);
+       return APIResponse.toOkResponse(SUCCESS);
+    }
 }

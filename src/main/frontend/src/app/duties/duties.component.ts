@@ -1,6 +1,6 @@
 import { Component, OnInit,Input } from '@angular/core';
 import {Http} from "@angular/http";
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute,NavigationStart } from '@angular/router';
 import {Task} from './../entities/task';
 import {TaskService} from './../services/task/task.service';
 
@@ -25,8 +25,14 @@ export class DutiesComponent implements OnInit {
   
    
 
-    constructor(private http: Http, private taskService :TaskService) {
+    constructor(private http: Http, private taskService :TaskService, private router:Router) {
+              var currentUrl = this.router.url;
+              console.log("currentUrl"+currentUrl);
+   // var refreshUrl = currentUrl.indexOf('dutieslist/:newDuty') > -1 ? '/dutieslist/:newDuty' : '/someRoute';
+   this.router.navigateByUrl(currentUrl);
+     
     }
+
 
   
 

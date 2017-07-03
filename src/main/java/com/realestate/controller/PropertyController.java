@@ -50,4 +50,11 @@ public class PropertyController {
         propertyService.saveProperty(propertyDTO);
         return APIResponse.toOkResponse(SUCCESS);
     }
+
+    @RequestMapping(value = "/deleteProperty", method = RequestMethod.POST, headers = {JSON_API_CONTENT_HEADER})
+    public @ResponseBody APIResponse deleteEmployee(@RequestBody long id) throws Exception {
+        propertyService.deleteProperty(id);
+        return APIResponse.toOkResponse(SUCCESS);
+    }
+
 }

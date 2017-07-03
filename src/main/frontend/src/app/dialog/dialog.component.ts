@@ -167,17 +167,18 @@ export class DialogPopupComponent implements OnInit{
     console.log("save task");
     this.buildEmployee();
     this.dialogRef.close();
-    this.router.navigate([this.returnUrl],navigationExtras);
-    this.refresh();
+    this.router.navigateByUrl('/propertieslist/false',true);
+    this.dialogRef.close();
+    
+    this.dialogRef.afterClosed().subscribe(result => {
+       this.router.navigate([this.returnUrl],navigationExtras);
+    });
 
 
 
   }
 
-  refresh(): void {
-   window.location.reload();
-  }
-
+ 
 
   checkFields(){
    console.log(this.item.taskDTO.remarks);

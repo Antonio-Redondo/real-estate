@@ -24,6 +24,14 @@ public interface PropertyRepository extends BaseJPARepository<Property, Long> {
      */
     public Property findPropertyById(long id)throws NotFoundException;
 
+
+    /**
+     * Method in charge of deleting a property by id
+     * @param id
+     * @throws NotFoundException
+     */
+    public void deletePropertyById(long id)throws NotFoundException;
+
     /**
      * Method responsible to update a particular property
      * @param property property

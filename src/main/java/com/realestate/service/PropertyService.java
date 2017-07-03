@@ -40,4 +40,11 @@ public interface PropertyService extends BaseService<Property, Long> {
      */
     public void saveProperty(PropertyDTO PropertyDTO) throws NotFoundException;
 
+    /**
+     * Method in charge of deleting a particular property
+     * @param id id
+     * @throws NotFoundException NotFoundException
+     */
+    public void deleteProperty(long id) throws NotFoundException;
+
 }
