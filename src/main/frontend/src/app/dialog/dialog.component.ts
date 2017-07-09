@@ -182,7 +182,10 @@ export class DialogPopupComponent implements OnInit{
 
   checkFields(){
    console.log(this.item.taskDTO.remarks);
-    if(this.item.taskDTO.dateFrom != null &&  this.item.taskDTO.dateTo != null  &&  this.item.taskDTO.remarks != null){
+   console.log("this.idProperty: " + this.idProperty);
+   console.log("this.idTask: " + this.idTask);
+    if(this.item.taskDTO.dateFrom != null &&  this.item.taskDTO.dateTo != null 
+     &&  this.item.taskDTO.remarks != null && this.idProperty!=null && this.idTask!= null){
       this.enableButton = true;
 
     }

@@ -13,10 +13,10 @@
   </tr>
     <tr>
          <td style="width:280px">
-             <select-dropdown [idProperty]= "item.propertyId"></select-dropdown>
+             <select-dropdown [idProperty]= "item.propertyId" (click)="checkFields()"></select-dropdown>
        </td>
       <td>
-             <select-dropdowntask [idTask]= "item.taskId"></select-dropdowntask>
+             <select-dropdowntask [idTask]= "item.taskId" (click)="checkFields()" ></select-dropdowntask>
              
         </td>
   </tr>
@@ -32,7 +32,7 @@
           </md-input-container>
           <md-datepicker required="true" #pickerFrom></md-datepicker></td>
      <td>  <md-input-container>
-            <input required="true" mdInput [mdDatepicker]="pickerTo" placeholder="To" [(ngModel)]="item.taskDTO.dateTo" [min]="minDate()">
+            <input required="true" mdInput [mdDatepicker]="pickerTo" placeholder="To" [(ngModel)]="item.taskDTO.dateTo">
             <button mdSuffix [mdDatepickerToggle]="pickerTo" (click)="checkFields()" ></button>
               <md-error>This field is required</md-error>
           </md-input-container>
@@ -52,9 +52,9 @@
       <td>
       
      <md-input-container style="width:300px">
-      <textarea mdInput #postalCode maxlength="200" class="example-full-width"  (keyup)="checkFields()" required="true" mdInput [(ngModel)]="item.taskDTO.remarks" placeholder="Remarks"></textarea>
+      <textarea mdInput #postalCode maxlength="200" class="example-full-width" required=true (keypress)="checkFields()" mdInput [(ngModel)]="item.taskDTO.remarks" placeholder="Remarks"></textarea>
        <md-hint align="end">{{postalCode.value.length}} / 200</md-hint>
-         <md-error>This field is required</md-error>
+          <md-error>This field is required</md-error>
     </md-input-container>
       </td>
   </tr>
