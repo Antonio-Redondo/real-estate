@@ -34,7 +34,7 @@ public class PropertyController {
      private PropertyService propertyService;
 
     @RequestMapping(value = "/fetchAll", method = RequestMethod.POST, headers = {JSON_API_CONTENT_HEADER})
-    public @ResponseBody APIResponse fetchAll(@RequestBody PropertyDTO propertyDTO) throws Exception {
+    public @ResponseBody APIResponse fetchAll() throws Exception {
       List<PropertyDTO> listPropertyDTO = propertyService.findAllProperties();
        return APIResponse.toOkResponse(listPropertyDTO);
     }
@@ -52,7 +52,7 @@ public class PropertyController {
     }
 
     @RequestMapping(value = "/deleteProperty", method = RequestMethod.POST, headers = {JSON_API_CONTENT_HEADER})
-    public @ResponseBody APIResponse deleteEmployee(@RequestBody long id) throws Exception {
+    public @ResponseBody APIResponse deleteProperty(@RequestBody long id) throws Exception {
         propertyService.deleteProperty(id);
         return APIResponse.toOkResponse(SUCCESS);
     }

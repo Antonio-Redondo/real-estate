@@ -33,7 +33,7 @@ public class EmployeeController {
     public static final String SUCCESS = "SUCCESS";
 
     @RequestMapping(value = "/fetchAll", method = RequestMethod.POST, headers = {JSON_API_CONTENT_HEADER})
-    public @ResponseBody APIResponse fetchAll(@RequestBody EmployeeDTO employeeDTO) throws Exception {
+    public @ResponseBody APIResponse fetchAll() throws Exception {
         List<EmployeeDTO> listEmployeeDTO = employeeService.findAllEmployees();
         return APIResponse.toOkResponse(listEmployeeDTO);
     }

@@ -31,7 +31,7 @@ public class TaskController {
 
     @RequestMapping(value = "/fetchAll", method = RequestMethod.POST, headers = {JSON_API_CONTENT_HEADER})
     public @ResponseBody
-    APIResponse fetchAll(@RequestBody TaskDTO taskDTO) throws Exception {
+    APIResponse fetchAll() throws Exception {
         List<TaskDTO> listTaskDTO = taskService.findAllTasks();
         return APIResponse.toOkResponse(listTaskDTO);
     }
@@ -50,7 +50,7 @@ public class TaskController {
     }
 
     @RequestMapping(value = "/deleteTask", method = RequestMethod.POST, headers = {JSON_API_CONTENT_HEADER})
-    public @ResponseBody APIResponse deleteEmployee(@RequestBody long id) throws Exception {
+    public @ResponseBody APIResponse deleteTask(@RequestBody long id) throws Exception {
         taskService.deleteTask(id);
        return APIResponse.toOkResponse(SUCCESS);
     }

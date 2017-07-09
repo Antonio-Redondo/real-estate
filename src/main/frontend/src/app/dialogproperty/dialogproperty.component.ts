@@ -29,7 +29,7 @@ export class DialogPropertyComponent implements OnInit {
     
     let config = new MdDialogConfig();
     let dialogRef:MdDialogRef<DialogPropertyPopupComponent> = this.dialog.open(DialogPropertyPopupComponent,{
-     height: '340px',
+     height: '380px',
      width: '600px',
     
     });
