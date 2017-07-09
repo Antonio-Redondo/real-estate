@@ -778,11 +778,8 @@ var DialogPopupComponent = (function () {
         });
     };
     DialogPopupComponent.prototype.checkFields = function () {
-        console.log(this.item.taskDTO.remarks);
-        console.log("this.idProperty: " + this.idProperty);
-        console.log("this.idTask: " + this.idTask);
         if (this.item.taskDTO.dateFrom != null && this.item.taskDTO.dateTo != null
-            && this.item.taskDTO.remarks != null && this.idProperty != null && this.idTask != null) {
+            && this.item.taskDTO.remarks != null) {
             this.enableButton = true;
         }
     };
@@ -1014,7 +1011,7 @@ var DialogPropertyComponent = (function () {
         console.log(this.item);
         var config = new __WEBPACK_IMPORTED_MODULE_1__angular_material__["c" /* MdDialogConfig */]();
         var dialogRef = this.dialog.open(DialogPropertyPopupComponent, {
-            height: '340px',
+            height: '380px',
             width: '600px',
         });
         dialogRef.componentInstance.item = this.item;
