@@ -29,26 +29,48 @@ public class TaskController {
     @Autowired
     private TaskService taskService;
 
+    /**
+     * Method in charge of fetching all the tasks
+     * @return APIResponse
+     * @throws Exception
+     */
     @RequestMapping(value = "/fetchAll", method = RequestMethod.POST, headers = {JSON_API_CONTENT_HEADER})
-    public @ResponseBody
-    APIResponse fetchAll() throws Exception {
+    public @ResponseBody APIResponse fetchAll() throws Exception {
         List<TaskDTO> listTaskDTO = taskService.findAllTasks();
         return APIResponse.toOkResponse(listTaskDTO);
     }
 
 
+    /**
+     * Method in charge of updating a task
+     * @param taskDTO
+     * @return APIResponse
+     * @throws Exception
+     */
     @RequestMapping(value = "/updateTask", method = RequestMethod.POST, headers = {JSON_API_CONTENT_HEADER})
     public @ResponseBody APIResponse updateTask(@RequestBody TaskDTO taskDTO) throws Exception {
         taskService.findTaskById(taskDTO);
         return APIResponse.toOkResponse(SUCCESS);
     }
 
+    /**
+     * Method in charge of saving a task
+     * @param taskDTO
+     * @return APIResponse
+     * @throws Exception
+     */
     @RequestMapping(value = "/saveTask", method = RequestMethod.POST, headers = {JSON_API_CONTENT_HEADER})
     public @ResponseBody APIResponse saveTask(@RequestBody TaskDTO taskDTO) throws Exception {
         taskService.saveTask(taskDTO);
         return APIResponse.toOkResponse(SUCCESS);
     }
 
+    /**
+     * Method in charge of deleting a task by id
+     * @param id
+     * @return APIResponse
+     * @throws Exception
+     */
     @RequestMapping(value = "/deleteTask", method = RequestMethod.POST, headers = {JSON_API_CONTENT_HEADER})
     public @ResponseBody APIResponse deleteTask(@RequestBody long id) throws Exception {
         taskService.deleteTask(id);

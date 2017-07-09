@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import org.springframework.web.servlet.ModelAndView;
 
 /**
- * Created by Y.Kamesh on 8/2/2015.
+ * Class responsible of the response from the controller layer
  */
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class APIResponse {

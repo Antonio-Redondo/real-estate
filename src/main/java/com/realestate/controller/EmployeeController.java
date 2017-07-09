@@ -32,12 +32,23 @@ public class EmployeeController {
     protected static final String JSON_API_CONTENT_HEADER = "Content-type=application/json";
     public static final String SUCCESS = "SUCCESS";
 
+    /**
+     * Method in charge of getting all the employees
+     * @return APIResponse
+     * @throws Exception
+     */
     @RequestMapping(value = "/fetchAll", method = RequestMethod.POST, headers = {JSON_API_CONTENT_HEADER})
     public @ResponseBody APIResponse fetchAll() throws Exception {
         List<EmployeeDTO> listEmployeeDTO = employeeService.findAllEmployees();
         return APIResponse.toOkResponse(listEmployeeDTO);
     }
 
+    /**
+     * Method responsible to finf an employee by id
+     * @param employeeDTO employeeDTO
+     * @return APIResponse
+     * @throws Exception
+     */
     @RequestMapping(value = "/updateEmployee", method = RequestMethod.POST, headers = {JSON_API_CONTENT_HEADER})
     public @ResponseBody APIResponse updateEmployee(@RequestBody EmployeeDTO employeeDTO) throws Exception {
         employeeService.findEmployeeById(employeeDTO.getId(), employeeDTO.getTaskId(), employeeDTO.getPropertyId());
@@ -45,12 +56,24 @@ public class EmployeeController {
         return APIResponse.toOkResponse(SUCCESS);
     }
 
+    /**
+     * Method in charge of saving an employee
+     * @param employeeDTO employeeDTO
+     * @return APIResponse
+     * @throws Exception
+     */
     @RequestMapping(value = "/saveEmployee", method = RequestMethod.POST, headers = {JSON_API_CONTENT_HEADER})
     public @ResponseBody APIResponse saveEmployee(@RequestBody EmployeeDTO employeeDTO) throws Exception {
         employeeService.saveEmployee(employeeDTO);
         return APIResponse.toOkResponse(SUCCESS);
     }
 
+    /**
+     * Method responsible of deleting an employee
+     * @param id
+     * @return APIResponse
+     * @throws Exception
+     */
     @RequestMapping(value = "/deleteEmployee", method = RequestMethod.POST, headers = {JSON_API_CONTENT_HEADER})
     public @ResponseBody APIResponse deleteEmployee(@RequestBody long id) throws Exception {
         employeeService.deleteEmployee(id);
