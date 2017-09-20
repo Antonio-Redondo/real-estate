@@ -15,7 +15,7 @@
 					<div class="cols-sm-10">
 						<div class="input-group">
 							<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
-						   <input type="text" class="form-control" name="firstname"  [(ngModel)]="model.firstname" #firstname="ngModel" required minlength="4" />
+						   <input id="firstName" type="text" class="form-control" name="firstname"  [(ngModel)]="model.firstname" #firstname="ngModel" required minlength="4" />
 						</div>
 				</div>
 		</div>
@@ -35,7 +35,7 @@
 					<div class="cols-sm-10">
 						<div class="input-group">
 							<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
-						      <input type="text" class="form-control" name="lastname"   [(ngModel)]="model.lastname" #lastname="ngModel" required minlength="4"  />
+						      <input id="lastName" type="text" class="form-control" name="lastname"   [(ngModel)]="model.lastname" #lastname="ngModel" required minlength="4"  />
 						</div>
 				</div>
 		</div>
@@ -58,7 +58,7 @@
 					<div class="cols-sm-10">
 						<div class="input-group">
 							<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
-						       <input type="text" class="form-control" name="username"   [(ngModel)]="model.username" #username="ngModel" required minlength="4"   />
+						       <input id="userName" type="text" class="form-control" name="username"   [(ngModel)]="model.username" #username="ngModel" required minlength="4"   />
 						</div>
 				</div>
 		</div>
@@ -79,7 +79,7 @@
 							<div class="cols-sm-10">
 								<div class="input-group">
 									<span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
-									  <input type="password" class="form-control" name="password"  [(ngModel)]="model.password"  #password="ngModel" required minlength="4" />
+									  <input  id="password" type="password" class="form-control" name="password"  [(ngModel)]="model.password"  #password="ngModel" required minlength="4" />
 								</div>
 							</div>
 		</div>
@@ -98,7 +98,7 @@
        
         <div class="form-group"  align="end">
             <!--<button [disabled]="loading" class="btn btn-primary">Register</button>-->
-			 <button [disabled]="!registerForm.form.valid" md-raised-button color="accent" >Register</button>
+			 <button id="registerForm" [disabled]="!registerForm.form.valid" md-raised-button color="accent" >Register</button>
         	 <button  md-raised-button [routerLink]="['/login']" >Cancel</button>
         </div>
     </form>
