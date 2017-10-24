@@ -3832,7 +3832,7 @@ exports = module.exports = __webpack_require__(10)();
 
 
 // module
-exports.push([module.i, ".active{\r\n    background-color: #f5f5f5;\r\n    color: #204d74;\r\n}", ""]);
+exports.push([module.i, ".active{\r\n    background-color: #f5f5f5;\r\n    color: #204d74;\r\n}\r\n\r\n.profilePicture img {\r\n  display: block;\r\n  width: 30px;\r\n  border-radius: 150px;\r\n  margin-right: auto;\r\n  margin-left: auto;\r\n}\r\n", ""]);
 
 // exports
 
@@ -4338,7 +4338,7 @@ module.exports = "<div class=\"jumbotron\" style=\"height:100%\">\r\n  <div clas
 /***/ 468:
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"ui secondary pointing menu active\">\r\n  <a class=\"item\"(click)=\"navigateToEmployee()\" routerLinkActive=\"active\">\r\n    Employees \r\n  </a>\r\n  <a class=\"item\" (click)=\"navigateToProperty()\"   routerLinkActive=\"active\">\r\n    Properties \r\n  </a>\r\n  <a class=\"item\" (click)=\"navigateToTask()\" routerLinkActive=\"active\" >\r\n     Tasks\r\n  </a>\r\n  <div class=\"right menu\">\r\n    <a class=\"ui item\" routerLinkActive=\"active\">\r\n     {{firstname}} {{lastname}}\r\n    </a>\r\n    <a class=\"ui item\" (click)=\"logout()\" routerLinkActive=\"active\">\r\n      Logout\r\n    </a>\r\n     \r\n  </div>\r\n</div>"
+module.exports = "<div class=\"ui secondary pointing menu active\">\r\n  <a class=\"item\"(click)=\"navigateToEmployee()\" routerLinkActive=\"active\">\r\n    Employees\r\n  </a>\r\n  <a class=\"item\" (click)=\"navigateToProperty()\"   routerLinkActive=\"active\">\r\n    Properties\r\n  </a>\r\n  <a class=\"item\" (click)=\"navigateToTask()\" routerLinkActive=\"active\" >\r\n     Tasks\r\n  </a>\r\n  <div class=\"right menu\">\r\n\r\n    <a class=\"profilePicture\"><img src=\"/assets/profile.jpg\"/></a>\r\n    <a class=\"ui item\" routerLinkActive=\"active\">\r\n     {{firstname}} {{lastname}}\r\n    </a>\r\n    <a class=\"ui item\" (click)=\"logout()\" routerLinkActive=\"active\">\r\n      Logout\r\n    </a>\r\n\r\n  </div>\r\n</div>\r\n"
 
 /***/ }),
 
