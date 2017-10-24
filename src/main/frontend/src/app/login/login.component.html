@@ -1,74 +1,74 @@
 <div class="jumbotron" style="height:100%">
-    <div class="container">
-        <div class="col-sm-8 col-sm-offset-2">
+  <div class="container">
+    <div class="col-sm-8 col-sm-offset-2">
 
-<div class="main-login col-md-6 col-md-offset-3">
-    <h2>Login</h2>
+      <div class="main-login col-md-6 col-md-offset-3">
+        <h2>Login</h2>
 
-	 <div  *ngIf="showInvalidUser" class="alert alert-danger">
-    					Username and/or Password not found <br>
-						Please try again
-    	</div>
-
-	 <div  *ngIf="showUserRegistered" class="alert alert-success">
-    					New user successfully registered
-    	</div>
-
-	
-
-    <form #loginForm="ngForm" (ngSubmit)="login()">
-       	<div class="form-group">
-							<label for="name" class="cols-sm-2 control-label">UserName</label>
-							<div class="cols-sm-10">
-								<div class="input-group">
-									<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
-								  <input id="loginUsername" type="text" class="form-control" 
-								  name="loginUsername" [(ngModel)]="model.username" #username="ngModel" required minlength="4" />   
-								</div>
-							</div>
-						</div>
-
-		 <div *ngIf="username.errors && (username.dirty || username.touched)"
-     					class="alert alert-danger">
-    				<div [hidden]="!username.errors.required">
-      					UserName is required
-    				</div>
-   					 <div [hidden]="!username.errors.minlength">
-    				  UserName must be at least 4 characters long.
-   					 </div>
-   				
-		</div>
-
-        	<div class="form-group">
-							<label for="password" class="cols-sm-2 control-label">Password</label>
-							<div class="cols-sm-10">
-								<div class="input-group">
-									<span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
-									   <input id="loginPassword" type="password" 
-									   class="form-control" name="loginPassword" [(ngModel)]="model.password" #password="ngModel" required minlength="4" />
-								</div>
-							</div>
-			</div>
-
-			 <div *ngIf="password.errors && (password.dirty || password.touched)"
-     					class="alert alert-danger">
-    				<div [hidden]="!password.errors.required">
-      					Password is required
-    				</div>
-   					 <div [hidden]="!password.errors.minlength">
-    				  Password must be at least 4 characters long.
-   					 </div>
-   					
-		</div>
-
-        <div class="form-group" align="end">
-        <!--  <button [disabled]="loading" class="btn btn-primary">Login</button>-->
-			 <button name="login" [disabled]="!loginForm.form.valid" md-raised-button color="accent" >Login</button>
-			 <button id="register" md-raised-button  [routerLink]="['/register']" >Register</button>
-        
+        <div  *ngIf="showInvalidUser" class="alert alert-danger">
+          Username and/or Password not found <br>
+          Please try again
         </div>
-    </form>
-</div>
-</div>
-</div>
+
+        <div  *ngIf="showUserRegistered" class="alert alert-success">
+          New user successfully registered
+        </div>
+
+        <div class="profilePicture"><img src="/assets/profile.jpg"/></div>
+
+        <form #loginForm="ngForm" (ngSubmit)="login()">
+          <div class="form-group">
+            <label for="name" class="cols-sm-2 control-label">UserName</label>
+            <div class="cols-sm-10">
+              <div class="input-group">
+                <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+                <input id="loginUsername" type="text" class="form-control"
+                       name="loginUsername" [(ngModel)]="model.username" #username="ngModel" required minlength="4" />
+              </div>
+            </div>
+          </div>
+
+          <div *ngIf="username.errors && (username.dirty || username.touched)"
+               class="alert alert-danger">
+            <div [hidden]="!username.errors.required">
+              UserName is required
+            </div>
+            <div [hidden]="!username.errors.minlength">
+              UserName must be at least 4 characters long.
+            </div>
+
+          </div>
+
+          <div class="form-group">
+            <label for="password" class="cols-sm-2 control-label">Password</label>
+            <div class="cols-sm-10">
+              <div class="input-group">
+                <span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
+                <input id="loginPassword" type="password"
+                       class="form-control" name="loginPassword" [(ngModel)]="model.password" #password="ngModel" required minlength="4" />
+              </div>
+            </div>
+          </div>
+
+          <div *ngIf="password.errors && (password.dirty || password.touched)"
+               class="alert alert-danger">
+            <div [hidden]="!password.errors.required">
+              Password is required
+            </div>
+            <div [hidden]="!password.errors.minlength">
+              Password must be at least 4 characters long.
+            </div>
+
+          </div>
+
+          <div class="form-group" align="end">
+            <!--  <button [disabled]="loading" class="btn btn-primary">Login</button>-->
+            <button name="login" [disabled]="!loginForm.form.valid" md-raised-button color="accent" >Login</button>
+            <button id="register" md-raised-button  [routerLink]="['/register']" >Register</button>
+
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
 </div>
