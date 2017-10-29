@@ -232,7 +232,7 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
-			<plugin>
+			<!--<plugin>
 				<groupId>com.spotify</groupId>
 				<artifactId>docker-maven-plugin</artifactId>
 				<version>0.4.10</version>
@@ -256,8 +256,8 @@
 					<serverId>docker-hub</serverId>
 					<registryUrl>https://index.docker.io/v1/</registryUrl>
 
-					<!-- <pushImage>false</pushImage> -->
-					<resources>        <!-- Dockerfile building resources -->
+
+					<resources>
 						<resource>
 							<targetPath>/target/</targetPath>
 							<directory>${project.build.directory}</directory>
@@ -270,7 +270,7 @@
 						</resource>
 					</resources>
 				</configuration>
-			</plugin>
+			</plugin>-->
 		</plugins>
 	</build>
 
